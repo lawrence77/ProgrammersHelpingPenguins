@@ -1,0 +1,22 @@
+Hosted Server Documentation:
+
+IAM account, used to make/edit security groups and launch instances
+https://brett15.signin.aws.amazon.com/console
+username: admin
+password: admin
+
+ssh connection
+First download the admin-key-pair-ohio.pem
+ssh -i path-to-.pem-file ec2-user@ec2-18-216-185-213.us-east-2.compute.amazonaws.com
+
+(I recommend making an alias for this annoying ssh command)
+
+MySql
+Username: root
+Password: root
+
+Ip address of website
+ec2-18-216-185-213.us-east-2.compute.amazonaws.com
+
+Apache root directory is               (this is where we will place our code and .htaccess)
+/var/www/html          
