@@ -1,0 +1,6 @@
+Options -Indexes
+
+RewriteEngine on
+
+RewriteRule ^$ app/controller/siteController.php?page=home [QSA,L]
+RewriteRule ^home/?$ app/controller/siteController.php?page=home [QSA,L]
