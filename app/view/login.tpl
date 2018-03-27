@@ -1,5 +1,4 @@
 <div>
-    <hr>
     <h1> Sign In </h1>
     <form method="post" action="<?= BASE_URL ?>/login/process/" id="loginForm">
         <p>Username
