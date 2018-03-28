@@ -2,5 +2,7 @@ Options -Indexes
 
 RewriteEngine on
 
+#Site Controller
 RewriteRule ^$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
 RewriteRule ^home/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
+RewriteRule ^login/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=login [QSA,L]

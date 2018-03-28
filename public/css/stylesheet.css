@@ -1,1 +1,9 @@
 /* Main Stylesheet */
+body {
+    padding-top: 70px;
+}
+
+/*Sign Page */
+#newUserForm {
+    display: none;
+}
