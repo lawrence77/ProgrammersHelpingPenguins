@@ -52,12 +52,11 @@ class LoginController
         $user = User::loadByUsername($un);
         //successfully found user in db and correct password
         if ($user != null && $user->password == $pw) {
-            $relocation = 'Location: '.BASE_URL.'/home/';
+            $relocation = 'Location: '.BASE_URL.'/campaigns/';
             session_start();
             $_SESSION['username'] = $un;
         } else {                //failed to find user in db
-            $error = 'Incorrect Username or Password';
-            $relocation = 'Location: '.BASE_URL.'/signin/error/'.$error.'/0/';
+            $relocation = 'Location: '.BASE_URL.'/login/';
         }
         header($relocation);
     }
@@ -81,7 +80,7 @@ class LoginController
         $relocation = '';
         if ($user->save() == null) {
             //failed to save to db
-            $relocation = 'Location: '.BASE_URL.'/login/';
+            $relocation = 'Location: '.BASE_URL.'/campaigns/';
         } else {
             $relocation = 'Location: '.BASE_URL.'/home/';
             session_start();
