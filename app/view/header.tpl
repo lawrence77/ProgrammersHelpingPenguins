@@ -36,7 +36,7 @@ else $loggedin = 'Sign In';
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="<?= $BASE_URL ?>/campaign">Campaigns</a></li>
+                    <li><a href="<?= $BASE_URL ?>/campaigns">Campaigns</a></li>
                     <!--<li><a href="">TAB 2</a></li>
                     <li><a href="">TAB#</a></li>-->
                 </ul>

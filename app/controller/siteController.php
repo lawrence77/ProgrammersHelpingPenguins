@@ -19,8 +19,8 @@ class SiteController {
             case 'login':
                 $this->login();
                 break;
-			case 'campaign':
-				$this->campaign();
+			case 'campaigns':
+				$this->campaigns();
 				break;
 		}
 
@@ -40,11 +40,11 @@ class SiteController {
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
   
-  public function campaign()
+  public function campaigns()
   {
 	  $pageTitle = 'Campaign';
       include_once SYSTEM_PATH.'/view/header.tpl';
-      include_once SYSTEM_PATH.'/view/campaignPage.tpl';
+      include_once SYSTEM_PATH.'/view/campaignList.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 

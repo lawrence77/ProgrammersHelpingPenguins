@@ -6,4 +6,4 @@ RewriteEngine on
 RewriteRule ^$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
 RewriteRule ^home/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
 RewriteRule ^login/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=login [QSA,L]
-RewriteRule ^campaign/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=campaign [QSA,L]
+RewriteRule ^campaigns/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=campaigns [QSA,L]
