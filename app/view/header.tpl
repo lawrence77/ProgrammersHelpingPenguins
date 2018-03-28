@@ -43,7 +43,7 @@ else $loggedin = 'Login';
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="">Signup  <i class="fa fa-user-plus"></i></a></li>-->
                     <?php if(isset($_SESSION['username'])) { ?>
-                        <li><a href="">$loggedin <i class="fa fa-user"></i></a></li>
+                        <li><a href=""><?= $loggedin ?> <i class="fa fa-user"></i></a></li>
                     <?php } else { ?>
                         <li><a href="<?= BASE_URL ?>/login">Login <i class="fa fa-user"></i></a></li>
                     <?php } ?>
