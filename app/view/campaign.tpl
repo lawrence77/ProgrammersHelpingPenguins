@@ -6,7 +6,7 @@
   <table id="campaign" class="left">
 	<tr>
 		<td>Name:</td>
-		<td> <?php echo $campaign['name']; ?>
+		<td> <?php echo $campaign['name']; ?> </td>
 	</tr>
 	<tr>
 		<td>Date:</td>
