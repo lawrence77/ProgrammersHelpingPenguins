@@ -2,7 +2,7 @@
 <div class="container">
      	<?php
 		$crews = Crew::getPeople();
-        
+         echo "hiiiasda hdshd hsdkh";
 		foreach($crews as $c)
 		{
             echo "hiiiasda hdshd hsdkh".$c->bomberGroup;
