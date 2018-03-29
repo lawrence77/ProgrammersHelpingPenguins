@@ -48,7 +48,7 @@ class CampaignController {
 		//	redirect_to('/library');
 		 // } else {
 		//	$errors = $result;
-		  }
+		 // }
 		}
 		
 		
