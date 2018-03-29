@@ -13,4 +13,4 @@
 		}
 	?>
 </div>
-<button id="add-campaign-button" class="large"> Add new Campaign</button>
+<a href="<?= $BASE_URL?>/campaigns/add"><button id="add-campaign-button" class="large"> Add new Campaign</button></a>
