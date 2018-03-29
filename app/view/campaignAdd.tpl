@@ -5,11 +5,11 @@
 
   <form method="post">
   Name:<br />
-  <input type = "text" name="name" value="<?php echo $campaign['name']; ?>" /><br />
+  <input type = "text" name="name" value="" /><br />
   Date:<br />
-    <input type="text" name="date" value="<?php echo $campaign['date']; ?>" /><br />
+    <input type="text" name="date" value="" /><br />
     Description:<br />
-    <input type="text" name="description" value="<?php echo $campaign['description']; ?>" /><br />
+    <input type="text" name="description" value="" /><br />
     <br />
     <input type="submit" name="submit" value="Update"  />
   </form>
