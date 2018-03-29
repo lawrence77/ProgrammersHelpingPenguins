@@ -13,18 +13,18 @@
             <tr>
                 <td>
                     <div class="bomber-table-title">Air Force
-                        <div class="bomber-table-content">8th</div>
+                        <div class="bomber-table-content"><?php echo $crew['division']; ?></div>
                     </div>
                     <div class="bomber-squad-table-title">Type
-                        <div class="bomber-squad-table-content">Combat</div></div>
+                        <div class="bomber-squad-table-content"><?php echo $crew['type']; ?></div></div>
                     <div class="bomber-squad-table-title">Type category
-                        <div class="bomber-squad-table-content">Bombardment</div></div>
+                        <div class="bomber-squad-table-content"><?php echo $crew['typeCategory']; ?></div></div>
                     <div class="bomber-squad-table-title">Nicknames
-                        <div class="bomber-squad-table-content">Not Known</div></div>
+                        <div class="bomber-squad-table-content"><?php echo $crew['Nicknames']; ?></div></div>
                     <div class="bomber-squad-table-title">Motto
-                        <div class="bomber-squad-table-content">Not Known</div></div>
+                        <div class="bomber-squad-table-content"><?php echo $crew['Motto']; ?></div></div>
                     <div class="bomber-squad-table-title">Insignia
-                        <div class="bomber-squad-table-content">Not Known</div>
+                        <div class="bomber-squad-table-content"><?php echo $crew['insignia']; ?></div>
                     </div>
                 </td>
               
