@@ -7,7 +7,7 @@
   Name:<br />
   <input type = "text" name="name" value="" /><br />
   Date:<br />
-    <input type="text" name="date" value="" /><br />
+    <input type="date" name="date" value="" /><br />
     Description:<br />
     <input type="text" name="description" value="" /><br />
     <br />
