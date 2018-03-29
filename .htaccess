@@ -16,6 +16,6 @@ RewriteRule ^campaigns/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/c
 RewriteRule ^campaigns/add/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=add [QSA,L]
 
 #Login Controller
-RewriteRule ^login/out/?$ ProgrammersHelpingPenguins/app/controller/signInController.php?action=out [QSA,L]
-RewriteRule ^login/newUser/?$ ProgrammersHelpingPenguins/app/controller/signInController.php?action=newUser [QSA,L]
-RewriteRule ^login/process/?$ ProgrammersHelpingPenguins/app/controller/signInController.php?action=process [QSA,L]
+RewriteRule ^login/out/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=out [QSA,L]
+RewriteRule ^login/newUser/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=newUser [QSA,L]
+RewriteRule ^login/process/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=process [QSA,L]
