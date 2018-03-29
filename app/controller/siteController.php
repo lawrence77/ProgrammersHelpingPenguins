@@ -55,14 +55,14 @@ class SiteController {
   }
   public function crews()
   {
-	  $pageTitle = 'Campaign';
+	  $pageTitle = 'Crews';
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/crewList.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
   public function people()
   {
-	  $pageTitle = 'Campaign';
+	  $pageTitle = 'People';
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/peopleList.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
