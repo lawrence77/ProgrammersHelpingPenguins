@@ -2,8 +2,11 @@
 <div class="container">
      	<?php
 		$crews = Crew::getPeople();
+        
 		foreach($crews as $c)
 		{
+            echo $c->bomberGroup;
+            echo $c->stationedAirfield;
             echo "<div class =\"row bomber-sqaud-content\"><div class =\"col-lg-8\"><img src =\"../../public/images/question.png\" class =\"crew-thumbnail\"> </div>";
             echo "<div class =\"col-lg-4\"> <table><tr><td> <div class=\"bomber-table-title\"> Provisional-Wing <div class=\"bomber-table-content\">". $c-> provisionalWing "</div></div>";
             echo "<div class=\"bomber-squad-table-title\">Training School <div class=\"bomber-squad-table-content\">" . "TRAININGININ SCHool" ."</div></div>";
