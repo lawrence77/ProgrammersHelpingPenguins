@@ -31,7 +31,7 @@ class CampaignController {
   public function add() {
       $pageTitle = 'Add new campaign';
       //$errors= array();
-		$campaign = new campaign();
+		$campaign = new Campaign();
 		//Check if is post request
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
