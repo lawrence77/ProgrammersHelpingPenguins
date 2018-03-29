@@ -33,7 +33,8 @@ class CrewController
         $crew = Crew::loadById($c->id);
         
       $pageTitle = $crew['bomberGroup'];
-      include_once SYSTEM_PATH.'/view/crew.tpl';    
+      include_once SYSTEM_PATH.'/view/crew.tpl';
+      include_once SYSTEM_PATH.'/view/people.tpl';
     }
    
 }
