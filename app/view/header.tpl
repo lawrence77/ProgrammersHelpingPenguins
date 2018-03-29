@@ -17,6 +17,7 @@ else $loggedin = 'Login';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= LINK_URL ?>/public/css/stylesheet.css"/>
+    <link rel="stylesheet" href="<?= LINK_URL ?>/public/css/hansonstylesheet.css"/>
     <script type="text/javascript" src="<?= LINK_URL ?>/public/scripts/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<?= LINK_URL ?>/public/scripts/scripts.js"></script>
 </head>
@@ -30,7 +31,7 @@ else $loggedin = 'Login';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="" id="hokie-brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Color_Photographed_B-17E_in_Flight.jpg/300px-Color_Photographed_B-17E_in_Flight.jpg" id="hokie-brand">
                 <a class="navbar-brand"  href="<?= BASE_URL ?>">Bomber Training</a> ADD pic here
             </div>
             <div id="navbar" class="collapse navbar-collapse">

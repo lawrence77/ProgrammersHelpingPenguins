@@ -17,7 +17,7 @@ class CrewController
     {
         switch ($action) {
             case 'load':
-                    this->loadCrew($_POST['crew'])
+                    this->loadCrew($_POST['id'])
                 break;
             case 'edit':
                 $this->processLogin($_POST['username'], $_POST['password']);
@@ -30,7 +30,7 @@ class CrewController
     //Starts a new session for a logged-in user and redirects the page.
     public function loadCrew($c)
     {
-        $crew = Crew::loadById($c->id);
+        $crew = Crew::loadById($c);
         
       $pageTitle = $crew['bomberGroup'];
       include_once SYSTEM_PATH.'/view/crew.tpl';

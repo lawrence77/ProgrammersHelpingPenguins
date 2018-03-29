@@ -12,19 +12,19 @@
         <table>
             <tr>
                 <td>
-                    <div class="bomber-table-title">Air Force
-                        <div class="bomber-table-content"><?php echo $crew['division']; ?></div>
+                    <div class="bomber-table-title">Bomber Group
+                        <div class="bomber-table-content"><?php echo $crew['bomberGroup']; ?></div>
                     </div>
-                    <div class="bomber-squad-table-title">Type
-                        <div class="bomber-squad-table-content"><?php echo $crew['type']; ?></div></div>
-                    <div class="bomber-squad-table-title">Type category
-                        <div class="bomber-squad-table-content"><?php echo $crew['typeCategory']; ?></div></div>
-                    <div class="bomber-squad-table-title">Nicknames
-                        <div class="bomber-squad-table-content"><?php echo $crew['Nicknames']; ?></div></div>
-                    <div class="bomber-squad-table-title">Motto
-                        <div class="bomber-squad-table-content"><?php echo $crew['Motto']; ?></div></div>
-                    <div class="bomber-squad-table-title">Insignia
-                        <div class="bomber-squad-table-content"><?php echo $crew['insignia']; ?></div>
+                    <div class="bomber-squad-table-title">Provisional Wing
+                        <div class="bomber-squad-table-content"><?php echo $crew['provisionalWing']; ?></div></div>
+                    <div class="bomber-squad-table-title">Training School
+                        <div class="bomber-squad-table-content"><?php echo $crew['trainingSchool']; ?></div></div>
+                    <div class="bomber-squad-table-title">Sent
+                        <div class="bomber-squad-table-content"><?php echo $crew['sent']; ?></div></div>
+                    <div class="bomber-squad-table-title">Losses
+                        <div class="bomber-squad-table-content"><?php echo $crew['losses']; ?></div></div>
+                    <div class="bomber-squad-table-title">Stationed Airfield
+                        <div class="bomber-squad-table-content"><?php echo $crew['stationedAirfield']; ?></div>
                     </div>
                 </td>
               

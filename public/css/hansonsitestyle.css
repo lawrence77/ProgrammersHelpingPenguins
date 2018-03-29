@@ -1,0 +1,335 @@
+.nav-elem{
+	/*padding: 1.5%;*/
+	background: gray;
+    border: solid black 1px;
+}
+.navagation-bar{
+	text-align: center;
+}
+.brand{
+    float:left;
+    
+    padding-right:15%;
+    background-image: url(Images/vtlogo.png);
+    background-size:contain;
+    height: 70px;
+	background-repeat: no-repeat;
+   
+    
+    display: inline;
+}
+.header{
+    height: 10%;
+    width: 100%;
+    display: inline-block;
+}
+.buttons{
+    text-align: right;
+     border: solid black 1px;
+    display: inline-block;
+    float:right;
+    font-size: 30px;
+}
+.title{
+    font-size: 45px;
+    margin-left: 20%;
+     border-bottom: solid black 1px;
+    display: inline-block;
+}
+.content{
+    margin-top: 5%;
+    background-color: azure;
+    width: 100%;
+    height:500px;
+    
+}
+
+.image-slider{
+    background-image: url("Images/background2.jpg");
+/* Full height */
+    height: 100%;
+    /*max-width: 100%;*/
+    margin:0 20% 0 20%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.image-info{
+    border-bottom: solid black 1px;
+    margin: 2% 15% 5% 15%;
+    
+}
+.image-buttons{
+     border: solid black 1px;
+    margin: 3% 20% 3% 20%;
+}
+
+div p{
+    float: left;
+    display: inline;
+    margin: 1.6%;
+}
+.profile-contents{
+    margin-left: 6%;
+    margin-right: 6%;
+    overflow: hidden;
+    
+    
+}
+.left-align{
+    float:left;
+    
+}
+.right-align{
+    float: right;
+}
+.home-info{
+    width:100%;
+     border-bottom: solid black 1px;
+    
+}
+.profile-inner-contents{
+    width: 65%;
+    margin-left: 2%;
+    margin-top: 12%;
+    border: 1px solid black;
+    padding: 1%;
+    position: relative;
+     border: 1px black solid;
+}
+.my-profile{
+    
+    width: 30%;
+    margin:10% 3% 3% 0%;
+    padding-left: 3%;
+    border: 1px black solid;
+}
+#profilepic{
+   max-width: 80%;
+    max-height: 70%;   
+    display: block;
+}
+.family-tree{
+    width: 100%;
+    padding-right: 2%;
+    padding-left: 2%;
+
+}
+.important-events{
+    width: 90%;
+     padding-right: 5%;
+    padding-left: 5%;
+}
+.blocked{
+    display: block;
+}
+.question-header{
+    font-size:20px;
+    margin: 3% 0 0% 0;
+    display: block;
+}
+.image-spacing{
+    margin: 10%;
+}
+.form-spacing{
+    padding: 5% 0 0 0;
+    margin-bottom: 2%;
+    float: initial;
+    border-bottom: 1px black solid; 
+    
+}
+input{
+    display: block;
+}
+.centertext-align{
+    text-align: center;
+}
+.event{
+    
+}
+.border-container{
+    max-width: 90%;
+    height: 40%;
+    max-height: 50%;
+    margin: 5% 0 5% 0;
+    border: 2px solid black;
+}
+.relationship{
+    height:25%;
+    width: inherit;
+    border-bottom: 1px gray solid;
+}
+.inline{
+    display: inline-block;
+    float: right;
+}
+.bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.hide{
+    display: none;
+}
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+#search-button{
+    margin-top: 15%;
+    font-size: 30px;
+    text-align: center;
+}
+table#search-results td{
+    margin: 0 15% 0 15%;
+    border: 1px solid black;
+    vertical-align: top;
+    
+}
+#search-results{
+   margin-top: 10%;
+    padding-top 10%;
+    width: 100%;
+    table-layout: fixed;
+}
+tr{
+    height: 100%;
+    width: 100%;
+}
+.column-header{
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+}
+.thumbnail{ 
+    width: 70px;
+    height: 70px;
+    margin: 3%;
+    
+}
+.important-events{
+    
+}
+.user-search{
+    margin-left: 5%;
+    
+}
+.user{
+    margin: 5%;
+}
+
+table.padded tr td {
+   padding-left: 10%;
+    width: 50%;
+}
+
+table.padded tr td:first-child {
+   padding-left:0;
+    width: 50%;
+}
+.content-left{
+    text-align: left;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: azure;
+}
+button.sign-in{
+    font-size: 30px;
+}
+button.search{
+    font-size: 30px;
+}
+.size30{
+     font-size: 30px;
+}
+button-padding{
+    padding 1.5%;
+    margin: 1.5%;
+}
+#small-button{
+    font-size: 12px;
+}
+.content-right{
+    text-align: right;
+}
+.top-spacing{
+ margin-top:10%;   
+}
+div.content-right input{
+    display:inline;
+}
+p{
+    font-family: cursive;
+}
+#hokie-brand{
+    width: 90px;
+    height: inherit;
+    float: left;
+}
+.added-family{
+    border:1px solid black;
+    margin: 2%;
+    position:relative;
+
+}
+.add-family-member{
+
+}
+.edit-family-member{
+    position: absolute;
+right:    0;
+bottom:   0;
+}
+.add-family-member{
+position: absolute;
+right:    0;
+bottom:   0;
+margin-top: 3%;
+}
+
+.bomber-squad-content{
+    border: 1px solid black;
+    height: 60%;
+}
+.bomber-squad-image{
+    margin: 3%;
+    background-size: cover;
+    height:70%;
+    width: 70%;
+
+}
+.bomber-squad-table-title{
+    font-size: 40px;
+    margin: 1.5% 0 1.5% 0;
+}
+.bomber-squad-table-content{
+    font-size: 25px;
+    margin: 1% 0 1% 0;
+}
+.bomber-sqaud-info{
+    font-size: 20px;
+    margin-top: 3%;
+}
+
+.bomber-pic{
+    height: 90%;
+    width: 90%;
+}
+.bomber{
+    height: 40%;
+    margin: 2%;
+}
+.bomber-table-title{
+    font-size: 25px;
+    margin: 1.5% 0 1.5% 0;
+}
+.bomber-table-content{
+    font-size: 16px;
+    margin: 1% 0 1% 0;
+}
