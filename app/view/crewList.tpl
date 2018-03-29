@@ -1,7 +1,7 @@
 
 <div class="container">
      	<?php
-		$crews = Crew::getPeople();
+		$crews = Crew::getCrews();
 		foreach($crews as $c)
 		{
             /*
