@@ -22,6 +22,12 @@ class SiteController {
 			case 'campaigns':
 				$this->campaigns();
 				break;
+			case 'crews':
+				$this->crews();
+				break;
+			case 'people':
+				$this->people();
+				break;
 		}
 
 	}
@@ -45,6 +51,20 @@ class SiteController {
 	  $pageTitle = 'Campaign';
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/campaignList.tpl';
+      include_once SYSTEM_PATH.'/view/footer.tpl';
+  }
+  public function crews()
+  {
+	  $pageTitle = 'Campaign';
+      include_once SYSTEM_PATH.'/view/header.tpl';
+      include_once SYSTEM_PATH.'/view/crewList.tpl';
+      include_once SYSTEM_PATH.'/view/footer.tpl';
+  }
+  public function people()
+  {
+	  $pageTitle = 'Campaign';
+      include_once SYSTEM_PATH.'/view/header.tpl';
+      include_once SYSTEM_PATH.'/view/peopleList.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 

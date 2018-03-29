@@ -7,3 +7,5 @@ RewriteRule ^$ ProgrammersHelpingPenguins/app/controller/siteController.php?page
 RewriteRule ^home/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
 RewriteRule ^login/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=login [QSA,L]
 RewriteRule ^campaigns/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=campaigns [QSA,L]
+RewriteRule ^crews/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=crews [QSA,L]
+RewriteRule ^people/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=people [QSA,L]
