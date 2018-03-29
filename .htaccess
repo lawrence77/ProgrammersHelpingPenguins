@@ -19,3 +19,6 @@ RewriteRule ^campaigns/add/?$ ProgrammersHelpingPenguins/app/controller/campaign
 RewriteRule ^login/out/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=out [QSA,L]
 RewriteRule ^login/newUser/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=newUser [QSA,L]
 RewriteRule ^login/process/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=process [QSA,L]
+
+#Crew Controller
+RewriteRule ^crew/(/d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=load&id=$1 [QSA,L]
