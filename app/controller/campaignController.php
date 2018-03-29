@@ -33,7 +33,7 @@ class CampaignController {
       //$errors= array();
 		$campaign = new campaign();
 		//Check if is post request
-		if(is_post_request()) {
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		  // Confirm that values are present before accessing them.
 		  if(isset($_POST['name'])) { $campaign['name'] = $_POST['name']; }
