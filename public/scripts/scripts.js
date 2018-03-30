@@ -32,6 +32,10 @@ $(document).ready(function(e) {
             .show()
 		$('#view-campaign-menu').hide()
     })
+	//$('#delete-campaign-button').on('click', function(e) {
+    //    window.location.href = BASE_URL + "/campaigns"
+	//	deleteCampaign($(this).val())
+    //})
     $('#newCrewButton').on('click', function(e) {
         $(this).hide()
 
@@ -80,7 +84,7 @@ $(document).ready(function(e) {
             $('#edit-campaign-menu').hide()
         }
         else if (buttonName == 'updateCampaignEdit') {
-            newCampaign()
+            editCampaign($(this).val())
             $('#view-campaign-menu').show()
             $('#edit-campaign-menu').hide()
         }
@@ -131,6 +135,55 @@ function deleteCampaign(id) {
 		}
             },
 	    error: function(resp) {
+	        console.log("error!");
+		console.log(resp);
+            }
+        });
+}
+function editCampaign(id){
+	console.log("Testing");
+    data = {};
+	data.id=id
+    data.name = $('#editCampaignName').val();
+    data.date = $('#editCampaignDate').val();
+    data.description = $('#editCampaignDescription').val();
+    console.log(data);
+    $.ajax({
+            type: 'POST',
+            url: BASE_URL +'/campaigns/edit/'+id,
+            data: data,
+            dataType: 'json',
+            success: function(resp) {
+		console.log(resp);
+		if(resp.success == true) {
+			var n_data = JSON.parse(resp.data)
+                        console.log($("#view-campaign-menu"));
+                        $("#view-campaign-menu").replaceWith("\
+						<div id='view-campaign-menu'>\
+						  <a href="+ BASE_URL +"c/ampaigns'>Back to Campaign list </a><br />\
+						  <h1>Campaign:" + n_data.name + "</h1>\
+						  <table id='campaign' class='left'>\
+							<tr>\
+								<td>Name:</td>\
+								<td> " + n_data.name + " </td>\
+							</tr>\
+							<tr>\
+								<td>Date:</td>\
+								<td> " + n_data.date + " </td>\
+							</tr>\
+							<tr>\
+								<td>Description:</td>\
+								<td> " + n_data.description + " </td>\
+							</tr>\
+						  </table>\
+							<button id='edit-campaign-button'>Edit Campaign </button>\
+							<button id='delete-campaign-button' value='" + n_data.id + "'>Delete Campaign </button>\
+						</div>");
+                }
+
+
+            },
+			error: function(resp) {
 	        console.log("error!");
 		console.log(resp);
             }
