@@ -32,14 +32,10 @@ class SiteController {
 
 	}
   public function home() {
-      if (isset($_SESSION['username'])) {
-          $pageTitle = 'Home';
-          include_once SYSTEM_PATH.'/view/header.tpl';
-          include_once SYSTEM_PATH.'/view/home.tpl';
-          include_once SYSTEM_PATH.'/view/footer.tpl';
-      } else {
-          header('Location: '.BASE_URL.'/login/');
-      }
+      $pageTitle = 'Home';
+      include_once SYSTEM_PATH.'/view/header.tpl';
+      include_once SYSTEM_PATH.'/view/home.tpl';
+      include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 
   public function login()
