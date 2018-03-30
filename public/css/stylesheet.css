@@ -4,7 +4,7 @@ body {
 }
 
 /*AJAX Forms */
-#newUserForm, #newCrewForm, #newPersonForm {
+#newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menu {
     display: none;
 }
 .bomber-squad-content{

@@ -15,7 +15,7 @@
 </div>
 <button id="add-campaign-button" class="large"> Add new Campaign</button>
 
-<div id="add-campaign-menu" class="hide" style="display:none">
+<div id="add-campaign-menu">
 
   <h1>Add Campaign</h1>
 
@@ -27,8 +27,9 @@
     Description:<br />
     <input type="text" name="description" value="" /><br />
     <br />
-  </form>
-  <button id="createNewCampaignButton" name="createNewCampaignButton"  type="button">Add</button>
+	<button id="createNewCampaignButton" name="createNewCampaignButton"  type="button">Add</button>
     <button id="cancelNewCampaignButton" name="cancelNewCampaignButton" type="button">Cancel</button> <br>
+  </form>
+
 
 </div>
