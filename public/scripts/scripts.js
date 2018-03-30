@@ -27,9 +27,7 @@ $(document).ready(function(e) {
             .children('#newFirstName').focus()
     })
     $('#loadPicture').on('mouseenter', function (e) {
-        var link = getPicture($(this).attr('alt'))
-        console.log(link);
-        $(this).attr('src', link)
+        $(this).attr('src', getPicture($(this).attr('alt')))
     })
 
     $('body').find('form').find('button').on('click', function(e) {

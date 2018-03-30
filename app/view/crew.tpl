@@ -3,7 +3,7 @@
 
         <div class ="row bomber-sqaud-content">
         <div class="col-lg-8">
-            <img id="loadPicture" src="<?= LINK_URL ?>/public/images/question.png" alt="<?= $crew->apiName?>" class="bomer-squad-image">
+            <img id="loadPicture" src="<?= LINK_URL ?>/public/images/question.png" alt="<?= $crew->apiName?>" class="crew-thumbnail">
         </div>
 
         <div class ="col-lg-4">
