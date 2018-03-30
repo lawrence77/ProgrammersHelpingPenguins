@@ -49,6 +49,7 @@ class CrewController
         $crew->sent               = $_POST['sent'];
         $crew->losses             = $_POST['losses'];
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
+	return json_encode($crew);
 	$id = $crew->save();
 	$json = array('id' => $id);
 	return json_encode($json);
