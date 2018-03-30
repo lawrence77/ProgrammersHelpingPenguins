@@ -1,6 +1,6 @@
 <div class="container">
     <button id="newCrewButton" type="button" name="newCrewButton">New Bomber Group</button>
-    <form method="post" action="<?= BASE_URL ?>/crews/newCrew/" id="newCrewForm">
+    <form id="newCrewForm">
         <p> Provisional Wing </p>
         <input id="newCrewWing" name="wing" type="text" placeholder="Provisional Wing" required><br>
         <p> Bomber Group </p>
@@ -12,7 +12,7 @@
         <p> Lost </p>
         <input id="newCrewLost" name="lost" type="number" placeholder="Aircraft Lost" required><br>
 
-        <button id="createNewCrewButton" name="createNewCrewButton"  type="submit">Add</button>
+        <button id="createNewCrewButton" name="createNewCrewButton"  type="button">Add</button>
         <button id="cancelNewCrewButton" name="cancelNewCrewButton" type="button">Cancel</button> <br>
     </form>
 </div> <br>
