@@ -63,6 +63,8 @@ function getPicture(callName) {
         console.log(stringUrl);
         $.ajax({
             url: stringUrl,
+            jsonpCallback: 'getContent',
+            dataType: 'jsonp',
             success: function(res) {
                 console.log(res)
                 /*$('#divPicture').append(pic)*/
