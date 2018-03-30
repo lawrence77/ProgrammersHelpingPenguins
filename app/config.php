@@ -4,7 +4,7 @@
 //path constants
 define('SYSTEM_PATH', dirname(__FILE__)); # location of 'app' folder - don't change
 define('BASE_URL', 'http://localhost');
-define('LINK_URL', 'http://localhost/ProgrammerHelpingPenguins');
+define('LINK_URL', 'http://localhost/ProgrammersHelpingPenguins');
 
 
 define('DB_USER', 'root');
