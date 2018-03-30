@@ -22,6 +22,8 @@ class CrewController
             case 'edit':
                 $this->processLogin($_POST['username'], $_POST['password']);
                 break;
+            case 'newCrew':
+	        $this->newCrew();
             default:
                 break;
         }
@@ -38,5 +40,19 @@ class CrewController
         include_once SYSTEM_PATH.'/view/peopleList.tpl';
         include_once SYSTEM_PATH.'/view/footer.tpl';
     }
+    public function newCrew()
+    {
+        $crew = newCrew();
+        $crew->provisionalWing    = $_POST['provisionalWing'];
+        $crew->bomberGroup        = $_POST['bomberGroup'];
+        $crew->trainingSchool     = $_POST['trainingSchool'];
+        $crew->sent               = $_POST['sent'];
+        $crew->losses             = $_POST['losses'];
+        $crew->stationedAirfield  = $_POST['stationedAirfield'];
+	$json = array('id' => $crew->save());
+	return json_encode($json);
+        
 
+    }
+   
 }

@@ -47,3 +47,34 @@ function clearTextOfType(parent, children) {
         $(this).val('')
     })
 }
+
+function newCrew() {
+/*
+        $crew->provisionalWing    = $_POST['provisionalWing'];
+        $crew->bomberGroup        = $_POST['bomberGroup'];
+        $crew->trainingSchool     = $_POST['trainingSchool'];
+        $crew->sent               = $_POST['sent'];
+        $crew->losses             = $_POST['losses'];
+        $crew->stationedAirfield  = $_POST['stationedAirfield'];
+
+
+        <input id="newCrewWing" name="wing" type="text" placeholder="Provisional Wing" required><br>
+        <p> Bomber Group </p>
+        <input id="newCrewGroup" name="group" type="text" placeholder="Bomber Group" required ><br>
+        <p> Stationed Airfield </p>
+        <input id="newCrewAirfield" name="airfield" type="text" placeholder="Airfield" required><br>
+        <p> Sent </p>
+        <input id="newCrewSent" name="sent" type="number" placeholder="Aircraft Sent" required ><br>
+        <p> Lost </p>
+        <input id="newCrewLost" name="lost" type="number" placeholder="Aircraft Lost" required><br>
+*/
+    data = {};
+    data.provisionalWing = $('#newCrewWing').val();
+    data.bomberGroup = $('newCrewGroup').val();
+    data.trainingSchool = "N/a";
+    data.sent = $('sent').val();
+    data.lost = $('losses').val();
+    data.stationedAirfield = $('newCrewAirfield').val();
+
+    $.post("http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews", data, function(res) {console.log(res);}, 'json');
+}
