@@ -1,4 +1,6 @@
 // Main Scripts
+var LINK_URL = 'http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/ProgrammersHelpingPenguins'
+
 $(document).ready(function(e) {
     $('#newUserButton').on('click', function(e) {
         $(this).hide() //hides the 'Create Account' button
@@ -54,7 +56,7 @@ $(document).ready(function(e) {
 })
 
 function getPicture(callName) {
-    var newSrc = "ProgrammersHelpingPenguins/images/question.png"
+    var newSrc = LINK_URL.concat('/public/images/question.png')
     var pic;
     if (callName == null) {
         pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
