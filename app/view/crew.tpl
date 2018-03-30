@@ -3,7 +3,7 @@
 
         <div class ="row bomber-sqaud-content">
         <div class="col-lg-8">
-            <img id="autoLoadImage" src="<?= $crew->apiName ?>" class="bomber-squad-image">
+            <img id="autoLoadImage" style="display:none" alt="<?= $crew->apiName ?>" class="bomber-squad-image">
         </div>
 
         <div class ="col-lg-4">

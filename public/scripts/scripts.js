@@ -25,7 +25,7 @@ $(document).ready(function(e) {
             .children('#newFirstName').focus()
     })
     $('#autoLoadImage').load(function (e) {
-        getPicture($(this).attr('src'))
+        getPicture($(this).attr('alt'))
     })
 
     $('body').find('form').find('button').on('click', function(e) {
