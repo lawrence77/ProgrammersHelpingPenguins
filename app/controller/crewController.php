@@ -51,7 +51,12 @@ class CrewController
         $crew->losses             = $_POST['losses'];
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
 	$id = $crew->save();
-	$json = array('id' => $id);
+	if($id == 0)
+	{
+		$json = array('success' => 'false');
+	} else {
+		$json = array('success' => 'true', 'id' => $id);
+	}
 	header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);
         
