@@ -51,7 +51,7 @@ class CrewController
         $crew->losses             = $_POST['losses'];
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
 	$id = $crew->save();
-	if($id == 0)
+	if($id->id == 0)
 	{
 		$json = array('success' => 'false', 'query' => $id->query);
 	} else {
