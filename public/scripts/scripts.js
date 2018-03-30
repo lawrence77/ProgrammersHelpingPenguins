@@ -55,14 +55,13 @@ function getPicture(callName) {
     } else {
         var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
         $.ajax({
-                url: stringUrl
-            },
+            url: stringUrl,
             success: function(res) {
-                console.log(res);
+                console.log(res)
                 pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
                 $('#divPicture').append(pic)
             }
-        )
+        })
     }
 }
 
