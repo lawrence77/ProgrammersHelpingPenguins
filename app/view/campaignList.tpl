@@ -13,9 +13,9 @@
 		}
 	?>
 </div>
-<button id="add-campaign-button" onClick="$('#add-menu').toggle()" class="large"> Add new Campaign</button>
+<button id="add-campaign-button" class="large"> Add new Campaign</button>
 
-<div id="add-menu" class="hide" style="display:none">
+<div id="add-campaign-menu" class="hide" style="display:none">
 
   <h1>Add Campaign</h1>
 
@@ -27,7 +27,8 @@
     Description:<br />
     <input type="text" name="description" value="" /><br />
     <br />
-    <input type="submit" name="submit" value="Add"  />
   </form>
+  <button id="createNewCampaignButton" name="createNewCampaignButton"  type="button">Add</button>
+    <button id="cancelNewCampaignButton" name="cancelNewCampaignButton" type="button">Cancel</button> <br>
 
 </div>

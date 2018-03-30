@@ -10,6 +10,19 @@ $(document).ready(function(e) {
 
         clearTextOfType('#newUserForm', '.formInputBox') //clears the input boxes
     })
+	$('#add-campaign-button').on('click', function(e) {
+        $(this).hide()
+
+        $('#add-campaign-menu')
+            .show()
+    })
+	$('#edit-campaign-button').on('click', function(e) {
+        $(this).hide()
+
+        $('#edit-campaign-menu')
+            .show()
+		$('#view-campaign-menu').hide()
+    })
     $('#newCrewButton').on('click', function(e) {
         $(this).hide()
 
@@ -23,6 +36,9 @@ $(document).ready(function(e) {
         $('#newPersonForm')
             .fadeIn()
             .children('#newFirstName').focus()
+    })
+    $('#divPicture').on('mouseenter', function (e) {
+        getPicture($('#loadPicture').attr('alt'), '#loadPicture')
     })
 
     $('body').find('form').find('button').on('click', function(e) {
@@ -41,6 +57,24 @@ $(document).ready(function(e) {
             $('#newCrewButton').fadeIn()
             $('#newCrewForm').hide()
         }
+		else if (buttonName == 'cancelNewCampaignButton') {
+            $('#add-campaign-button').fadeIn()
+            $('#add-campaign-menu').hide()
+        }
+        else if (buttonName == 'createNewCampaignButton') {
+            newCampaign()
+            $('#add-campaign-button').fadeIn()
+            $('#add-campaign-menu').hide()
+        }
+		else if (buttonName == 'cancelCampaignEdit') {
+            $('#view-campaign-menu').show()
+            $('#edit-campaign-menu').hide()
+        }
+        else if (buttonName == 'updateCampaignEdit') {
+            newCampaign()
+            $('#view-campaign-menu').show()
+            $('#edit-campaign-menu').hide()
+        }
         else if (buttonName == 'cancelNewPersonButton') {
             $('#newPersonButton').fadeIn()
             $('#newPersonForm').hide()
@@ -48,13 +82,33 @@ $(document).ready(function(e) {
     })
 })
 
+function getPicture(callName, obj) {
+    if (callName != null) {
+        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent&formatversion=2')
+        console.log(stringUrl);
+        $.ajax({
+            url: stringUrl,
+            jsonpCallback: 'getContent',
+            dataType: 'jsonp',
+            success: function(res) {
+                if (res.query)
+                    $(obj).attr('src', res.query.pages[0].thumbnail.source)
+            }
+        })
+        .fail(function () {
+            alert('AJAX failed')
+        })
+    }
+}
+
 //Clears the text fields of a child type given the parent container
 function clearTextOfType(parent, children) {
     $(parent).find(children).each(function(e) {
         $(this).val('')
     })
 }
-
+function newCampaign(){
+}
 function newCrew() {
 /*
         $crew->provisionalWing    = $_POST['provisionalWing'];

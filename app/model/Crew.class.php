@@ -14,6 +14,7 @@ class Crew {
     public $sent = '';
     public $losses = '';
     public $stationedAirfield = '';
+    public $apiName = null;
 
     //gets a crew by a primary key
     public static function loadById($id)
@@ -41,6 +42,7 @@ class Crew {
             $crew->sent               = $row['sent'];
             $crew->losses             = $row['losses'];
             $crew->stationedAirfield  = $row['stationedAirfield'];
+            $crew->apiName            = $row['apiName'];
 
             return $crew;   //return filled crew info
         }
