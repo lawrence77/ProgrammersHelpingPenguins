@@ -2,8 +2,8 @@
         <h2>Bomber-sqaud</h2>
 
         <div class ="row bomber-sqaud-content">
-        <div id="divPicture" onload="getPicture(<?= $crew->apiName ?>)" class="col-lg-8">
-            <p></p>
+        <div id="divPicture" class="col-lg-8">
+            <script type="text/javascript" onload="getPicture(<?= $crew->apiName ?>)"> </script>
             <!--<img src ="<?= LINK_URL ?>/public/images/question.png" class ="bomber-squad-image">-->
         </div>
 
