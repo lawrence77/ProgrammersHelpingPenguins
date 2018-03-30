@@ -35,7 +35,7 @@ class CrewController
         $pageTitle = $crew->bomberGroup;
         include_once SYSTEM_PATH.'/view/header.tpl';
         include_once SYSTEM_PATH.'/view/crew.tpl';
-        include_once SYSTEM_PATH.'/view/people.tpl';
+        include_once SYSTEM_PATH.'/view/peopleList.tpl';
         include_once SYSTEM_PATH.'/view/footer.tpl';
     }
 
