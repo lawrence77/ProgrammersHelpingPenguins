@@ -70,7 +70,7 @@ class CampaignController {
 		  if(isset($_POST['description'])) { $campaign['description'] = $_POST['description']; }
 		  //validate changes
 		  //update database
-		  $result = $campaign.insert();
+		  $result = $campaign.save();
 			header("Location: " . $BASE_URL . "/campaigns/view/".$result);
 			exit;
 		}
