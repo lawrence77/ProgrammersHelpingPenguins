@@ -3,7 +3,7 @@
 
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
-            <img id="loadPicture" src="<?= LINK_URL ?>/public/images/question.png" alt="<?= $crew->apiName?>" class="crew-thumbnail">
+            <img id="loadPicture" src="https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w" alt="<?= $crew->apiName?>" class="crew-thumbnail">
         </div>
 
         <div class ="col-lg-4">
