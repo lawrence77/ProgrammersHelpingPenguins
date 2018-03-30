@@ -68,6 +68,7 @@ function newCrew() {
         <p> Lost </p>
         <input id="newCrewLost" name="lost" type="number" placeholder="Aircraft Lost" required><br>
 */
+    console.log("Testing");
     data = {};
     data.provisionalWing = $('#newCrewWing').val();
     data.bomberGroup = $('newCrewGroup').val();
@@ -75,6 +76,7 @@ function newCrew() {
     data.sent = $('sent').val();
     data.lost = $('losses').val();
     data.stationedAirfield = $('newCrewAirfield').val();
+    console.log(data);
 
     $.post("http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews", data, function(res) {console.log(res);}, 'json');
 }
