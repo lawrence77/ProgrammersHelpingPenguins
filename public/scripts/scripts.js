@@ -17,6 +17,13 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newCrewWing').focus()
     })
+    $('#newPersonButton').on('click', function(e) {
+        $(this).hide()
+
+        $('#newPersonForm')
+            .fadeIn()
+            .children('#newFirstName').focus()
+    })
 
     $('body').find('form').find('button').on('click', function(e) {
         var buttonName = $(this).attr('name')
@@ -27,6 +34,9 @@ $(document).ready(function(e) {
         } else if (buttonName == 'cancelNewCrewButton') {
             $('#newCrewButton').fadeIn()
             $('#newCrewForm').hide()
+        } else if (buttonName == 'cancelNewPersonButton') {
+            $('#newPersonButton').fadeIn()
+            $('#newPersonForm').hide()
         }
     })
 })
