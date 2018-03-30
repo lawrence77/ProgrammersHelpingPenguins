@@ -76,8 +76,9 @@ class CampaignController {
   public function view($id)
   {
       $pageTitle = 'View campaign';
+	  $campaign = Campaign::loadById($id);
       include_once SYSTEM_PATH.'/view/header.tpl';
-      //include_once SYSTEM_PATH.'/view/login.tpl';
+      include_once SYSTEM_PATH.'/view/campaignView.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 
