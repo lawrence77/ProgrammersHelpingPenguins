@@ -53,9 +53,9 @@ class CrewController
 	$id = $crew->save();
 	if($id['id'] == 0)
 	{
-		$json = array('success' => 'false', 'query' => $id['query']);
+		$json = array('success' => false, 'query' => $id['query']);
 	} else {
-		$json = array('success' => 'true', 'id' => $id['id']);
+		$json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
 	}
 	header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);

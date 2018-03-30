@@ -3,8 +3,8 @@
 
 //path constants
 define('SYSTEM_PATH', dirname(__FILE__)); # location of 'app' folder - don't change
-define('BASE_URL', 'http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com');
-define('LINK_URL', 'http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/ProgrammersHelpingPenguins');
+define('BASE_URL', 'http://localhost/PHP');
+define('LINK_URL', 'http://localhost/PHP/ProgrammersHelpingPenguins');
 
 
 define('DB_USER', 'root');
