@@ -20,12 +20,16 @@
      	<?php
 		$people = Person::getPeople();
 		foreach($people as $p)
-		{   
-            echo "<div class='row bomber-sqaud-content'><div class ='col-lg-8'><img src =".LINK_URL."/public/images/question.png class='crew-thumbnail'> </div>";
-            echo "<div class ='col-lg-4'> <table><tr><td> <div class='bomber-table-title'><a href='".BASE_URL."/people/$p->id'> $p->firstName . p->lastName  </a> </div>";
-            echo "<div class='bomber-squad-table-title'>First Name <div class='bomber-squad-table-content'>" . $p->birthDate . "</div></div>";
-            echo "<div class='bomber-squad-table-title'>Provisional Wing <div class='bomber-squad-table-content'>" . $p->deathDate ."</div></div>";
-            echo "<div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" . $p->description . "</div></div> </td> </tr> </table></div></div>";
+		{
+            echo "<div class='row bomber-squad-content'><div class ='col-lg-8'><img src =".LINK_URL."/public/images/question.png class='crew-thumbnail'> </div>";
+            echo "<div class ='col-lg-4'> <table><tr><td> <div class='bomber-table-title'> <strong> $p->firstName  $p->lastName </strong></div>";
+            if ($p->birthDate != null) {
+                echo "<div class='bomber-squad-table-title'>Birth Date<div class='bomber-squad-table-content'>" . $p->birthDate . "</div></div>";
+            }
+            if ($p->deathDate != null) {
+                echo "<div class='bomber-squad-table-title'> Died On <div class='bomber-squad-table-content'>" . $p->deathDate ."</div></div>";
+            }
+            echo "<div class='bomber-squad-table-title'>Description<div class='bomber-squad-table-content'>" . $p->description . "</div></div> </td> </tr> </table></div></div>";
         }
       ?>
 </div>
