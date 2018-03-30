@@ -36,13 +36,16 @@ class CrewController
     //Starts a new session for a logged-in user and redirects the page.
     public function loadCrew($id)
     {
-        $crew = Crew::loadById($id);
+        if (isset($_SESSION['username'])) {
+            $crew = Crew::loadById($id);
 
-        $pageTitle = $crew->bomberGroup;
-        include_once SYSTEM_PATH.'/view/header.tpl';
-        include_once SYSTEM_PATH.'/view/crew.tpl';
-        include_once SYSTEM_PATH.'/view/peopleList.tpl';
-        include_once SYSTEM_PATH.'/view/footer.tpl';
+            $pageTitle = $crew->bomberGroup;
+            include_once SYSTEM_PATH.'/view/header.tpl';
+            include_once SYSTEM_PATH.'/view/crew.tpl';
+            include_once SYSTEM_PATH.'/view/footer.tpl';
+        } else {
+            header('Location: '.BASE_URL.'/login/');
+        }
     }
     public function newCrew()
     {
@@ -63,7 +66,7 @@ class CrewController
 	}
 	header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);
-        
+
 
     }
     public function deleteCrew($id)
@@ -80,5 +83,5 @@ class CrewController
 	header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);
     }
-   
+
 }

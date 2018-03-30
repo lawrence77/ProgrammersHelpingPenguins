@@ -1,4 +1,4 @@
 
 <div class="left-box">
-    <h3> UNDER CONSTRUCTION </h3>
+    <h2> Welcome </h2>
 </div>

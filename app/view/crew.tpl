@@ -1,9 +1,9 @@
 <div class="container">
-        <h2>Bomber-sqaud</h2>
+        <h2>Bomber-squad</h2>
 
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
-            <img id="loadPicture" src="<?= LINK_URL ?>/public/images/question.png" alt="<?= $crew->apiName?>" class="crew-thumbnail">
+            <img id="loadPicture" src="https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w" alt="<?= $crew->apiName?>" class="crew-thumbnail">
         </div>
 
         <div class ="col-lg-4">
@@ -34,8 +34,7 @@
         </div>
             <div class="bomber-sqaud-info">
                 <h2>Other Important Information</h2>
-               jdaslkd asjkdjask ljlask  djasklj  kl as jd ka s l jdk a s jdk l a sj dk a s l jd kl as j klasjdkalsjldlk  asd adkl jaklsjd klajdlk jlakjdlk jlkasjdlk jaklsdjl adj kasldjkl klajdlkj kalsjdklj klajkdljaksljkjklaj kljkjs kljklajkl  blah blah blah adja sjdaslkd asjkdjaskljlaskdjaskljklasjdkasljdkasjdklasjdkasljdklasjklasjdkalsjldlk  asd adkl jaklsjd klajdlk jlakjdlk jlkasjdlk jaklsdjl adj kasldjkl klajdlkj kalsjdklj klajkdljaksljkjklaj kljkjs kljklajkl blah blah blah adja sjdaslkd asjkdjaskljlaskdjaskljklasjdkasljdkasjdklasjdkasljdklasjklasjdkalsjldlk  asd adkl jaklsjd klajdlk jlakjdlk jlkasjdlk jaklsdjl adj kasldjkl klajdlkj kalsjdklj klajkdljaksljkjklaj kljkjs kljklajkl
-
+                Currently Active
             </div>
 
         <div class="container">
