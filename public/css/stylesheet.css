@@ -8,8 +8,9 @@ body {
     display: none;
 }
 .bomber-squad-content{
-    border: 1px solid black;
+    border-bottom: 3px solid black;
     height: 60%;
+    margin-bottom: 3%;
 }
 .bomber-squad-image{
     margin: 3%;
