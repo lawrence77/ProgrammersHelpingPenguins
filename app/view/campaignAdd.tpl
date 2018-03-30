@@ -11,7 +11,7 @@
     Description:<br />
     <input type="text" name="description" value="" /><br />
     <br />
-    <input type="submit" name="submit" value="Update"  />
+    <input type="submit" name="submit" value="Add"  />
   </form>
 
 </div>

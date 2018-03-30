@@ -3,8 +3,8 @@ body {
     padding-top: 70px;
 }
 
-/*Sign Page */
-#newUserForm {
+/*AJAX Forms */
+#newUserForm, #newCrewForm, #newPersonForm {
     display: none;
 }
 .bomber-squad-content{
