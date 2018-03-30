@@ -53,6 +53,26 @@ body {
     height: 70%;
 }
 .campaign-thumbnail{
-	width: 30%;
-    height: 30%;
+	width: 50%;
+    height: 50%;
+}
+
+.campaign-list {
+    margin:auto;
+    width: 50%;
+    text-align: center;
+    //display: inline-block;
+}
+.left-align{
+    height:100%;
+    padding: 15px;
+    float:left;
+    
+}
+.right-align{
+    height:100%;
+    display:block;
+    padding: 15px;
+    vertical-align: text-top;
+    float: right;
 }
