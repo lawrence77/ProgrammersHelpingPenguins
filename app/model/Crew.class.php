@@ -77,8 +77,17 @@ class Crew {
         }
 
         $db = Db::instance(); //connect to db
-
-        $q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`,
+	
+$q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`, `sent`, `losses`, `stationedAirfield`) VALUES ('%s', '%s', %s, %s, '%s')",
+            self::DB_TABLE,
+            $db->escape($this->provisionalWing),
+            $db->escape($this->bomberGroup),
+            $db->escape($this->sent),
+            $db->escape($this->losses),
+            $db->escape($this->stationedAirfield)
+        );
+	/*
+	$q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`,
              `sent`, `losses`, `stationedAirfield`) VALUES
               ('%s', '%s', %s, %s, '%s');",
             self::DB_TABLE,
@@ -87,10 +96,11 @@ class Crew {
             $db->escape($this->sent),
             $db->escape($this->losses),
             $db->escape($this->stationedAirfield)
-        );
+        );*/
 
         $db->query($q);
-        return $db->getInsertID();
+	$res = array('id' => $db->getInsertID(), 'query' => $q);
+        return $res;
     }
     //saves changes to an existing crew in the database
     public function update()
