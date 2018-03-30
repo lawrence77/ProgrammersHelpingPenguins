@@ -27,3 +27,8 @@ function clearTextOfType(parent, children) {
         $(this).val('')
     })
 }
+
+function newCrew() {
+    data = {};
+    $.post("http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews", data, function(res) {console.log(res);}, 'json');
+}
