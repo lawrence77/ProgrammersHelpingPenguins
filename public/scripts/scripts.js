@@ -73,9 +73,9 @@ function newCrew() {
     data.provisionalWing = $('#newCrewWing').val();
     data.bomberGroup = $('#newCrewGroup').val();
     data.trainingSchool = "N/a";
-    data.sent = $('#sent').val();
-    data.lost = $('#losses').val();
-    data.stationedAirfield = $('newCrewAirfield').val();
+    data.sent = $('#newCrewSent').val();
+    data.lost = $('#newCrewLost').val();
+    data.stationedAirfield = $('#newCrewAirfield').val();
     console.log(data);
 
     $.post("http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews", data, function(res) {console.log(res);}, 'json');
