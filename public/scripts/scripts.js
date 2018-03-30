@@ -63,7 +63,8 @@ function getPicture(callName, obj) {
             jsonpCallback: 'getContent',
             dataType: 'jsonp',
             success: function(res) {
-                $(obj).attr('src', res.query.pages[0].thumbnail.source)
+                if (res.query.pages)
+                    $(obj).attr('src', res.query.pages[0].thumbnail.source)
             }
         })
         .fail(function () {
