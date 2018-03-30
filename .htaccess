@@ -24,3 +24,4 @@ RewriteRule ^login/process/?$ ProgrammersHelpingPenguins/app/controller/loginCon
 #Crew Controller
 RewriteRule ^crews/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=load&id=$1 [QSA,L]
 RewriteRule ^crews/add/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=newCrew [QSA,L]
+RewriteRule ^crews/delete/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=deleteCrew [QSA,L]

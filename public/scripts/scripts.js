@@ -133,14 +133,35 @@ function newCampaign(){
 		if(resp.success == true) {
 			var n_data = JSON.parse(resp.data)
                         console.log($(".campaign-list"));
-                        $(".campaign-list").append("<h1><a href='.BASE_URL./campaigns/view/"+ resp.id +"'>"+ n_data.name  + " </a></h1>\
+                        $(".campaign-list").append("<h1><a href='" + BASE_URL + "/campaigns/view/"+ resp.id +"'>"+ n_data.name  + " </a></h1>\
 						<img class ='campaign-thumbnail' src ='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg/1200px-B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg'> <br /><br />");
+
 
                 }
 
 
             },
 			error: function(resp) {
+	        console.log("error!");
+		console.log(resp);
+            }
+        });
+}
+function deleteCrew(id) {
+    data = {'id' : id};
+    $.ajax({
+            type: 'POST',
+            url: BASE_URL +'/crews/delete/' + id + '/',
+            data: data,
+            dataType: 'json',
+            success: function(resp) {
+		console.log(resp);
+		if(resp.success)
+		{
+		    $('#bomber_' + id).remove();
+		}
+            },
+	    error: function(resp) {
 	        console.log("error!");
 		console.log(resp);
             }
@@ -166,10 +187,11 @@ function newCrew() {
 		if(resp.success == true) {
 			var n_data = JSON.parse(resp.data)
                         console.log($(".crews"));
-                        $(".crews").append("<div class='row bomber-sqaud-content'><div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
+                        $(".crews").append("<div class='row bomber-sqaud-content' id='bomber_"+ resp.id +"'><div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
             <div class ='col-lg-4'> <table><tr><td> <div class='bomber-table-title'><a href='" + BASE_URL + "/crews/" + resp.id + "'>Bomber Group  " + n_data.bomberGroup  + "</a> </div> \
             <div class='bomber-squad-table-title'>Provisional Wing <div class='bomber-squad-table-content'>" + n_data.provisionalWing + "</div></div> \
-            <div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" + n_data.stationedAirfield + "</div></div> </td> </tr> </table></div></div>");
+            <div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" + n_data.stationedAirfield + "</div></div> \
+	    </td> </tr> </table><button onclick='deleteCrew(" + resp.id + ")'>X</button> </div></div><br/><br/>");
 
                 }
 

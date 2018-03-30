@@ -103,6 +103,22 @@ class Crew {
 	$res = array('id' => $db->getInsertID(), 'query' => $q);
         return $res;
     }
+    //deletes crew from SQL
+    public function delete()
+    {
+        if ($this->id == 0)
+            return null;
+
+        $db = Db::instance();
+
+        $q = sprintf("DELETE FROM `%s`
+            WHERE `pkCrew` = %d;",
+            self::DB_TABLE,
+            $this->id
+        );
+        $result = $db->query($q);
+        return $result;
+    }
     //saves changes to an existing crew in the database
     public function update()
     {
@@ -134,7 +150,7 @@ class Crew {
     }
 
     //Deletes a crew from the database
-    public function delete()
+    /*public function delete()
     {
         if ($this->id == 0)
             return null;
@@ -143,7 +159,7 @@ class Crew {
         $q = sprintf("DELETE FROM `%s` WHERE `pkCrew` = %d;", self::DB_TABLE, $id);
 
         return $db->query($q);  //return true if successful, false otherwise
-    }
+    }*/
 }
 
  ?>
