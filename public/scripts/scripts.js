@@ -24,9 +24,9 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
-    $('#autoLoadImage').load(function (e) {
+    /*$('#autoLoadImage').load(function (e) {
         getPicture($(this).attr('alt'))
-    })
+    })*/
 
     $('body').find('form').find('button').on('click', function(e) {
         var buttonName = $(this).attr('name')
