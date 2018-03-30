@@ -24,6 +24,10 @@ class CrewController
                 break;
             case 'newCrew':
 	        $this->newCrew();
+		break;
+	    case 'deleteCrew':
+	        $this->deleteCrew($_POST['id']);
+		break;
             default:
                 break;
         }
@@ -61,6 +65,20 @@ class CrewController
         echo json_encode($json);
         
 
+    }
+    public function deleteCrew($id)
+    {
+        $crew = Crew::loadById($id);
+
+	$result = $crew->delete();
+	if(!$result)
+	{
+		$json = array('success' => false);
+	} else {
+		$json = array('success' => true, 'id' => $id);
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
     }
    
 }
