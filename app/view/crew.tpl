@@ -3,7 +3,7 @@
 
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
-            <script type="text/javascript" onload="getPicture(<?= $crew->apiName ?>)"> </script>
+            <img onload="getPicture(<?= $crew->apiName ?>)">
             <!--<img src ="<?= LINK_URL ?>/public/images/question.png" class ="bomber-squad-image">-->
         </div>
 
