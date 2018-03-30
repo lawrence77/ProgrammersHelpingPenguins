@@ -20,11 +20,11 @@
 
   <form method="post">
   Name:<br />
-  <input type = "text" name="name" value="" /><br />
+  <input id="newCampaignName" type = "text" name="name" value="" /><br />
   Date:<br />
-    <input type="date" name="date" value="" /><br />
+    <input id="newCampaignDate" type="date" name="date" value="" /><br />
     Description:<br />
-    <input type="text" name="description" value="" /><br />
+    <input id="newCampaignDescription" type="text" name="description" value="" /><br />
     <br />
 	<button id="createNewCampaignButton" name="createNewCampaignButton"  type="button">Add</button>
     <button id="cancelNewCampaignButton" name="cancelNewCampaignButton" type="button">Cancel</button> <br>

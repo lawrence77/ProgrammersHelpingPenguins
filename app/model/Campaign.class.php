@@ -81,7 +81,8 @@ class Campaign {
         );
 
         $db->query($q);
-        return $db->getInsertID();
+		$res = array('id' => $db->getInsertID(), 'query' => $q);
+        return $res;
     }
     //saves changes to an existing campaign in the database
     public function update()
