@@ -133,9 +133,8 @@ function newCampaign(){
 		if(resp.success == true) {
 			var n_data = JSON.parse(resp.data)
                         console.log($(".campaign-list"));
-                        $(".campaign-list").append("<h1><a href='.BASE_URL./campaigns/view/"+ resp.id +"'>"+ n_data.name  + " </a></h1>" \
-						"<div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
-						);
+                        $(".campaign-list").append("<h1><a href='.BASE_URL./campaigns/view/"+ resp.id +"'>"+ n_data.name  + " </a></h1>\
+						<img class ='campaign-thumbnail' src ='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg/1200px-B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg'> <br /><br />");
 
                 }
 
