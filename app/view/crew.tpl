@@ -3,9 +3,7 @@
 
         <div class ="row bomber-sqaud-content">
         <div class ="col-lg-8">
-            <img src ="Images/question.png" class ="bomber-squad-image">
-
-
+            <img src ="<?= LINK_URL ?>/public/images/question.png" class ="bomber-squad-image">
         </div>
 
         <div class ="col-lg-4">
@@ -29,7 +27,7 @@
                 </td>
 
             </tr>
-                
+
             </table>
             </div>
 
