@@ -92,6 +92,10 @@ function newCrew() {
             success: function(resp) {
 	        console.log("Success!");
 		console.log(resp);
+            },
+			error: function(resp) {
+	        console.log("error!");
+		console.log(resp);
             }
         });
 }
