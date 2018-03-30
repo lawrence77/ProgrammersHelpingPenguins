@@ -60,14 +60,30 @@ class CampaignController {
   public function update($id)
   {
       $pageTitle = 'Update Campaign';
-      include_once SYSTEM_PATH.'/view/header.tpl';
-      include_once SYSTEM_PATH.'/view/login.tpl';
-      include_once SYSTEM_PATH.'/view/footer.tpl';
+		$campaign = Campaign::loadById($id);
+		//Check if is post request
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+		  // Confirm that values are present before accessing them.
+		  if(isset($_POST['name'])) { $campaign['name'] = $_POST['name']; }
+		  if(isset($_POST['date'])) { $campaign['date'] = $_POST['date']; }
+		  if(isset($_POST['description'])) { $campaign['description'] = $_POST['description']; }
+		  //validate changes
+		  //update database
+		  $result = $campaign.save();
+			header("Location: " . $BASE_URL . "/campaigns/view/".$result);
+			exit;
+		}
+		
+		
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/campaignEdit.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
   }
   
   public function delete($id)
   {
-	  //$pageTitle = 'Campaign';
+	  $pageTitle = 'DELETE THIS';
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/campaignList.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
@@ -76,8 +92,9 @@ class CampaignController {
   public function view($id)
   {
       $pageTitle = 'View campaign';
+	  $campaign = Campaign::loadById($id);
       include_once SYSTEM_PATH.'/view/header.tpl';
-      //include_once SYSTEM_PATH.'/view/login.tpl';
+      include_once SYSTEM_PATH.'/view/campaignView.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 
