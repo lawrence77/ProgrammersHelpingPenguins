@@ -1,5 +1,5 @@
 <div class="container">
-    <button id="newPersonButton" type="button" name="newPersonButton">New Bomber Group</button>
+    <button id="newPersonButton" type="button" name="newPersonButton">New Person</button>
     <form id="newPersonForm">
         <p> First Name </p>
         <input id="newFirstName" name="firstName" type="text" placeholder="First Name" required><br>
