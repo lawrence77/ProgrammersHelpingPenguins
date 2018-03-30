@@ -16,7 +16,7 @@
         <button id="cancelNewCrewButton" name="cancelNewCrewButton" type="button">Cancel</button> <br>
     </form>
 </div> <br>
-<div class="container">
+<div class="container crews">
      	<?php
 		$crews = Crew::getCrews();
 		foreach($crews as $c)
