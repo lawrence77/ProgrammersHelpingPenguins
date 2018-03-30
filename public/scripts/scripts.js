@@ -48,6 +48,23 @@ $(document).ready(function(e) {
     })
 })
 
+function getPicture(callName) {
+    var pic;
+    if (bomberGroupName == null) {
+        pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
+    } else {
+        $.ajax({
+                url: 'https://en.wikipedia.org/w/api.php?action=query&titles='.callName.'&prop=pageimages&format=json&pithumbsize=300&callback=getContent'
+            },
+            success: function(res) {
+                console.log(res);
+                pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
+                $('#divPicture').append(pic)
+            }
+        )
+    }
+}
+
 //Clears the text fields of a child type given the parent container
 function clearTextOfType(parent, children) {
     $(parent).find(children).each(function(e) {
