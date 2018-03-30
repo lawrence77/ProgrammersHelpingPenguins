@@ -42,7 +42,8 @@ class CrewController
     }
     public function newCrew()
     {
-        $crew = newCrew();
+        $crew = new Crew();
+	$crew->id                 = 0;
         $crew->provisionalWing    = $_POST['provisionalWing'];
         $crew->bomberGroup        = $_POST['bomberGroup'];
         $crew->trainingSchool     = $_POST['trainingSchool'];
@@ -50,8 +51,14 @@ class CrewController
         $crew->losses             = $_POST['losses'];
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
 	$id = $crew->save();
-	$json = array('id' => $id);
-	return json_encode($json);
+	if($id == 0)
+	{
+		$json = array('success' => 'false');
+	} else {
+		$json = array('success' => 'true', 'id' => $id);
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
         
 
     }
