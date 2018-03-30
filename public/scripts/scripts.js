@@ -53,7 +53,7 @@ $(document).ready(function(e) {
 
 function getPicture(callName) {
     var pic;
-    if (bomberGroupName == null) {
+    if (callName == null) {
         pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
     } else {
         var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
