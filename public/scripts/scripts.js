@@ -26,8 +26,8 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
-    $('#loadPicture').on('mouseenter', function (e) {
-        getPicture($(this).attr('alt'), '#loadPicture')
+    $('body').on('mouseenter', function (e) {
+        getPicture($('#loadPicture').attr('alt'), '#loadPicture')
     })
 
     $('body').find('form').find('button').on('click', function(e) {
