@@ -1,5 +1,5 @@
 <div class="container">
-    <button id="newPersonButton" type="button" name="newPersonButton">New Person</button>
+    <button id="newPersonButton" disabled type="button" name="newPersonButton">New Person (Currently Disabled)</button>
     <form id="newPersonForm">
         <p> First Name </p>
         <input id="newFirstName" name="firstName" type="text" placeholder="First Name" required><br>
