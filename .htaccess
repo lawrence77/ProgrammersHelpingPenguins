@@ -14,6 +14,7 @@ RewriteRule ^people/?$ ProgrammersHelpingPenguins/app/controller/siteController.
 #Campaign Controller
 RewriteRule ^campaigns/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=view&id=$1 [QSA,L]
 RewriteRule ^campaigns/add/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=add [QSA,L]
+RewriteRule ^campaigns/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=edit&id=$1 [QSA,L]
 
 #Login Controller
 RewriteRule ^login/out/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=out [QSA,L]
