@@ -68,6 +68,9 @@ function getPicture(callName) {
                 /*$('#divPicture').append(pic)*/
             }
         })
+        .fail(function () {
+            alert('AJAX failed')
+        })
     }
     return newSrc;
 }
