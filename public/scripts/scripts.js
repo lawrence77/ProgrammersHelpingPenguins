@@ -133,8 +133,9 @@ function newCampaign(){
 		if(resp.success == true) {
 			var n_data = JSON.parse(resp.data)
                         console.log($(".campaign-list"));
-                        $(".campaign-list").append("<div class='row campaign-content'><div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
-            <div class ='col-lg-4'> <div class='campaign-title'><a href='<?php echo BASE_URL; ?>/campaigns/" + resp.id + "'>Bomber Group  " + n_data.name  + "</a> </div>");
+                        $(".campaign-list").append("<h1><a href='.BASE_URL./campaigns/view/"+ resp.id +"'>"+ n_data.name  + " </a></h1>" \
+						"<div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
+						);
 
                 }
 

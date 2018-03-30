@@ -12,8 +12,10 @@ $cc->route($action);
 class CampaignController {
 	// route us to the appropriate class method for this action
 	public function route($action) {
+		echo $action;
 		switch($action) {
 			case 'newCampaign':
+			
 				$this->newCampaign();
 				break;
 			case 'view':
