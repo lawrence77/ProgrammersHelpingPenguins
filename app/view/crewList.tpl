@@ -15,7 +15,7 @@
         <button id="createNewCrewButton" name="createNewCrewButton"  type="submit">Add</button>
         <button id="cancelNewCrewButton" name="cancelNewCrewButton" type="button">Cancel</button> <br>
     </form>
-</div>
+</div> <br>
 <div class="container">
      	<?php
 		$crews = Crew::getCrews();
