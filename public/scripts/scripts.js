@@ -1,6 +1,15 @@
 // Main Scripts
+var BASE_URL;
 $(document).ready(function(e) {
-    $('#newUserButton').on('click', function(e) {
+
+  var x = setInterval(function () {
+  	if ($('#BASE_URL_FIELD').val().length) {
+        	BASE_URL = $('#BASE_URL_FIELD').val();
+       		console.log(BASE_URL);
+        	clearInterval(x);
+   	}
+   }, 100);
+  $('#newUserButton').on('click', function(e) {
         $(this).hide() //hides the 'Create Account' button
 
         //shows and focuses on the form
@@ -121,7 +130,7 @@ function newCrew() {
     console.log(data);
     $.ajax({
             type: 'POST',
-            url: 'http://localhost/crews/add',
+            url: BASE_URL +'/crews/add',
             data: data,
             dataType: 'json',
             success: function(resp) {

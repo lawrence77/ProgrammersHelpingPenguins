@@ -20,6 +20,7 @@ else $loggedin = 'Login';
     <!--<link rel="stylesheet" href="<?= LINK_URL ?>/public/css/hansonsitestyle.css"/>-->
     <script type="text/javascript" src="<?= LINK_URL ?>/public/scripts/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<?= LINK_URL ?>/public/scripts/scripts.js"></script>
+	<input type="hidden" id="BASE_URL_FIELD" value="<?= BASE_URL ?>">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
