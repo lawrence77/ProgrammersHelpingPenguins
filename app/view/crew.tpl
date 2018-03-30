@@ -3,10 +3,7 @@
 
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
-            <script type="text/javascript">
-                var callName = str(<?= $crew->apiName ?>);
-                getPicture(callName)
-            </script>
+            <img src="<?= LINK_URL ?>/public/images/question.png" alt="<?= $crew->apiName" class="crew-thumbnail">
         </div>
 
         <div class ="col-lg-4">
