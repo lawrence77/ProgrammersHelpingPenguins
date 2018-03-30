@@ -22,6 +22,8 @@ class CrewController
             case 'edit':
                 $this->processLogin($_POST['username'], $_POST['password']);
                 break;
+            case 'newCrew':
+	        $this->newCrew();
             default:
                 break;
         }
