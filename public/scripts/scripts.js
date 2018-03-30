@@ -27,7 +27,7 @@ $(document).ready(function(e) {
             .children('#newFirstName').focus()
     })
     $('#loadPicture').on('mouseenter', function (e) {
-        $(this).attr('src', getPicture($(this).attr('alt')))
+        getPicture($(this).attr('alt')), '#loadPicture')
     })
 
     $('body').find('form').find('button').on('click', function(e) {
@@ -53,30 +53,23 @@ $(document).ready(function(e) {
     })
 })
 
-function getPicture(callName) {
-    var newSrc = LINK_URL.concat('/public/images/question.png')
-    var pic;
+function getPicture(callName, obj) {
     if (callName == null) {
-        pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
     } else {
-        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
+        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent&formatversion=2')
         console.log(stringUrl);
         $.ajax({
             url: stringUrl,
             jsonpCallback: 'getContent',
             dataType: 'jsonp',
             success: function(res) {
-                console.log(res)
-                console.log(res.query);
-                console.log(res.query.pages;
-
+                $(obj).attr('src', res.query.pages[0].thumbnail.source)
             }
         })
         .fail(function () {
             alert('AJAX failed')
         })
     }
-    return newSrc;
 }
 
 //Clears the text fields of a child type given the parent container
