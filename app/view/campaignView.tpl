@@ -17,5 +17,7 @@
 		<td> <?php echo $campaign['description']; ?> </td>
     </tr>
   </table>
+	<a href="<?= $BASE_URL ?>/campaigns/edit/<?php echo $campaign['id']; ?>"><button>Edit Campaign </button> </a>
+	<a href="<?= $BASE_URL ?>/campaigns/delete/<?php echo $campaign['id']; ?>"><button>Delete Campaign </button> </a>
 
 </div>

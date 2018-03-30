@@ -1,0 +1,26 @@
+Options -Indexes
+
+RewriteEngine on
+
+#Site Controller
+RewriteRule ^$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
+RewriteRule ^home/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
+RewriteRule ^login/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=login [QSA,L]
+RewriteRule ^campaigns/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=campaigns [QSA,L]
+RewriteRule ^crews/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=crews [QSA,L]
+RewriteRule ^people/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=people [QSA,L]
+
+
+#Campaign Controller
+RewriteRule ^campaigns/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=view&id=$1 [QSA,L]
+RewriteRule ^campaigns/add/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=add [QSA,L]
+RewriteRule ^campaigns/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=edit&id=$1 [QSA,L]
+
+#Login Controller
+RewriteRule ^login/out/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=out [QSA,L]
+RewriteRule ^login/newUser/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=newUser [QSA,L]
+RewriteRule ^login/process/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=process [QSA,L]
+
+#Crew Controller
+RewriteRule ^crews/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=load&id=$1 [QSA,L]
+RewriteRule ^crew/newCrew/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=newCrew [QSA,L]

@@ -4,12 +4,13 @@ body {
 }
 
 /*Sign Page */
-#newUserForm {
+#newUserForm, #newCrewForm, #newPersonForm {
     display: none;
 }
 .bomber-squad-content{
-    border: 1px solid black;
+    border-bottom: 3px solid black;
     height: 60%;
+    margin-bottom: 5%;
 }
 .bomber-squad-image{
     margin: 3%;
@@ -19,11 +20,11 @@ body {
 
 }
 .bomber-squad-table-title{
-    font-size: 40px;
+    font-size: 25px;
     margin: 1.5% 0 1.5% 0;
 }
 .bomber-squad-table-content{
-    font-size: 25px;
+    font-size: 15px;
     margin: 1% 0 1% 0;
 }
 .bomber-sqaud-info{
@@ -46,4 +47,8 @@ body {
 .bomber-table-content{
     font-size: 16px;
     margin: 1% 0 1% 0;
+}
+.crew-thumbnail{
+    width: 70%;
+    height: 70%;
 }

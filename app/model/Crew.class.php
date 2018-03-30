@@ -46,7 +46,7 @@ class Crew {
         }
     }
     //get all crew in the database
-    public static function getPeople()
+    public static function getCrews()
     {
         $db = Db::instance();   //db connection
         $q = sprintf("SELECT pkCrew FROM `%s` ORDER BY provisionalWing ASC;", self::DB_TABLE);
