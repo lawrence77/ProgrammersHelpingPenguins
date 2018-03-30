@@ -26,7 +26,7 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
-    $('.container').on('mouseenter', function (e) {
+    $('#divPicture').on('mouseenter', function (e) {
         getPicture($('#loadPicture').attr('alt'), '#loadPicture')
     })
 
