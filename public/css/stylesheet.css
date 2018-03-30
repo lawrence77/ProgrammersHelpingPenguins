@@ -4,7 +4,7 @@ body {
 }
 
 /*Sign Page */
-#newUserForm {
+#newUserForm, #newCrewForm {
     display: none;
 }
 .bomber-squad-content{
