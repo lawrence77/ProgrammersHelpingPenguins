@@ -67,7 +67,9 @@ function getPicture(callName) {
             dataType: 'jsonp',
             success: function(res) {
                 console.log(res)
-                /*$('#divPicture').append(pic)*/
+                console.log(res.pages[0]);
+                console.log(res.pages[0].thumbnail);
+                console.log(res.pages[0].thumbnail.source);
             }
         })
         .fail(function () {
