@@ -43,6 +43,7 @@ class CrewController
     public function newCrew()
     {
         $crew = new Crew();
+	$crew->id                 = 0;
         $crew->provisionalWing    = $_POST['provisionalWing'];
         $crew->bomberGroup        = $_POST['bomberGroup'];
         $crew->trainingSchool     = $_POST['trainingSchool'];
