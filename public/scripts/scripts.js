@@ -53,8 +53,9 @@ function getPicture(callName) {
     if (bomberGroupName == null) {
         pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
     } else {
+        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
         $.ajax({
-                url: 'https://en.wikipedia.org/w/api.php?action=query&titles='.callName.'&prop=pageimages&format=json&pithumbsize=300&callback=getContent'
+                url: stringUrl
             },
             success: function(res) {
                 console.log(res);
