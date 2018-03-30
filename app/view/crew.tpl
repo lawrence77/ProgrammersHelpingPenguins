@@ -4,7 +4,7 @@
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
             <script type="text/javascript">
-                var callName = <?= $crew->apiName ?>;
+                var callName = str(<?= $crew->apiName ?>);
                 getPicture(callName)
             </script>
         </div>
