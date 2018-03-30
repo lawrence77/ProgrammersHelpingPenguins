@@ -34,8 +34,7 @@
         </div>
             <div class="bomber-sqaud-info">
                 <h2>Other Important Information</h2>
-               jdaslkd asjkdjask ljlask  djasklj  kl as jd ka s l jdk a s jdk l a sj dk a s l jd kl as j klasjdkalsjldlk  asd adkl jaklsjd klajdlk jlakjdlk jlkasjdlk jaklsdjl adj kasldjkl klajdlkj kalsjdklj klajkdljaksljkjklaj kljkjs kljklajkl  blah blah blah adja sjdaslkd asjkdjaskljlaskdjaskljklasjdkasljdkasjdklasjdkasljdklasjklasjdkalsjldlk  asd adkl jaklsjd klajdlk jlakjdlk jlkasjdlk jaklsdjl adj kasldjkl klajdlkj kalsjdklj klajkdljaksljkjklaj kljkjs kljklajkl blah blah blah adja sjdaslkd asjkdjaskljlaskdjaskljklasjdkasljdkasjdklasjdkasljdklasjklasjdkalsjldlk  asd adkl jaklsjd klajdlk jlakjdlk jlkasjdlk jaklsdjl adj kasldjkl klajdlkj kalsjdklj klajkdljaksljkjklaj kljkjs kljklajkl
-
+               Shot down four axis fighters and landed on in the pacific
             </div>
 
         <div class="container">
