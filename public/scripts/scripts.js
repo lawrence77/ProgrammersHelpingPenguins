@@ -79,7 +79,7 @@ function newCrew() {
     console.log(data);
     $.ajax({
             type: 'POST',
-            url: 'http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews/add',
+            url: 'http://localhost/crews/add',
             data: data,
             dataType: 'json',
             success: function(resp) {
