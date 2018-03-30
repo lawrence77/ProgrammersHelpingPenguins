@@ -1,5 +1,5 @@
 <div id="view-menu">
-  <a href="<?= $BASE_URL ?>/campaigns">Back to Campaign list </a><br />
+  <a href="<?= BASE_URL ?>/campaigns">Back to Campaign list </a><br />
 
   <h1>Campaign: <?php echo $campaign['name']; ?></h1>
 
@@ -22,7 +22,7 @@
 </div>
 
 <div id="edit-menu" class="hide">
-  <a href="<?= $BASE_URL ?>/campaigns">Back to Campaign list </a><br />
+  <a href="<?= BASE_URL ?>/campaigns">Back to Campaign list </a><br />
 
   <h1>Edit Campaign: <?php echo $campaign['name']; ?></h1>
 
