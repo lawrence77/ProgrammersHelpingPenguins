@@ -72,9 +72,9 @@ function newCrew() {
     data = {};
     data.provisionalWing = $('#newCrewWing').val();
     data.bomberGroup = $('#newCrewGroup').val();
-    data.trainingSchool = "N/a";
-    data.sent = $('#newCrewSent').val();
-    data.losses = $('#newCrewLost').val();
+    data.trainingSchool = 0;
+    data.sent = parseInt($('#newCrewSent').val());
+    data.losses = parseInt($('#newCrewLost').val());
     data.stationedAirfield = $('#newCrewAirfield').val();
     console.log(data);
     $.ajax({
