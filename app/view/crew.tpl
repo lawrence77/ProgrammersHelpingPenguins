@@ -2,9 +2,24 @@
         <h2>Bomber-sqaud</h2>
 
         <div class ="row bomber-sqaud-content">
-        <div class="col-lg-8">
+        <div id="divPicture" class="col-lg-8">
             <script type="text/javascript">
-                getPicture(<?= $crew->apiName ?>);
+                getPicture(<?= $crew->apiName ?>) {
+                    var pic;
+                    if (bomberGroupName == null) {
+                        pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
+                    } else {
+                        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
+                        $.ajax({
+                            url: stringUrl,
+                            success: function(res) {
+                                console.log(res)
+                                pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
+                                $('#divPicture').append(pic)
+                            }
+                        })
+                    }
+                }
             </script>
         </div>
 
