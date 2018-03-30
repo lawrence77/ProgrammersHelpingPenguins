@@ -1,4 +1,4 @@
-<div id="view-menu">
+<div id="view-campaign-menu">
   <a href="<?= BASE_URL ?>/campaigns">Back to Campaign list </a><br />
 
   <h1>Campaign: <?php echo $campaign->name; ?></h1>
@@ -17,11 +17,11 @@
 		<td> <?php echo $campaign->description; ?> </td>
     </tr>
   </table>
-	<button onClick="$('#edit-menu').toggle()" id="edit-campaign-button">Edit Campaign </button>
+	<button id="edit-campaign-button">Edit Campaign </button>
 
 </div>
 
-<div id="edit-menu" class="hide">
+<div id="edit-campaign-menu" class="hide">
   <a href="<?= BASE_URL ?>/campaigns">Back to Campaign list </a><br />
 
   <h1>Edit Campaign: <?php echo $campaign->name; ?></h1>
@@ -35,9 +35,9 @@
     Description:<br />
     <input type="text" name="description" value="<?php echo $campaign->description; ?>" /><br />
     <br />
-    <input type="submit" name="submit" value="Update"  />
   </form>
-  <button onClick="$('#edit-menu').toggle()" id="cancle-edit">Cancle </button> 
+  <button  id="updateCampaignEdit" name="updateCampaignEdit">Update</button> 
+  <button  id="cancleCampaignEdit" name="cancleCampaignEdit">Cancle</button> 
 
 </div>
 <div id="delete-menu">

@@ -10,6 +10,19 @@ $(document).ready(function(e) {
 
         clearTextOfType('#newUserForm', '.formInputBox') //clears the input boxes
     })
+	$('#add-campaign-button').on('click', function(e) {
+        $(this).hide()
+
+        $('#add-campaign-menu')
+            .show()
+    })
+	$('#edit-campaign-button').on('click', function(e) {
+        $(this).hide()
+
+        $('#edit-campaign-menu')
+            .show()
+		$('#view-campaign-menu').hide()
+    })
     $('#newCrewButton').on('click', function(e) {
         $(this).hide()
 
@@ -44,6 +57,24 @@ $(document).ready(function(e) {
             $('#newCrewButton').fadeIn()
             $('#newCrewForm').hide()
         }
+		else if (buttonName == 'cancelNewCampaignButton') {
+            $('#add-campaign-button').fadeIn()
+            $('#add-campaign-menu').hide()
+        }
+        else if (buttonName == 'createNewCampaignButton') {
+            newCampaign()
+            $('#add-campaign-button').fadeIn()
+            $('#add-campaign-menu').hide()
+        }
+		else if (buttonName == 'cancelCampaignEdit') {
+            $('#view-campaign-menu').show()
+            $('#edit-campaign-menu').hide()
+        }
+        else if (buttonName == 'updateCampaignEdit') {
+            newCampaign()
+            $('#view-campaign-menu').show()
+            $('#edit-campaign-menu').hide()
+        }
         else if (buttonName == 'cancelNewPersonButton') {
             $('#newPersonButton').fadeIn()
             $('#newPersonForm').hide()
@@ -76,7 +107,8 @@ function clearTextOfType(parent, children) {
         $(this).val('')
     })
 }
-
+function newCampaign(){
+}
 function newCrew() {
 /*
         $crew->provisionalWing    = $_POST['provisionalWing'];
