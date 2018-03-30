@@ -26,7 +26,7 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
-    $('body').on('mouseenter', function (e) {
+    $('.container').on('mouseenter', function (e) {
         getPicture($('#loadPicture').attr('alt'), '#loadPicture')
     })
 
@@ -63,7 +63,7 @@ function getPicture(callName, obj) {
             jsonpCallback: 'getContent',
             dataType: 'jsonp',
             success: function(res) {
-                if (res.query.pages)
+                if (res.query)
                     $(obj).attr('src', res.query.pages[0].thumbnail.source)
             }
         })
