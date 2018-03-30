@@ -3,7 +3,9 @@
 
         <div class ="row bomber-sqaud-content">
         <div class="col-lg-8">
-            <input style="display:none" onload="getPicture(<? $crew->apiName ?>)">            
+            <script type="text/javascript">
+                getPicture(<?= $crew->apiName ?>);
+            </script>
         </div>
 
         <div class ="col-lg-4">
