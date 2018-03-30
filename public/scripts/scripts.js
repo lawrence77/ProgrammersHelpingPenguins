@@ -63,8 +63,7 @@ function getPicture(callName) {
             url: stringUrl,
             success: function(res) {
                 console.log(res)
-                pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
-                $('#divPicture').append(pic)
+                /*$('#divPicture').append(pic)*/
             }
         })
     }
