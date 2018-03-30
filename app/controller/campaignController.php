@@ -12,7 +12,6 @@ $cc->route($action);
 class CampaignController {
 	// route us to the appropriate class method for this action
 	public function route($action) {
-		echo $action;
 		switch($action) {
 			case 'newCampaign':
 			
@@ -37,7 +36,6 @@ class CampaignController {
         $campaign->name    				= $_POST['name'];
         $campaign->date        			= $_POST['date'];
         $campaign->description     		= $_POST['description'];
-		echo "stuff";
 	$id = $campaign->save();
 	if($id['id'] == 0)
 	{
