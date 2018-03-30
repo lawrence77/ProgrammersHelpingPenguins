@@ -77,8 +77,7 @@ class Crew {
         }
 
         $db = Db::instance(); //connect to db
-	
-$q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`, `sent`, `losses`, `stationedAirfield`) VALUES ('%s', '%s', %s, %s, '%s')",
+        $q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`, `sent`, `losses`, `stationedAirfield`) VALUES (%s, %s, %s, %s, %s);",
             self::DB_TABLE,
             $db->escape($this->provisionalWing),
             $db->escape($this->bomberGroup),

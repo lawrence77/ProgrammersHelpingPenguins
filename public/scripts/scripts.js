@@ -31,10 +31,17 @@ $(document).ready(function(e) {
             $('#newUserButton').fadeIn() //the 'Create Account' button reappears
             $('#newUserForm').hide()  //hides the new user form
             clearTextOfType('#newUserForm', '.formInputBox')  //clears any text in the form
-        } else if (buttonName == 'cancelNewCrewButton') {
+        }
+        else if (buttonName == 'cancelNewCrewButton') {
             $('#newCrewButton').fadeIn()
             $('#newCrewForm').hide()
-        } else if (buttonName == 'cancelNewPersonButton') {
+        }
+        else if (buttonName == 'createNewCrewButton') {
+            newCrew()
+            $('#newCrewButton').fadeIn()
+            $('#newCrewForm').hide()
+        }
+        else if (buttonName == 'cancelNewPersonButton') {
             $('#newPersonButton').fadeIn()
             $('#newPersonForm').hide()
         }
@@ -85,6 +92,6 @@ function newCrew() {
             success: function(resp) {
 	        console.log("Success!");
 		console.log(resp);
-            }        
+            }
         });
 }
