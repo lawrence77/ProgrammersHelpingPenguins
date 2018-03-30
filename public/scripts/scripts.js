@@ -68,7 +68,7 @@ function getPicture(callName) {
             success: function(res) {
                 console.log(res)
                 console.log(res.query);
-                console.log(res.query[0].pages[0]);
+                console.log(res.query.pages;
 
             }
         })
