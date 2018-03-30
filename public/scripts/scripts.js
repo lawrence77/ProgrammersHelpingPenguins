@@ -24,6 +24,9 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
+    $('#divPicture').on('mouseenter', function (e) {
+        getPicture($('#loadPicture').attr('alt'), '#loadPicture')
+    })
 
     $('body').find('form').find('button').on('click', function(e) {
         var buttonName = $(this).attr('name')
@@ -31,15 +34,41 @@ $(document).ready(function(e) {
             $('#newUserButton').fadeIn() //the 'Create Account' button reappears
             $('#newUserForm').hide()  //hides the new user form
             clearTextOfType('#newUserForm', '.formInputBox')  //clears any text in the form
-        } else if (buttonName == 'cancelNewCrewButton') {
+        }
+        else if (buttonName == 'cancelNewCrewButton') {
             $('#newCrewButton').fadeIn()
             $('#newCrewForm').hide()
-        } else if (buttonName == 'cancelNewPersonButton') {
+        }
+        else if (buttonName == 'createNewCrewButton') {
+            newCrew()
+            $('#newCrewButton').fadeIn()
+            $('#newCrewForm').hide()
+        }
+        else if (buttonName == 'cancelNewPersonButton') {
             $('#newPersonButton').fadeIn()
             $('#newPersonForm').hide()
         }
     })
 })
+
+function getPicture(callName, obj) {
+    if (callName != null) {
+        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent&formatversion=2')
+        console.log(stringUrl);
+        $.ajax({
+            url: stringUrl,
+            jsonpCallback: 'getContent',
+            dataType: 'jsonp',
+            success: function(res) {
+                if (res.query)
+                    $(obj).attr('src', res.query.pages[0].thumbnail.source)
+            }
+        })
+        .fail(function () {
+            alert('AJAX failed')
+        })
+    }
+}
 
 //Clears the text fields of a child type given the parent container
 function clearTextOfType(parent, children) {
@@ -85,6 +114,6 @@ function newCrew() {
             success: function(resp) {
 	        console.log("Success!");
 		console.log(resp);
-            }        
+            }
         });
 }

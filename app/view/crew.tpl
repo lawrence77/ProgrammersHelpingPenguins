@@ -2,10 +2,8 @@
         <h2>Bomber-sqaud</h2>
 
         <div class ="row bomber-sqaud-content">
-        <div class ="col-lg-8">
-            <img src ="Images/question.png" class ="bomber-squad-image">
-
-
+        <div id="divPicture" class="col-lg-8">
+            <img id="loadPicture" src="<?= LINK_URL ?>/public/images/question.png" alt="<?= $crew->apiName?>" class="crew-thumbnail">
         </div>
 
         <div class ="col-lg-4">
@@ -29,7 +27,7 @@
                 </td>
 
             </tr>
-                
+
             </table>
             </div>
 

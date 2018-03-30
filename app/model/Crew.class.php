@@ -14,6 +14,7 @@ class Crew {
     public $sent = '';
     public $losses = '';
     public $stationedAirfield = '';
+    public $apiName = null;
 
     //gets a crew by a primary key
     public static function loadById($id)
@@ -41,6 +42,7 @@ class Crew {
             $crew->sent               = $row['sent'];
             $crew->losses             = $row['losses'];
             $crew->stationedAirfield  = $row['stationedAirfield'];
+            $crew->apiName            = $row['apiName'];
 
             return $crew;   //return filled crew info
         }
@@ -77,7 +79,7 @@ class Crew {
         }
 
         $db = Db::instance(); //connect to db
-        $q = sprintf("INSERT INTO `%s`(provisionalWing, bomberGroup, sent, losses, stationedAirfield) VALUES ('%s', '%s', %s, %s, '%s');",	
+        $q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`, `sent`, `losses`, `stationedAirfield`) VALUES (%s, %s, %s, %s, %s);",
             self::DB_TABLE,
             $db->escape($this->provisionalWing),
             $db->escape($this->bomberGroup),
