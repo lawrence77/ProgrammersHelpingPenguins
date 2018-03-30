@@ -51,7 +51,7 @@ class CrewController
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
 	$id = $crew->save();
 	$json = array('id' => $id);
-	return json_encode($json);
+        echo json_encode($json);
         
 
     }
