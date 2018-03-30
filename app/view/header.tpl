@@ -30,7 +30,7 @@ else $loggedin = 'Login';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="" id="hokie-brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Color_Photographed_B-17E_in_Flight.jpg/300px-Color_Photographed_B-17E_in_Flight.jpg" id="hokie-brand">
                 <a class="navbar-brand"  href="<?= BASE_URL ?>">Bomber Training</a> ADD pic here
             </div>
             <div id="navbar" class="collapse navbar-collapse">
