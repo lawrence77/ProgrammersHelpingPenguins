@@ -117,6 +117,34 @@ function clearTextOfType(parent, children) {
     })
 }
 function newCampaign(){
+	console.log("Testing");
+    data = {};
+    data.name = $('#newCampaignName').val();
+    data.date = $('#newCampaignDate').val();
+    data.description = $('#newCampaignDescription').val();
+    console.log(data);
+    $.ajax({
+            type: 'POST',
+            url: BASE_URL +'/campaigns/add',
+            data: data,
+            dataType: 'json',
+            success: function(resp) {
+		console.log(resp);
+		if(resp.success == true) {
+			var n_data = JSON.parse(resp.data)
+                        console.log($(".campaign-list"));
+                        $(".campaign-list").append("<div class='row campaign-content'><div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
+            <div class ='col-lg-4'> <div class='campaign-title'><a href='<?php echo BASE_URL; ?>/campaigns/" + resp.id + "'>Bomber Group  " + n_data.name  + "</a> </div>");
+
+                }
+
+
+            },
+			error: function(resp) {
+	        console.log("error!");
+		console.log(resp);
+            }
+        });
 }
 function newCrew() {
     console.log("Testing");
