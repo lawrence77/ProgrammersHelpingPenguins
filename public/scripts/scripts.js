@@ -46,8 +46,8 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
-    $('#divPicture').on('mouseenter', function (e) {
-        getPicture($('#loadPicture').attr('alt'), '#loadPicture')
+    $('.divPicture').on('mouseenter', function (e) {
+        getPicture($(this).find('img').attr('alt'), $(this).find('img'))
     })
 
     $('body').find('form').find('button').on('click', function(e) {
@@ -103,9 +103,6 @@ function getPicture(callName, obj) {
                 if (res.query)
                     $(obj).attr('src', res.query.pages[0].thumbnail.source)
             }
-        })
-        .fail(function () {
-            alert('AJAX failed')
         })
     }
 }
