@@ -77,6 +77,14 @@ function newCrew() {
     data.lost = $('#newCrewLost').val();
     data.stationedAirfield = $('#newCrewAirfield').val();
     console.log(data);
-
-    $.post("http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews", data, function(res) {console.log(res);}, 'json');
+    $.ajax({
+            type: 'POST',
+            url: 'http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews/add',
+            data: data,
+            dataType: 'json',
+            success: function(resp) {
+	        console.log("Success!");
+		console.log(resp);
+            }        
+        });
 }
