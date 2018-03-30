@@ -20,3 +20,19 @@ ec2-18-216-185-213.us-east-2.compute.amazonaws.com
 
 Apache root directory is               (this is where we will place our code and .htaccess)
 /var/www/html          
+
+
+Setup database locally
+after launching phpmyadmin locally go to 
+http://localhost/phpmyadmin/server_privileges.php?username=root&hostname=localhost&dbname=&tablename=&routinename= 
+
+Click on change password at the top, type in root root and press go in bottom right.
+
+After go to 
+C:\xampp\phpMyAdmin
+open the file 
+config.inc.php
+change the line 
+$cfg['Servers'][$i]['password'] = ''; => $cfg['Servers'][$i]['password'] = 'root';
+
+You might need to restart phpMyadmin
