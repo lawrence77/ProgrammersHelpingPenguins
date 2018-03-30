@@ -52,11 +52,13 @@ $(document).ready(function(e) {
 })
 
 function getPicture(callName) {
+    var newSrc = "ProgrammersHelpingPenguins/images/question.png"
     var pic;
     if (callName == null) {
         pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
     } else {
         var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
+        console.log(stringUrl);
         $.ajax({
             url: stringUrl,
             success: function(res) {
@@ -66,6 +68,7 @@ function getPicture(callName) {
             }
         })
     }
+    return newSrc;
 }
 
 //Clears the text fields of a child type given the parent container
