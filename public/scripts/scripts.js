@@ -71,10 +71,10 @@ function newCrew() {
     console.log("Testing");
     data = {};
     data.provisionalWing = $('#newCrewWing').val();
-    data.bomberGroup = $('newCrewGroup').val();
+    data.bomberGroup = $('#newCrewGroup').val();
     data.trainingSchool = "N/a";
-    data.sent = $('sent').val();
-    data.lost = $('losses').val();
+    data.sent = $('#sent').val();
+    data.lost = $('#losses').val();
     data.stationedAirfield = $('newCrewAirfield').val();
     console.log(data);
 
