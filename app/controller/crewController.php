@@ -42,14 +42,13 @@ class CrewController
     }
     public function newCrew()
     {
-        $crew = newCrew();
+        $crew = new Crew();
         $crew->provisionalWing    = $_POST['provisionalWing'];
         $crew->bomberGroup        = $_POST['bomberGroup'];
         $crew->trainingSchool     = $_POST['trainingSchool'];
         $crew->sent               = $_POST['sent'];
         $crew->losses             = $_POST['losses'];
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
-	return json_encode($crew);
 	$id = $crew->save();
 	$json = array('id' => $id);
 	return json_encode($json);
