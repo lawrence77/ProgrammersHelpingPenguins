@@ -17,6 +17,13 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newCrewWing').focus()
     })
+    $('#newPersonButton').on('click', function(e) {
+        $(this).hide()
+
+        $('#newPersonForm')
+            .fadeIn()
+            .children('#newFirstName').focus()
+    })
 
     $('body').find('form').find('button').on('click', function(e) {
         var buttonName = $(this).attr('name')
@@ -27,6 +34,9 @@ $(document).ready(function(e) {
         } else if (buttonName == 'cancelNewCrewButton') {
             $('#newCrewButton').fadeIn()
             $('#newCrewForm').hide()
+        } else if (buttonName == 'cancelNewPersonButton') {
+            $('#newPersonButton').fadeIn()
+            $('#newPersonForm').hide()
         }
     })
 })
@@ -36,4 +46,37 @@ function clearTextOfType(parent, children) {
     $(parent).find(children).each(function(e) {
         $(this).val('')
     })
+}
+
+function newCrew() {
+/*
+        $crew->provisionalWing    = $_POST['provisionalWing'];
+        $crew->bomberGroup        = $_POST['bomberGroup'];
+        $crew->trainingSchool     = $_POST['trainingSchool'];
+        $crew->sent               = $_POST['sent'];
+        $crew->losses             = $_POST['losses'];
+        $crew->stationedAirfield  = $_POST['stationedAirfield'];
+
+
+        <input id="newCrewWing" name="wing" type="text" placeholder="Provisional Wing" required><br>
+        <p> Bomber Group </p>
+        <input id="newCrewGroup" name="group" type="text" placeholder="Bomber Group" required ><br>
+        <p> Stationed Airfield </p>
+        <input id="newCrewAirfield" name="airfield" type="text" placeholder="Airfield" required><br>
+        <p> Sent </p>
+        <input id="newCrewSent" name="sent" type="number" placeholder="Aircraft Sent" required ><br>
+        <p> Lost </p>
+        <input id="newCrewLost" name="lost" type="number" placeholder="Aircraft Lost" required><br>
+*/
+    console.log("Testing");
+    data = {};
+    data.provisionalWing = $('#newCrewWing').val();
+    data.bomberGroup = $('#newCrewGroup').val();
+    data.trainingSchool = "N/a";
+    data.sent = $('#newCrewSent').val();
+    data.lost = $('#newCrewLost').val();
+    data.stationedAirfield = $('#newCrewAirfield').val();
+    console.log(data);
+
+    $.post("http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/crews", data, function(res) {console.log(res);}, 'json');
 }
