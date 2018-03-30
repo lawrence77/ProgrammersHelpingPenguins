@@ -4,22 +4,8 @@
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
             <script type="text/javascript">
-                function getPicture(<?= $crew->apiName ?>) {
-                    var pic;
-                    if (bomberGroupName == null) {
-                        pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
-                    } else {
-                        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent')
-                        $.ajax({
-                            url: stringUrl,
-                            success: function(res) {
-                                console.log(res)
-                                pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
-                                $('#divPicture').append(pic)
-                            }
-                        })
-                    }
-                }
+                var callName = <?= $crew->apiName ?>;
+                getPicture(callName)
             </script>
         </div>
 
