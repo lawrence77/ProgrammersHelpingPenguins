@@ -140,7 +140,6 @@ function newCrew() {
                         console.log($(".crews"));
                         $(".crews").append("<div class='row bomber-sqaud-content'><div class ='col-lg-8'><img src ='https://static1.squarespace.com/static/524df78fe4b0b2a8d9f7c12f/58e43533e3df281cebd52e33/52c2ec0ee4b0cf91c44a2b37/1486245662492/B-17_01.jpg?format=1500w' class='crew-thumbnail'> </div> \
             <div class ='col-lg-4'> <table><tr><td> <div class='bomber-table-title'><a href='<?php echo $BASE_URL; ?>/crews/" + resp.id + "'>Bomber Group  " + n_data.bomberGroup  + "</a> </div> \
-            <div class='bomber-squad-table-title'>Training School <div class='bomber-squad-table-content'>" + n_data.trainingSchool + "</div></div> \
             <div class='bomber-squad-table-title'>Provisional Wing <div class='bomber-squad-table-content'>" + n_data.provisionalWing + "</div></div> \
             <div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" + n_data.stationedAirfield + "</div></div> </td> </tr> </table></div></div>");
 
