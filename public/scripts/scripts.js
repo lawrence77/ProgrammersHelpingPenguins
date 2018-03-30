@@ -1,6 +1,4 @@
 // Main Scripts
-var LINK_URL = 'http://ec2-18-216-185-213.us-east-2.compute.amazonaws.com/ProgrammersHelpingPenguins'
-
 $(document).ready(function(e) {
     $('#newUserButton').on('click', function(e) {
         $(this).hide() //hides the 'Create Account' button
@@ -54,8 +52,7 @@ $(document).ready(function(e) {
 })
 
 function getPicture(callName, obj) {
-    if (callName == null) {
-    } else {
+    if (callName != null) {
         var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent&formatversion=2')
         console.log(stringUrl);
         $.ajax({
