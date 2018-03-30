@@ -4,7 +4,7 @@
         <div class ="row bomber-sqaud-content">
         <div id="divPicture" class="col-lg-8">
             <script type="text/javascript">
-                getPicture(<?= $crew->apiName ?>) {
+                function getPicture(<?= $crew->apiName ?>) {
                     var pic;
                     if (bomberGroupName == null) {
                         pic = $('<img src="ProgrammersHelpingPenguins/images/question.png" class="bomber-squad-image">')
