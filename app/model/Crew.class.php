@@ -80,7 +80,7 @@ class Crew {
 
         $q = sprintf("INSERT INTO `%s` (`provisionalWing`, `bomberGroup`,
              `trainingSchool`, `sent`, `losses`, `stationedAirfield`) VALUES
-              (%s, %s, %s, %s, %s, %s);",
+              ('%s', '%s', %s, %s, %s, '%s');",
             self::DB_TABLE,
             $db->escape($this->provisionalWing),
             $db->escape($this->bomberGroup),
