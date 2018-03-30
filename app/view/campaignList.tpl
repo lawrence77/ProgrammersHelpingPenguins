@@ -4,8 +4,11 @@
 		foreach($campaigns as $c)
 		{
 			//Replace with ajax call to get image
+			echo "<span id='campaign_" . $c->id . "'>";
 			echo "<h1><a href=\"".BASE_URL."/campaigns/view/".$c->id."\">".$c->name." </a></h1>";
 			echo "<img class='campaign-thumbnail' src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg/1200px-B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg\" alt=\"pic of campaign\" />";
+	    		echo "<button onclick='deleteCampaign(". $c->id .")'>X</button>";
+			echo "</span>";
 			echo "<br /><br />";
 		}
 	?>

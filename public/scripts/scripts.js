@@ -116,6 +116,26 @@ function clearTextOfType(parent, children) {
         $(this).val('')
     })
 }
+function deleteCampaign(id) {
+    data = {'id' : id};
+    $.ajax({
+            type: 'POST',
+            url: BASE_URL +'/campaigns/delete/' + id + '/',
+            data: data,
+            dataType: 'json',
+            success: function(resp) {
+		console.log(resp);
+		if(resp.success)
+		{
+		    $('#campaign_' + id).remove();
+		}
+            },
+	    error: function(resp) {
+	        console.log("error!");
+		console.log(resp);
+            }
+        });
+}
 function newCampaign(){
 	console.log("Testing");
     data = {};

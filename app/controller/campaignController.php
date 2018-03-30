@@ -20,15 +20,29 @@ class CampaignController {
 			case 'view':
 				$this->view($_GET['id']);
 				break;
-            case 'update':
-                $this->update($_GET['id']); //update campaign with this name
-                break;
-			case 'delete':
-				$this->delete($_GET['id']); //delete campaign with this name
+			case 'deleteCampaign':
+				$this->deleteCampaign($_POST['id']);
+				break;
+		    	case 'update':
+				$this->update($_GET['id']); //update campaign with this name
 				break;
 		}
 
 	}
+    public function deleteCampaign($id)
+    {
+        $c = Campaign::loadById($id);
+
+	$result = $c->delete();
+	if(!$result)
+	{
+		$json = array('success' => false);
+	} else {
+		$json = array('success' => true, 'id' => $id);
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+    }
   public function newCampaign()
     {
         $campaign = new Campaign();
