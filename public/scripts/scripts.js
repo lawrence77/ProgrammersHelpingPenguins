@@ -50,6 +50,13 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
+    $('#showEditCrewButton').on('click', function(e) {
+        $(this).hide()
+
+        $('#editCrewForm')
+            .fadeIn()
+            .children('#newFirstName').focus()
+    })
     $('.divPicture').on('mouseenter', function (e) {
         getPicture($(this).find('img').attr('alt'), $(this).find('img'))
     })
@@ -91,6 +98,15 @@ $(document).ready(function(e) {
         else if (buttonName == 'cancelNewPersonButton') {
             $('#newPersonButton').fadeIn()
             $('#newPersonForm').hide()
+        }
+        else if (buttonName == 'editCrewButton') {
+            editCrew($(this).val())
+            $('#showEditCrewButton').fadeIn()
+            $('#editCrewForm').hide()
+        }
+        else if (buttonName == 'cancelEditCrewButton') {
+            $('#showEditCrewButton').fadeIn()
+            $('#editCrewForm').hide()
         }
     })
 })
@@ -271,4 +287,35 @@ function newCrew() {
 		console.log(resp);
             }
         });
+}
+function editCrew(id) {
+    data = {};
+    data.id=parseInt(id)
+    data.provisionalWing = $('#sameWing').val();
+    data.bomberGroup = $('#sameGroup').val();
+    data.trainingSchool = 0;
+    data.sent = parseInt($('#updateSent').val());
+    data.losses = parseInt($('#updateLost').val());
+    data.stationedAirfield = $('#updateAirfield').val();
+    console.log(data);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/crews/edit/'+id,
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+            if(resp.success == true) {
+                var n_data = JSON.parse(resp.data)
+                $("#divSent").replaceWith(n_data.sent)
+                $('#divLost').replaceWith(n_data.losses)
+                $('#divField').replaceWith(n_data.stationedAirfield)
+            }
+        },
+		error: function(resp) {
+           console.log("error!");
+	       console.log(resp);
+        }
+    });
 }

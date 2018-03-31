@@ -27,8 +27,11 @@ class CrewController
 		break;
 	    case 'deleteCrew':
 	        $this->deleteCrew($_POST['id']);
-		break;
-            default:
+		    break;
+        case 'editCrew':
+            $this->editCrew($_POST['id']);
+            break;
+        default:
                 break;
         }
     }
@@ -81,6 +84,26 @@ class CrewController
 		$json = array('success' => true, 'id' => $id);
 	}
 	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+    }
+
+    public function editCrew($id)
+    {
+        $crew = Crew::loadById($id);
+        $crew->provisionalWing   = $_POST['provisionalWing'];
+        $crew->bomberGroup       = $_POST['bomberGroup'];
+        $crew->sent     		 = $_POST['sent'];
+        $crew->losses     		 = $_POST['losses'];
+        $crew->stationedAirfield = $_POST['stationedAirfield'];
+        $crew->trainingSchool    = 0;
+        $id = $crew->save();
+
+        if($id['id'] == 0) {
+            $json = array('success' => false, 'query' => $id['query']);
+        } else {
+            $json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
+        }
+        header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);
     }
 

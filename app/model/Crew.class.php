@@ -134,7 +134,7 @@ class Crew {
             `sent` = %s,
             `losses` = %s,
             `stationedAirfield` = %s
-            WHERE `pkCrew` = %d;",
+            WHERE `pkCrew` = %s;",
             self::DB_TABLE,
             $db->escape($this->provisionalWing),
             $db->escape($this->bomberGroup),
@@ -142,11 +142,12 @@ class Crew {
             $db->escape($this->sent),
             $db->escape($this->losses),
             $db->escape($this->stationedAirfield),
-            $db->escape($this->id)
+            $this->id
         );
 
         $db->query($q); //execute query
-        return $db->id; //return this object's id
+		$res = array('id' => $this->id, 'query' => $q);
+        return $res; //return this object's id
     }
 
     //Deletes a crew from the database
