@@ -52,6 +52,10 @@ body {
     width: 70%;
     height: 70%;
 }
+.bomber-img {
+    width: 65%;
+    margin-right: 0;
+}
 .campaign-thumbnail{
 	width: 50%;
     height: 50%;
@@ -67,7 +71,7 @@ body {
     height:100%;
     padding: 15px;
     float:left;
-    
+
 }
 .right-align{
     height:100%;
