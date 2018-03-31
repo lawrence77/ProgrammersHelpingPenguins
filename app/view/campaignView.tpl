@@ -34,8 +34,8 @@
     Description:<br />
     <input id="editCampaignDescription" type="text" name="description" value="<?php echo $campaign->description; ?>" /><br />
     <br />
-	<button  id="updateCampaignEdit" name="updateCampaignEdit" value="<?php echo $campaign->id; ?>">Update</button> 
-	<button  id="cancelCampaignEdit" name="cancelCampaignEdit">Cancel</button> 
+	<button  id="updateCampaignEdit" name="updateCampaignEdit" value="<?php echo $campaign->id; ?>" type="button">Update</button> 
+	<button  id="cancelCampaignEdit" name="cancelCampaignEdit" type="button">Cancel</button> 
   </form>
   
 

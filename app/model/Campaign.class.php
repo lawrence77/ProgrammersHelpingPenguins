@@ -4,7 +4,7 @@
  * Campaign class for handling CRUD methods for the Campaigns table
  */
 class Campaign {
-    const DB_TABLE = 'Campaigns';     //database table name
+    const DB_TABLE = 'campaigns';     //database table name
 
     //database table fields
     public $id = 0;
@@ -92,20 +92,17 @@ class Campaign {
 
         $db = Db::instance();
 
-        $q = sprintf("UPDATE `%s` SET
-            `name` = %s,
-            `date` = %s,
-            `description` = %s
-            WHERE `pkCampaign` = %d;",
+        $q = sprintf("UPDATE %s SET `name` = %s, `date` = %s, `description` = %s WHERE `pkCampaign` = %s;",
             self::DB_TABLE,
             $db->escape($this->name),
             $db->escape($this->date),
             $db->escape($this->description),
-            $db->escape($this->id)
+            $this->id
         );
 
         $db->query($q); //execute query
-        return $db->id; //return this object's id
+		$res = array('id' => $this->id, 'query' => $q);
+        return $res; //return this object's id
     }
 
     //deletes crew from SQL

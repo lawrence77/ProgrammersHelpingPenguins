@@ -34,7 +34,7 @@ $(document).ready(function(e) {
     })
 	//$('#delete-campaign-button').on('click', function(e) {
     //    window.location.href = BASE_URL + "/campaigns"
-	//	deleteCampaign($(this).val())
+	//	deleteCampaign( parseInt($(this).val()))
     //})
     $('#newCrewButton').on('click', function(e) {
         $(this).hide()
@@ -143,7 +143,7 @@ function deleteCampaign(id) {
 function editCampaign(id){
 	console.log("Testing");
     data = {};
-	data.id=id
+	data.id=parseInt(id)
     data.name = $('#editCampaignName').val();
     data.date = $('#editCampaignDate').val();
     data.description = $('#editCampaignDescription').val();
@@ -160,7 +160,7 @@ function editCampaign(id){
                         console.log($("#view-campaign-menu"));
                         $("#view-campaign-menu").replaceWith("\
 						<div id='view-campaign-menu'>\
-						  <a href="+ BASE_URL +"c/ampaigns'>Back to Campaign list </a><br />\
+						  <a href='"+ BASE_URL +"/campaigns'>Back to Campaign list </a><br />\
 						  <h1>Campaign:" + n_data.name + "</h1>\
 						  <table id='campaign' class='left'>\
 							<tr>\
@@ -177,7 +177,6 @@ function editCampaign(id){
 							</tr>\
 						  </table>\
 							<button id='edit-campaign-button'>Edit Campaign </button>\
-							<button id='delete-campaign-button' value='" + n_data.id + "'>Delete Campaign </button>\
 						</div>");
                 }
 
