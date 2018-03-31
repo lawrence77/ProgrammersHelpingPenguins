@@ -24,7 +24,14 @@ class CrewController
                 break;
             case 'newCrew':
 	        $this->newCrew();
-            default:
+		break;
+	    case 'deleteCrew':
+	        $this->deleteCrew($_POST['id']);
+		    break;
+        case 'editCrew':
+            $this->editCrew($_POST['id']);
+            break;
+        default:
                 break;
         }
     }
@@ -32,13 +39,16 @@ class CrewController
     //Starts a new session for a logged-in user and redirects the page.
     public function loadCrew($id)
     {
-        $crew = Crew::loadById($id);
+        if (isset($_SESSION['username'])) {
+            $crew = Crew::loadById($id);
 
-        $pageTitle = $crew->bomberGroup;
-        include_once SYSTEM_PATH.'/view/header.tpl';
-        include_once SYSTEM_PATH.'/view/crew.tpl';
-        include_once SYSTEM_PATH.'/view/peopleList.tpl';
-        include_once SYSTEM_PATH.'/view/footer.tpl';
+            $pageTitle = $crew->bomberGroup;
+            include_once SYSTEM_PATH.'/view/header.tpl';
+            include_once SYSTEM_PATH.'/view/crew.tpl';
+            include_once SYSTEM_PATH.'/view/footer.tpl';
+        } else {
+            header('Location: '.BASE_URL.'/login/');
+        }
     }
     public function newCrew()
     {
@@ -53,14 +63,48 @@ class CrewController
 	$id = $crew->save();
 	if($id['id'] == 0)
 	{
-		$json = array('success' => 'false', 'query' => $id['query']);
+		$json = array('success' => false, 'query' => $id['query']);
 	} else {
-		$json = array('success' => 'true', 'id' => $id['id']);
+		$json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
 	}
 	header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);
-        
+
 
     }
-   
+    public function deleteCrew($id)
+    {
+        $crew = Crew::loadById($id);
+
+	$result = $crew->delete();
+	if(!$result)
+	{
+		$json = array('success' => false);
+	} else {
+		$json = array('success' => true, 'id' => $id);
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+    }
+
+    public function editCrew($id)
+    {
+        $crew = Crew::loadById($id);
+        $crew->provisionalWing   = $_POST['provisionalWing'];
+        $crew->bomberGroup       = $_POST['bomberGroup'];
+        $crew->sent     		 = $_POST['sent'];
+        $crew->losses     		 = $_POST['losses'];
+        $crew->stationedAirfield = $_POST['stationedAirfield'];
+        $crew->trainingSchool    = 0;
+        $id = $crew->save();
+
+        if($id['id'] == 0) {
+            $json = array('success' => false, 'query' => $id['query']);
+        } else {
+            $json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
+        }
+        header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+    }
+
 }

@@ -4,7 +4,7 @@
  * Campaign class for handling CRUD methods for the Campaigns table
  */
 class Campaign {
-    const DB_TABLE = 'Campaigns';     //database table name
+    const DB_TABLE = 'campaigns';     //database table name
 
     //database table fields
     public $id = 0;
@@ -81,7 +81,8 @@ class Campaign {
         );
 
         $db->query($q);
-        return $db->getInsertID();
+		$res = array('id' => $db->getInsertID(), 'query' => $q);
+        return $res;
     }
     //saves changes to an existing campaign in the database
     public function update()
@@ -91,22 +92,36 @@ class Campaign {
 
         $db = Db::instance();
 
-        $q = sprintf("UPDATE `%s` SET
-            `name` = %s,
-            `date` = %s,
-            `description` = %s
-            WHERE `pkCampaign` = %d;",
+        $q = sprintf("UPDATE %s SET `name` = %s, `date` = %s, `description` = %s WHERE `pkCampaign` = %s;",
             self::DB_TABLE,
             $db->escape($this->name),
             $db->escape($this->date),
             $db->escape($this->description),
-            $db->escape($this->id)
+            $this->id
         );
 
         $db->query($q); //execute query
-        return $db->id; //return this object's id
+		$res = array('id' => $this->id, 'query' => $q);
+        return $res; //return this object's id
     }
 
+    //deletes crew from SQL
+    public function delete()
+    {
+        if ($this->id == 0)
+            return null;
+
+        $db = Db::instance();
+
+        $q = sprintf("DELETE FROM `%s`
+            WHERE `pkCampaign` = %d;",
+            self::DB_TABLE,
+            $this->id
+        );
+        $result = $db->query($q);
+        return $result;
+    }
+    /*
     //Deletes a campaign from the database.
     public function delete()
     {
@@ -117,7 +132,7 @@ class Campaign {
         $q = sprintf("DELETE FROM `%s` WHERE `pkCampaign` = %d;", self::DB_TABLE, $id);
 
         return $db->query($q);  //return true if successful, false otherwise
-    }
+    }*/
 }
 
  ?>

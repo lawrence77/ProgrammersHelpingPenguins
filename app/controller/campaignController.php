@@ -13,72 +13,72 @@ class CampaignController {
 	// route us to the appropriate class method for this action
 	public function route($action) {
 		switch($action) {
-			case 'add':
-				$this->add();
+			case 'newCampaign':
+				$this->newCampaign();
 				break;
 			case 'view':
 				$this->view($_GET['id']);
 				break;
-            case 'update':
-                $this->update($_GET['id']); //update campaign with this name
-                break;
-			case 'delete':
-				$this->delete($_GET['id']); //delete campaign with this name
+			case 'deleteCampaign':
+				$this->deleteCampaign($_POST['id']);
+				break;
+		    case 'editCampaign':
+				$this->editCampaign($_POST['id']); //update campaign with this id
 				break;
 		}
 
 	}
-  public function add() {
-      $pageTitle = 'Add new campaign';
-      //$errors= array();
-		$campaign = new Campaign();
-		//Check if is post request
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    public function deleteCampaign($id)
+    {
+        $c = Campaign::loadById($id);
 
-		  // Confirm that values are present before accessing them.
-		  if(isset($_POST['name'])) { $campaign['name'] = $_POST['name']; }
-		  if(isset($_POST['date'])) { $campaign['date'] = $_POST['date']; }
-		  if(isset($_POST['description'])) { $campaign['description'] = $_POST['description']; }
-		  //validate changes
-		  //update database
-		  $result = $campaign.insert(); //returns true if successful or an array of errors if any exist
-			header("Location: " . $BASE_URL . "/campaigns/view/".$result);
-			exit;
-		//  if($result === true) {
-		//	redirect_to('/library');
-		 // } else {
-		//	$errors = $result;
-		 // }
-		}
-		
-		
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/campaignAdd.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
-  }
+	$result = $c->delete();
+	if(!$result)
+	{
+		$json = array('success' => false);
+	} else {
+		$json = array('success' => true, 'id' => $id);
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+    }
+  public function newCampaign()
+    {
+        $campaign = new Campaign();
+		$campaign->id                 = 0;
+        $campaign->name    				= $_POST['name'];
+        $campaign->date        			= $_POST['date'];
+        $campaign->description     		= $_POST['description'];
+	$id = $campaign->save();
+	if($id['id'] == 0)
+	{
+		$json = array('success' => false, 'query' => $id['query']);
+	} else {
+		$json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+        
 
-  public function update($id)
+    }
+
+  public function editCampaign($id)
   {
-      $pageTitle = 'Update Campaign';
 		$campaign = Campaign::loadById($id);
-		//Check if is post request
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$campaign->name    				= $_POST['name'];
+        $campaign->date        			= $_POST['date'];
+        $campaign->description     		= $_POST['description'];
+	$id = $campaign->save();
+	if($id['id'] == 0)
+	{
+		$json = array('success' => false, 'query' => $id['query']);
+	} else {
+		$json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
+	}
+	header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+        
 
-		  // Confirm that values are present before accessing them.
-		  if(isset($_POST['name'])) { $campaign['name'] = $_POST['name']; }
-		  if(isset($_POST['date'])) { $campaign['date'] = $_POST['date']; }
-		  if(isset($_POST['description'])) { $campaign['description'] = $_POST['description']; }
-		  //validate changes
-		  //update database
-		  $result = $campaign.save();
-			header("Location: " . $BASE_URL . "/campaigns/view/".$result);
-			exit;
-		}
-		
-		
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/campaignEdit.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
   }
   
   public function delete($id)

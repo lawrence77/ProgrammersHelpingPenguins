@@ -18,7 +18,7 @@
     </tr>
   </table>
 	<button id="edit-campaign-button">Edit Campaign </button>
-	<button id="delete-campaign-button">Delete Campaign </button>
+	<!-- <button id="delete-campaign-button" name="delete-campaign-button" value="<?php echo $campaign->id; ?>">Delete Campaign </button> -->
 </div>
 
 <div id="edit-campaign-menu">
@@ -28,14 +28,14 @@
 
   <form  method="post">
   Name:<br />
-  <input type = "text" name="name" value="<?php echo $campaign->name; ?>" /><br />
+  <input id="editCampaignName" type = "text" name="name" value="<?php echo $campaign->name; ?>" /><br />
   Date:<br />
-    <input type="date" name="date" value="<?php echo $campaign->date; ?>" /><br />
+    <input id="editCampaignDate" type="date" name="date" value="<?php echo $campaign->date; ?>" /><br />
     Description:<br />
-    <input type="text" name="description" value="<?php echo $campaign->description; ?>" /><br />
+    <input id="editCampaignDescription" type="text" name="description" value="<?php echo $campaign->description; ?>" /><br />
     <br />
-	<button  id="updateCampaignEdit" name="updateCampaignEdit">Update</button> 
-	<button  id="cancelCampaignEdit" name="cancelCampaignEdit">Cancel</button> 
+	<button  id="updateCampaignEdit" name="updateCampaignEdit" value="<?php echo $campaign->id; ?>" type="button">Update</button> 
+	<button  id="cancelCampaignEdit" name="cancelCampaignEdit" type="button">Cancel</button> 
   </form>
   
 

@@ -45,27 +45,39 @@ class SiteController {
       include_once SYSTEM_PATH.'/view/login.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
-  
+
   public function campaigns()
   {
-	  $pageTitle = 'Campaign';
-      include_once SYSTEM_PATH.'/view/header.tpl';
-      include_once SYSTEM_PATH.'/view/campaignList.tpl';
-      include_once SYSTEM_PATH.'/view/footer.tpl';
+      if (isset($_SESSION['username'])) {
+    	  $pageTitle = 'Campaigns';
+          include_once SYSTEM_PATH.'/view/header.tpl';
+          include_once SYSTEM_PATH.'/view/campaignList.tpl';
+          include_once SYSTEM_PATH.'/view/footer.tpl';
+      } else {
+          header('Location: '.BASE_URL.'/login/');
+      }
   }
   public function crews()
   {
-	  $pageTitle = 'Crews';
-      include_once SYSTEM_PATH.'/view/header.tpl';
-      include_once SYSTEM_PATH.'/view/crewList.tpl';
-      include_once SYSTEM_PATH.'/view/footer.tpl';
+      if (isset($_SESSION['username'])) {
+    	  $pageTitle = 'Crews';
+          include_once SYSTEM_PATH.'/view/header.tpl';
+          include_once SYSTEM_PATH.'/view/crewList.tpl';
+          include_once SYSTEM_PATH.'/view/footer.tpl';
+      } else {
+          header('Location: '.BASE_URL.'/login/');
+      }
   }
   public function people()
   {
-	  $pageTitle = 'People';
-      include_once SYSTEM_PATH.'/view/header.tpl';
-      include_once SYSTEM_PATH.'/view/peopleList.tpl';
-      include_once SYSTEM_PATH.'/view/footer.tpl';
+      if (isset($_SESSION['username'])) {
+    	  $pageTitle = 'People';
+          include_once SYSTEM_PATH.'/view/header.tpl';
+          include_once SYSTEM_PATH.'/view/peopleList.tpl';
+          include_once SYSTEM_PATH.'/view/footer.tpl';
+      } else {
+          header('Location: '.BASE_URL.'/login/');
+      }
   }
 
 

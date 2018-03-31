@@ -4,7 +4,7 @@ body {
 }
 
 /*AJAX Forms */
-#newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menu {
+#newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menum, #editCrewForm {
     display: none;
 }
 .bomber-squad-content{
@@ -33,8 +33,8 @@ body {
 }
 
 .bomber-pic{
-    height: 90%;
-    width: 90%;
+    //height: 90%;
+    //width: 90%;
 }
 .bomber{
     height: 40%;
@@ -53,6 +53,7 @@ body {
     height: 70%;
 }
 
+
 .home-info{
     width:100%;
      border-bottom: solid black 1px;
@@ -63,3 +64,33 @@ body {
     margin: 2% 15% 5% 15%;
     
 }
+
+.bomber-img {
+    width: 65%;
+    margin-right: 0;
+}
+.campaign-thumbnail{
+	width: 50%;
+    height: 50%;
+}
+
+.campaign-list {
+    margin:auto;
+    width: 50%;
+    text-align: center;
+    //display: inline-block;
+}
+.left-align{
+    height:100%;
+    padding: 15px;
+    float:left;
+
+}
+.right-align{
+    height:100%;
+    display:block;
+    padding: 15px;
+    vertical-align: text-top;
+    float: right;
+}
+

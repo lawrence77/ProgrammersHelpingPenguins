@@ -103,6 +103,22 @@ class Crew {
 	$res = array('id' => $db->getInsertID(), 'query' => $q);
         return $res;
     }
+    //deletes crew from SQL
+    public function delete()
+    {
+        if ($this->id == 0)
+            return null;
+
+        $db = Db::instance();
+
+        $q = sprintf("DELETE FROM `%s`
+            WHERE `pkCrew` = %d;",
+            self::DB_TABLE,
+            $this->id
+        );
+        $result = $db->query($q);
+        return $result;
+    }
     //saves changes to an existing crew in the database
     public function update()
     {
@@ -118,7 +134,7 @@ class Crew {
             `sent` = %s,
             `losses` = %s,
             `stationedAirfield` = %s
-            WHERE `pkCrew` = %d;",
+            WHERE `pkCrew` = %s;",
             self::DB_TABLE,
             $db->escape($this->provisionalWing),
             $db->escape($this->bomberGroup),
@@ -126,15 +142,16 @@ class Crew {
             $db->escape($this->sent),
             $db->escape($this->losses),
             $db->escape($this->stationedAirfield),
-            $db->escape($this->id)
+            $this->id
         );
 
         $db->query($q); //execute query
-        return $db->id; //return this object's id
+		$res = array('id' => $this->id, 'query' => $q);
+        return $res; //return this object's id
     }
 
     //Deletes a crew from the database
-    public function delete()
+    /*public function delete()
     {
         if ($this->id == 0)
             return null;
@@ -143,7 +160,7 @@ class Crew {
         $q = sprintf("DELETE FROM `%s` WHERE `pkCrew` = %d;", self::DB_TABLE, $id);
 
         return $db->query($q);  //return true if successful, false otherwise
-    }
+    }*/
 }
 
  ?>

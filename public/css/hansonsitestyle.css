@@ -77,13 +77,6 @@ div p{
     
     
 }
-.left-align{
-    float:left;
-    
-}
-.right-align{
-    float: right;
-}
 .home-info{
     width:100%;
      border-bottom: solid black 1px;

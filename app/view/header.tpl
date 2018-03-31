@@ -20,6 +20,7 @@ else $loggedin = 'Login';
     <!--<link rel="stylesheet" href="<?= LINK_URL ?>/public/css/hansonsitestyle.css"/>-->
     <script type="text/javascript" src="<?= LINK_URL ?>/public/scripts/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<?= LINK_URL ?>/public/scripts/scripts.js"></script>
+	<input type="hidden" id="BASE_URL_FIELD" value="<?= BASE_URL ?>">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,10 +37,10 @@ else $loggedin = 'Login';
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<?= BASE_URL ?>/home">Home</a></li>
-                    <li><a href="<?= BASE_URL ?>/campaigns">Campaigns</a></li>
-					<li><a href="<?= BASE_URL ?>/crews">Crews</a></li>
-					<li><a href="<?= BASE_URL ?>/people">People</a></li>
+                    <li class="<?php echo ($pageTitle == "Home" ? "active" : "")?>"><a href="<?= BASE_URL ?>/home">Home</a></li>
+                    <li class="<?php echo ($pageTitle == "Campaigns" ? "active" : "")?>"><a href="<?= BASE_URL ?>/campaigns">Campaigns</a></li>
+					<li class="<?php echo ($pageTitle == "Crews" ? "active" : "")?>"><a href="<?= BASE_URL ?>/crews">Crews</a></li>
+					<li class="<?php echo ($pageTitle == "People" ? "active" : "")?>"><a href="<?= BASE_URL ?>/people">People</a></li>
                     <!--<li><a href="">TAB 2</a></li>
                     <li><a href="">TAB#</a></li>-->
                 </ul>

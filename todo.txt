@@ -1,0 +1,8 @@
+In terms of priority
+
+- Add edit view/API for bombers and campaigns
+- Re-work bomber detail page (remove 'person' info, other important information)
+	- Add "DELETE" button to bomber detail page
+	- Remove person info
+- Add wikipedia image for bombers on crew list page
+- Remove details from crew list page so that there's info on the bomber detail page that isn't on the list page
