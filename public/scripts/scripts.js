@@ -88,11 +88,13 @@ $(document).ready(function(e) {
         }
 		else if (buttonName == 'cancelCampaignEdit') {
             $('#view-campaign-menu').show()
+			$('#edit-campaign-button').show()
             $('#edit-campaign-menu').hide()
         }
         else if (buttonName == 'updateCampaignEdit') {
             editCampaign($(this).val())
             $('#view-campaign-menu').show()
+			$('#edit-campaign-button').show()
             $('#edit-campaign-menu').hide()
         }
         else if (buttonName == 'cancelNewPersonButton') {
