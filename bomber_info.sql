@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 30, 2018 at 06:58 PM
--- Server version: 5.6.39
--- PHP Version: 7.0.27
+-- Host: 127.0.0.1
+-- Generation Time: Apr 05, 2018 at 03:52 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Campaigns`
+-- Table structure for table `campaigns`
 --
 
-CREATE TABLE `Campaigns` (
+CREATE TABLE `campaigns` (
   `pkCampaign` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `date` date NOT NULL,
@@ -36,19 +36,19 @@ CREATE TABLE `Campaigns` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Campaigns`
+-- Dumping data for table `campaigns`
 --
 
-INSERT INTO `Campaigns` (`pkCampaign`, `name`, `date`, `description`) VALUES
-(1, 'Schweinfurt–Regensburg mission', '1944-10-14', 'The Schweinfurt–Regensburg mission was a strategic bombing mission during World War II. Carried out by Boeing B-17 Flying Fortress heavy bombers of the U.S. Army Air Forces on August 17, 1943, it was an ambitious plan to cripple the German aircraft industry. --Copied from Wikipedia');
+INSERT INTO `campaigns` (`pkCampaign`, `name`, `date`, `description`) VALUES
+(1, 'Schweinfurt-Regensburg mission', '1944-10-14', 'The Schweinfurt-Regensburg mission was a strategic bombing mission during World War II. Carried out by Boeing B-17 Flying Fortress heavy bombers of the U.S. Army Air Forces on August 17, 1943, it was an ambitious plan to cripple the German aircraft industry. --Copied from Wikipedia');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Crews`
+-- Table structure for table `crews`
 --
 
-CREATE TABLE `Crews` (
+CREATE TABLE `crews` (
   `pkCrew` int(11) NOT NULL,
   `provisionalWing` varchar(50) NOT NULL,
   `bomberGroup` varchar(50) NOT NULL,
@@ -60,10 +60,10 @@ CREATE TABLE `Crews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Crews`
+-- Dumping data for table `crews`
 --
 
-INSERT INTO `Crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool`, `sent`, `losses`, `stationedAirfield`, `apiName`) VALUES
+INSERT INTO `crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool`, `sent`, `losses`, `stationedAirfield`, `apiName`) VALUES
 (1, '403d PCBW', '96th Bomb Group', NULL, 21, 0, 'Snetterton Heath', '96th_Test_Wing'),
 (2, '403d PCBW', '388th Bomb Group', NULL, 21, 1, 'Knettishall', '388th_Operations_Group'),
 (3, '403d PCBW', '390th Bomb Group ', NULL, 20, 6, 'Framlingham', '390th_Strategic_Missile_Wing'),
@@ -75,10 +75,28 @@ INSERT INTO `Crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool
 -- --------------------------------------------------------
 
 --
--- Table structure for table `People`
+-- Table structure for table `feed_event`
 --
 
-CREATE TABLE `People` (
+CREATE TABLE `feed_event` (
+  `id` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `item_1_id` int(11) DEFAULT NULL,
+  `item_2_id` int(11) DEFAULT NULL,
+  `item_3_id` int(11) DEFAULT NULL,
+  `data_1` text NOT NULL,
+  `data_2` text NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `people`
+--
+
+CREATE TABLE `people` (
   `pkPerson` int(11) NOT NULL,
   `firstName` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
@@ -88,19 +106,30 @@ CREATE TABLE `People` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `People`
+-- Dumping data for table `people`
 --
 
-INSERT INTO `People` (`pkPerson`, `firstName`, `lastName`, `birthdate`, `deathdate`, `description`) VALUES
+INSERT INTO `people` (`pkPerson`, `firstName`, `lastName`, `birthdate`, `deathdate`, `description`) VALUES
 (1, 'Curtis', 'LeMay', '1961-06-30', '1965-01-31', 'When the U.S. entered World War II in December 1941 after the Japanese attack on Pearl Harbor, LeMay was a major in the United States Army Air Forces (he had been a first lieutenant as recently as 1940), and the commander of a newly created B-17 Flying Fortress unit, the 305th Bomb Group. --Copied from Wikipedia');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TrainingSchool`
+-- Table structure for table `relationships`
 --
 
-CREATE TABLE `TrainingSchool` (
+CREATE TABLE `relationships` (
+  `follower_id` int(11) NOT NULL,
+  `followee_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainingschool`
+--
+
+CREATE TABLE `trainingschool` (
   `pkSchool` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `duration` varchar(50) DEFAULT NULL,
@@ -109,10 +138,10 @@ CREATE TABLE `TrainingSchool` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `TrainingSchool`
+-- Dumping data for table `trainingschool`
 --
 
-INSERT INTO `TrainingSchool` (`pkSchool`, `name`, `duration`, `description`, `levelNumber`) VALUES
+INSERT INTO `trainingschool` (`pkSchool`, `name`, `duration`, `description`, `levelNumber`) VALUES
 (1, 'The College Training', '5 months', 'The five-month college course for future Aircrew members taught them the fundamentals and skills which they would later develop to a much higher level at the specialized schools.  \r\n\r\n \r\n\r\nThe course was given at more than 150 leading colleges throughout the nation, and consisted of approximately 700 concentrated hours of academic and military instruction. Students received instruction in mathematics, physics, current history, geography and English under the instructors at the institution.  \r\n\r\n \r\n\r\nA staff of Air Force officers and enlisted men was charged with the responsibility for their military indoctrination. Under them the students received thorough schooling in the customs, courtesies and regulations of the service, as well as military drill and discipline.  \r\n\r\n \r\n\r\nIn addition, each student received approximately ten hours of dual instruction in light airplanes, during which he learned elementary flight maneuvers, landing and traffic procedure.  \r\n\r\n \r\n\r\nFor five months the future aircrew members studied and practiced. Students, in military uniform, marched in formation to and from their classes. There were a lot of text books to read – many things to learn in addition to the regular academic subjects: civil air regulations, first aid, how to give artificial respiration, proper use of the gas mask, and 280 hours of military indoctrination. At day’s end, they stood retreat as the flag was lowered.  \r\n\r\n \r\n\r\nMail call, chow time and relaxing following a hard day’s work may have been the most enjoyable times at the College Training Detachment. \r\n\r\n \r\n\r\nThe five months passed quickly, and then it was time to report to the Classification Center.  \r\n\r\n--Copied from www.wingsofhonor.org', 1),
 (2, 'Classification Center', 'Two to Four Weeks', 'In the Classification Center would-be airmen spent from two to four weeks undergoing extensive physical and mental testing, test they had never heard of, or imagined. Developed by leading psychologists, these tests would determine with great accuracy their aptitude for aircrew training.  \r\n\r\n \r\n\r\nSome tests were given in a classroom with hundreds of young men writing the answers to examination questions designed to show the cadet’s present mental status, as well as his potential for absorbing facts and training.  \r\n\r\n \r\n\r\nIn another area cadets would be confronted with a battery of mechanical tests which tested their physical reactions and coordination.  At the end of the tests, each cadet was classified for the job, bombardier, navigator or pilot, based on their background, training, aptitudes and preference.  \r\n\r\n \r\n\r\nGraduates from Classification were appointed as Aviation Cadets and went immediately to pilot, bombardier, or navigator Pre-flight Schools.  \r\n\r\n--Copied from www.wingsofhonor.org', 2),
 (3, 'Pre-Flight School', 'Nine Weeks', 'In Pre-flight, for nine weeks the Aviation Cadets received intensive training in strict discipline, military customs, courtesies and drill. He received his first introduction to courses in aircraft and naval vessel identification, studied code, navigation and meteorology, and learned about oxygen in a low-pressure chamber. The academic program included extensive studies in mathematics, physics, military law, citizenship, national policy, organization of the United States Government, the Air Corps, the Army, current events, and types of Air Forces equipment and armament. \r\nHe learned to fire the 45 caliber pistol, and how to field-strip a Tommy gun, spent hours a day at exercise and tough commando training, ate like a horse, and emerged physically fit, and eager to fly.  \r\nEach four and one-half weeks, a new group was sent in from the Classification Center to the Pre-Flight Pilot School and each class moved up. The upper class members would have their first actual practice in some of their training as they took charge of the new pilot students and got the new group settled. As the new group began their nine weeks\' course, the upper class moved into the final phase of their training before graduating to the Primary School.\r\n\r\n--Copied from www.wingsofhonor.org', 3),
@@ -133,44 +162,51 @@ CREATE TABLE `users` (
   `lastName` varchar(50) NOT NULL,
   `age` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`pkUser`, `firstName`, `lastName`, `age`, `username`, `password`) VALUES
-(1, 'admin', 'admin', 0, 'admin', 'admin'),
-(2, 'Lawrence', 'Peczkowski-Soto', 20, 'law', '123');
+INSERT INTO `users` (`pkUser`, `firstName`, `lastName`, `age`, `username`, `password`, `role`) VALUES
+(1, 'admin', 'admin', 0, 'admin', 'admin', 0),
+(2, 'Lawrence', 'Peczkowski-Soto', 20, 'law', '123', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Campaigns`
+-- Indexes for table `campaigns`
 --
-ALTER TABLE `Campaigns`
+ALTER TABLE `campaigns`
   ADD PRIMARY KEY (`pkCampaign`);
 
 --
--- Indexes for table `Crews`
+-- Indexes for table `crews`
 --
-ALTER TABLE `Crews`
+ALTER TABLE `crews`
   ADD PRIMARY KEY (`pkCrew`),
   ADD KEY `fkSchool` (`trainingSchool`);
 
 --
--- Indexes for table `People`
+-- Indexes for table `feed_event`
 --
-ALTER TABLE `People`
+ALTER TABLE `feed_event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `people`
+--
+ALTER TABLE `people`
   ADD PRIMARY KEY (`pkPerson`);
 
 --
--- Indexes for table `TrainingSchool`
+-- Indexes for table `trainingschool`
 --
-ALTER TABLE `TrainingSchool`
+ALTER TABLE `trainingschool`
   ADD PRIMARY KEY (`pkSchool`);
 
 --
@@ -185,27 +221,27 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `Campaigns`
+-- AUTO_INCREMENT for table `campaigns`
 --
-ALTER TABLE `Campaigns`
-  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `campaigns`
+  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `Crews`
+-- AUTO_INCREMENT for table `crews`
 --
-ALTER TABLE `Crews`
-  MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1352;
+ALTER TABLE `crews`
+  MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `People`
+-- AUTO_INCREMENT for table `people`
 --
-ALTER TABLE `People`
+ALTER TABLE `people`
   MODIFY `pkPerson` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `TrainingSchool`
+-- AUTO_INCREMENT for table `trainingschool`
 --
-ALTER TABLE `TrainingSchool`
+ALTER TABLE `trainingschool`
   MODIFY `pkSchool` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -219,10 +255,10 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `Crews`
+-- Constraints for table `crews`
 --
-ALTER TABLE `Crews`
-  ADD CONSTRAINT `fkSchool` FOREIGN KEY (`trainingSchool`) REFERENCES `TrainingSchool` (`pkSchool`);
+ALTER TABLE `crews`
+  ADD CONSTRAINT `fkSchool` FOREIGN KEY (`trainingSchool`) REFERENCES `trainingschool` (`pkSchool`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
