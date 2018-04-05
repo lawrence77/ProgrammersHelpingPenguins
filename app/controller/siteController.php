@@ -16,6 +16,9 @@ class SiteController {
 			case 'home':
 				$this->home();
 				break;
+			case 'dashboard':
+				$this->dashboard();
+				break;
             case 'login':
                 $this->login();
                 break;
@@ -35,6 +38,13 @@ class SiteController {
       $pageTitle = 'Home';
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/home.tpl';
+      include_once SYSTEM_PATH.'/view/footer.tpl';
+  }
+  
+  public function dashboard(){
+	  $pageTitle ='Dashboard';
+	  include_once SYSTEM_PATH.'/view/header.tpl';
+      include_once SYSTEM_PATH.'/view/dashboard.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 
