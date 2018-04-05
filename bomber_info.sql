@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 03:52 PM
+-- Generation Time: Apr 05, 2018 at 05:45 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -85,8 +85,8 @@ CREATE TABLE `feed_event` (
   `item_1_id` int(11) DEFAULT NULL,
   `item_2_id` int(11) DEFAULT NULL,
   `item_3_id` int(11) DEFAULT NULL,
-  `data_1` text NOT NULL,
-  `data_2` text NOT NULL,
+  `data_1` text,
+  `data_2` text,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -224,13 +224,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `crews`
 --
 ALTER TABLE `crews`
   MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `feed_event`
+--
+ALTER TABLE `feed_event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `people`

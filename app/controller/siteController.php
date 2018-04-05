@@ -43,6 +43,11 @@ class SiteController {
   
   public function dashboard(){
 	  $pageTitle ='Dashboard';
+	  if(!isset($_SESSION['username'])) {
+			header('Location: '.BASE_URL); exit();
+		}
+		
+	  $fes = FeedEvent::getFeedEvents(5);
 	  include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/dashboard.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';

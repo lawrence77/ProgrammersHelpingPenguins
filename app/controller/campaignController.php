@@ -50,6 +50,14 @@ class CampaignController {
         $campaign->date        			= $_POST['date'];
         $campaign->description     		= $_POST['description'];
 	$id = $campaign->save();
+	
+	// log event
+		$fe = new FeedEvent();
+		$fe->creator_id = $_SESSION['user_id'];
+		$fe->item_1_id = $id['id'];
+		$fe->type = 'add_campaign';
+		$fe->save();
+		
 	if($id['id'] == 0)
 	{
 		$json = array('success' => false, 'query' => $id['query']);

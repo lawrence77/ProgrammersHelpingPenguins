@@ -27,6 +27,8 @@ class Db {
   public function escape($str) {
     if($str == '') {
       $escaped = 'NULL';
+    } elseif(is_numeric($str)) {
+      $escaped = $this->conn->real_escape_string($str);
     } else {
       $escaped = "'".$this->conn->real_escape_string($str)."'";
     }

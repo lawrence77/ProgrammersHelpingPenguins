@@ -40,6 +40,31 @@ class User {
             return $user;   //found filled user info
         }
     }
+	public static function loadById($id) {
+        $db = Db::instance();   //create db connection
+
+        //build query
+        $q = sprintf("SELECT * FROM `%s` WHERE pkUser = %d;", self::DB_TABLE, $id);
+        $result = $db->query($q);   //execute query
+
+        if ($result->num_rows == 0) {
+            return null;    //no user
+        } else {
+            $row = $result->fetch_assoc(); //get results as associative array
+            $user = new User();
+
+            //store db results
+            $user->id =         $row['pkUser'];
+            $user->firstName =  $row['firstName'];
+            $user->lastName =   $row['lastName'];
+            $user->age =        $row['age'];
+            $user->username =   $row['username'];
+            $user->password =   $row['password'];
+
+            return $user;   //found filled user info
+        }
+    }
+
 
     //save function for a new user. Do not support user updates at the moment
     public function save()

@@ -55,6 +55,7 @@ class LoginController
             $relocation = 'Location: '.BASE_URL.'/campaigns/';
             session_start();
             $_SESSION['username'] = $un;
+			$_SESSION['user_id'] = $user->id;
         } else {                //failed to find user in db
             $relocation = 'Location: '.BASE_URL.'/login/';
         }
