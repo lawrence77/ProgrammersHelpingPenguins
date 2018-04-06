@@ -1,8 +1,12 @@
 In terms of priority
+- Create personal profile page
+- Add log event for each activity
+- Change database to include delete column
+- Change delete functionality on website to set field
+- Change Modle classes to only retrived non "deleted" records
+- Creation of users (not sure if this already exists)
+- Add and remove privliages buttons for admin accounts
+- content review page (?)
+- Add follow buttons to user pages and update relationship database
+- Create list of all users page
 
-- Add edit view/API for bombers and campaigns
-- Re-work bomber detail page (remove 'person' info, other important information)
-	- Add "DELETE" button to bomber detail page
-	- Remove person info
-- Add wikipedia image for bombers on crew list page
-- Remove details from crew list page so that there's info on the bomber detail page that isn't on the list page
