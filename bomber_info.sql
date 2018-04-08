@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 05:45 PM
+-- Generation Time: Apr 08, 2018 at 09:12 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -32,15 +32,17 @@ CREATE TABLE `campaigns` (
   `pkCampaign` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `date` date NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `campaigns`
 --
 
-INSERT INTO `campaigns` (`pkCampaign`, `name`, `date`, `description`) VALUES
-(1, 'Schweinfurt-Regensburg mission', '1944-10-14', 'The Schweinfurt-Regensburg mission was a strategic bombing mission during World War II. Carried out by Boeing B-17 Flying Fortress heavy bombers of the U.S. Army Air Forces on August 17, 1943, it was an ambitious plan to cripple the German aircraft industry. --Copied from Wikipedia');
+INSERT INTO `campaigns` (`pkCampaign`, `name`, `date`, `description`, `deleted`) VALUES
+(1, 'Schweinfurt-Regensburg mission', '1944-10-14', 'The Schweinfurt-Regensburg mission was a strategic bombing mission during World War II. Carried out by Boeing B-17 Flying Fortress heavy bombers of the U.S. Army Air Forces on August 17, 1943, it was an ambitious plan to cripple the German aircraft industry. --Copied from Wikipedia', 0),
+(2, 'test', '1960-10-22', 'stuff did happen', 1);
 
 -- --------------------------------------------------------
 
@@ -89,6 +91,15 @@ CREATE TABLE `feed_event` (
   `data_2` text,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feed_event`
+--
+
+INSERT INTO `feed_event` (`id`, `type`, `creator_id`, `item_1_id`, `item_2_id`, `item_3_id`, `data_1`, `data_2`, `date_created`) VALUES
+(1, 'add_campaign', 1, 2, 0, 0, NULL, NULL, '2018-04-08 18:43:57'),
+(2, 'edit_campaign', 1, 2, 0, 0, 'Old date: 2222-02-22 / Old description: nothing / ', 'New date: 1960-10-22 / New description: stuff did happen / ', '2018-04-08 18:44:34'),
+(3, 'delete_campaign', 1, 2, 0, 0, NULL, NULL, '2018-04-08 19:01:09');
 
 -- --------------------------------------------------------
 
@@ -224,7 +235,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `crews`
@@ -236,7 +247,7 @@ ALTER TABLE `crews`
 -- AUTO_INCREMENT for table `feed_event`
 --
 ALTER TABLE `feed_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `people`
