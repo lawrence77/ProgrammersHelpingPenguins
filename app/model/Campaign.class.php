@@ -11,6 +11,7 @@ class Campaign {
     public $name = '';
     public $date = '';
     public $description = '';
+	public $deleted = 0;
 
     //gets a campaign by a primary key
     public static function loadById($id)
@@ -35,6 +36,7 @@ class Campaign {
             $campaign->name               = $row['name'];
             $campaign->date               = $row['date'];
             $campaign->description        = $row['description'];
+			$campaign->deleted			  = $row['deleted'];
 
             return $campaign;   //return filled campaign info
         }
@@ -49,7 +51,11 @@ class Campaign {
         $campaignArray = array();
         if ($result->num_rows != 0) {       //traverse all pkCampaigns found from the query
             while ($row = $result->fetch_assoc()) {
-                $campaignArray[] = self::loadById($row['pkCampaign']); //fetch all data based on pk
+				$campaign = self::loadById($row['pkCampaign']); //fetch all data based on pk
+				if(!$campaign->deleted)
+				{
+					$campaignArray[] = $campaign; //only fetch campaings that are not deleted
+				}
             }
         }
         return $campaignArray;
@@ -113,11 +119,15 @@ class Campaign {
 
         $db = Db::instance();
 
-        $q = sprintf("DELETE FROM `%s`
-            WHERE `pkCampaign` = %d;",
+		$q = sprintf("UPDATE %s SET `deleted` = 1 WHERE `pkCampaign` = %d;",
             self::DB_TABLE,
             $this->id
         );
+       /* $q = sprintf("DELETE FROM `%s`
+            WHERE `pkCampaign` = %d;",
+            self::DB_TABLE,
+            $this->id
+        );*/
         $result = $db->query($q);
         return $result;
     }

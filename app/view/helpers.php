@@ -10,7 +10,7 @@ function formatEvent($event) {
 
 		$str = '<strong>'.$creator->username.'</strong> added the campaign <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
 		break;
-	case 'delete_campaing':
+	case 'delete_campaign':
 		$creator = User::loadById($event->creator_id);
 		$campaign = Campaign::loadById($event->item_1_id);
 		$name = $campaign->name;
