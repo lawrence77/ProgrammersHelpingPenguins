@@ -61,6 +61,12 @@ class CrewController
         $crew->losses             = $_POST['losses'];
         $crew->stationedAirfield  = $_POST['stationedAirfield'];
 	$id = $crew->save();
+	// log creation event
+		$fe = new FeedEvent();
+		$fe->creator_id = $_SESSION['user_id'];
+		$fe->item_1_id = $id['id'];
+		$fe->type = 'add_crew';
+		$fe->save();
 	if($id['id'] == 0)
 	{
 		$json = array('success' => false, 'query' => $id['query']);

@@ -31,6 +31,13 @@ class CampaignController {
     public function deleteCampaign($id)
     {
         $c = Campaign::loadById($id);
+		
+		// log deletion event
+		$fe = new FeedEvent();
+		$fe->creator_id = $_SESSION['user_id'];
+		$fe->item_1_id = $id;
+		$fe->type = 'delete_campaign';
+		$fe->save();
 
 	$result = $c->delete();
 	if(!$result)
@@ -51,7 +58,7 @@ class CampaignController {
         $campaign->description     		= $_POST['description'];
 	$id = $campaign->save();
 	
-	// log event
+	// log creation event
 		$fe = new FeedEvent();
 		$fe->creator_id = $_SESSION['user_id'];
 		$fe->item_1_id = $id['id'];
@@ -73,10 +80,45 @@ class CampaignController {
   public function editCampaign($id)
   {
 		$campaign = Campaign::loadById($id);
+		// log edit event
+		$fe = new FeedEvent();
+		$fe->creator_id = $_SESSION['user_id'];
+		$fe->item_1_id = $id;
+		$fe->type = 'edit_campaign';
+		$fe->data_1 = '';
+		$fe->data_2 = '';
+		
+		//Check which parts got edited
+		if($campaign->name != $_POST['name'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old Name: ' . $campaign->name . ' / ';
+			$fe->data_2 = $fe->data_2. 'New Name: ' . $_POST['name'] . ' / ';
+		}
+		if($campaign->date != $_POST['date'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old date: ' . $campaign->date . ' / ';
+			$fe->data_2 = $fe->data_2. 'New date: ' . $_POST['date'] . ' / ';
+		}
+		if($campaign->description != $_POST['description'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old description: ' . $campaign->description . ' / ';
+			$fe->data_2 = $fe->data_2. 'New description: ' . $_POST['description'] . ' / ';
+		}
+		
+		//Only log event if anything actually changed
+		if($fe->data_1 != '')
+		{
+			$fe->save();
+		}
+		
 		$campaign->name    				= $_POST['name'];
         $campaign->date        			= $_POST['date'];
         $campaign->description     		= $_POST['description'];
+		
+		
 	$id = $campaign->save();
+	
+	
 	if($id['id'] == 0)
 	{
 		$json = array('success' => false, 'query' => $id['query']);

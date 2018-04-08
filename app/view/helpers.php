@@ -4,12 +4,35 @@ function formatEvent($event) {
 
   switch($event->type) {
     case 'add_campaign':
-      $creator = User::loadById($event->creator_id);
-      $campaign = Campaign::loadById($event->item_1_id);
-      $name = $campaign->name;
+		$creator = User::loadById($event->creator_id);
+		$campaign = Campaign::loadById($event->item_1_id);
+		$name = $campaign->name;
 
-      $str = '<strong>'.$creator->username.'</strong> added the campaign <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
-      break;
+		$str = '<strong>'.$creator->username.'</strong> added the campaign <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
+		break;
+	case 'delete_campaing':
+		$creator = User::loadById($event->creator_id);
+		$campaign = Campaign::loadById($event->item_1_id);
+		$name = $campaign->name;
+
+		$str = '<strong>'.$creator->username.'</strong> deleted the campaign <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
+		break;
+	case 'edit_campaign':
+		$creator = User::loadById($event->creator_id);
+		$campaign = Campaign::loadById($event->item_1_id);
+		$name = $campaign->name;
+
+		$str = '<strong>'.$creator->username.'</strong> changed the following data in the campaign <strong>'.$name.'</strong>.
+				<strong>'.$event->data_1.'</strong> to <strong>'.$event->data_2.'</strong><small>('.time2str($event->date_created).')</small>';
+		break;
+	case 'add_crew':
+	
+		$creator = User::loadById($event->creator_id);
+		$crew = Crew::loadById($event->item_1_id);
+		$name = $crew->provisionalWing;
+		$str = '<strong>'.$creator->username.'</strong> added the crew <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
+		break;
+
 
     case 'add_friend':
       $str = 'add friend';
