@@ -6,7 +6,6 @@ In terms of priority
 - Change Modle classes to only retrived non "deleted" records
 - Creation of users (not sure if this already exists)
 - Add and remove privliages buttons for admin accounts
-- content review page (?)
 - Add follow buttons to user pages and update relationship database
 - Create list of all users page
-
+- design crowdsourcing HIT for mturk
