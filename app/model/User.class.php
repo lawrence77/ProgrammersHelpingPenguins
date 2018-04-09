@@ -65,6 +65,25 @@ class User {
         }
     }
 
+	//get all campaigns in the database
+    public static function getUsers()
+    {
+        $db = Db::instance();   //db connection
+        $q = sprintf("SELECT pkUser FROM `%s` ORDER BY lastName ASC;", self::DB_TABLE);
+        $result = $db->query($q);
+
+        $userArray = array();
+        if ($result->num_rows != 0) {       //traverse all pkCampaigns found from the query
+            while ($row = $result->fetch_assoc()) {
+				$user = self::loadById($row['pkUser']); //fetch all data based on pk
+				//if(!$user->deleted)
+				//{
+					$userArray[] = $user; //only fetch campaings that are not deleted
+				//}
+            }
+        }
+        return $userArray;
+    }
 
     //save function for a new user. Do not support user updates at the moment
     public function save()

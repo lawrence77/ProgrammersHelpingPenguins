@@ -31,9 +31,19 @@ class SiteController {
 			case 'people':
 				$this->people();
 				break;
+			case 'users':
+				$this->users();
+				break;
 		}
 
 	}
+	public function users() {
+      $pageTitle = 'Users';
+      include_once SYSTEM_PATH.'/view/header.tpl';
+      include_once SYSTEM_PATH.'/view/userList.tpl';
+      include_once SYSTEM_PATH.'/view/footer.tpl';
+  }
+  
   public function home() {
       $pageTitle = 'Home';
       include_once SYSTEM_PATH.'/view/header.tpl';

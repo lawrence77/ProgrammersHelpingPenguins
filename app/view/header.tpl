@@ -44,6 +44,7 @@ else $loggedin = 'Login';
                     <?php if(isset($_SESSION['username'])): ?>
 					<li class="<?php echo ($pageTitle == "Dashboard" ? "active" : "")?>"><a href="<?= BASE_URL ?>/dashboard">Dashboard</a></li>
 					<?php endif ?>
+					<li class="<?php echo ($pageTitle == "Users" ? "active" : "")?>"><a href="<?= BASE_URL ?>/users">User List</a></li>
 					<!--<li><a href="">TAB 2</a></li>
                     <li><a href="">TAB#</a></li>-->
                 </ul>

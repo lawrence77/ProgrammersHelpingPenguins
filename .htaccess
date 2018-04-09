@@ -10,6 +10,7 @@ RewriteRule ^campaigns/?$ ProgrammersHelpingPenguins/app/controller/siteControll
 RewriteRule ^crews/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=crews [QSA,L]
 RewriteRule ^people/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=people [QSA,L]
 RewriteRule ^dashboard/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=dashboard [QSA,L]
+RewriteRule ^users/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=users [QSA,L]
 
 
 #Campaign Controller
@@ -28,3 +29,6 @@ RewriteRule ^crews/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewContro
 RewriteRule ^crews/add/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=newCrew [QSA,L]
 RewriteRule ^crews/delete/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=deleteCrew [QSA,L]
 RewriteRule ^crews/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=editCrew [QSA,L]
+
+#User Controller
+RewriteRule ^users/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=view&id=$1 [QSA,L]
