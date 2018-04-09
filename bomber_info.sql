@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2018 at 09:12 PM
+-- Generation Time: Apr 09, 2018 at 09:41 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -130,8 +130,10 @@ INSERT INTO `people` (`pkPerson`, `firstName`, `lastName`, `birthdate`, `deathda
 --
 
 CREATE TABLE `relationships` (
+  `id` int(11) NOT NULL,
   `follower_id` int(11) NOT NULL,
-  `followee_id` int(11) NOT NULL
+  `followee_id` int(11) NOT NULL,
+  `follows` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -215,6 +217,12 @@ ALTER TABLE `people`
   ADD PRIMARY KEY (`pkPerson`);
 
 --
+-- Indexes for table `relationships`
+--
+ALTER TABLE `relationships`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `trainingschool`
 --
 ALTER TABLE `trainingschool`
@@ -247,13 +255,19 @@ ALTER TABLE `crews`
 -- AUTO_INCREMENT for table `feed_event`
 --
 ALTER TABLE `feed_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `people`
 --
 ALTER TABLE `people`
   MODIFY `pkPerson` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `relationships`
+--
+ALTER TABLE `relationships`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trainingschool`
