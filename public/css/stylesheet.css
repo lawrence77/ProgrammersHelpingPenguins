@@ -4,7 +4,7 @@ body {
 }
 
 /*AJAX Forms */
-#newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menum, #editCrewForm {
+#newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menu, #editCrewForm {
     display: none;
 }
 .bomber-squad-content{
@@ -52,6 +52,19 @@ body {
     width: 70%;
     height: 70%;
 }
+
+
+.home-info{
+    width:100%;
+     border-bottom: solid black 1px;
+    
+}
+.image-info{
+    border-bottom: solid black 1px;
+    margin: 2% 15% 5% 15%;
+    
+}
+
 .bomber-img {
     width: 65%;
     margin-right: 0;
@@ -80,3 +93,4 @@ body {
     vertical-align: text-top;
     float: right;
 }
+
