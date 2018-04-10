@@ -65,18 +65,17 @@ class SiteController {
       include_once SYSTEM_PATH.'/view/dashboard.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
-    public function myprofile(){
+    /*public function myprofile(){
 	  $pageTitle ='My Profile';
-        /*$_Session username should always be set when viewing the user profile*/
+        //$_Session username should always be set when viewing the user profile
 	  if(!isset($_SESSION['username'])) {
 			header('Location: '.BASE_URL); exit();
-		}
-      $fes = FeedEvent::getFeedEventsByUser(5);        
+		}     
 	  include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/profile.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
-
+    */
   public function login()
   {
       $pageTitle = 'Login';
