@@ -46,7 +46,7 @@ else $loggedin = 'Login';
 					<?php endif ?>
 					<li class="<?php echo ($pageTitle == "Users" ? "active" : "")?>"><a href="<?= BASE_URL ?>/users">User List</a></li>
                     <?php if(isset($_SESSION['username'])): ?>
-                    <li class="<?php echo ($pageTitle == "My Profile" ? "active" : "")?>"><a href="<?= BASE_URL ?>/users/view/" . "$_SESSION['user_id']">My Profile</a></li>
+                    <li class="<?php echo ($pageTitle == "My Profile" ? "active" : "")?>"><a href="<?= BASE_URL ?>/users/view/">My Profile</a></li>
                     <?php endif; ?>
 					<!--<li><a href="">TAB 2</a></li>
                     <li><a href="">TAB#</a></li>-->
