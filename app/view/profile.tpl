@@ -12,6 +12,10 @@
               <tr><th>Username</th><td><?php echo $user->username; ?></td></tr>
               <tr><th>Password</th><td><?php echo $user->password; ?></td></tr>
         </table>
+        
+        <form method="post" action="follow.php">
+            <button type="submit">Follow</button>
+        </form>
         </div>
         <div class="col-sm-6 col-lg-12 profile-inner-contents">
            <!--
