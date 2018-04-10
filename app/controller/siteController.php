@@ -34,6 +34,9 @@ class SiteController {
 			case 'users':
 				$this->users();
 				break;
+            case 'myprofile':
+                $this->myprofile();
+                break;
 		}
 
 	}
@@ -60,6 +63,16 @@ class SiteController {
 	  $fes = FeedEvent::getFeedEvents(5);
 	  include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/dashboard.tpl';
+      include_once SYSTEM_PATH.'/view/footer.tpl';
+  }
+    public function myprofile(){
+	  $pageTitle ='My Profile';
+        /*$_Session username should always be set when viewing the user profile*/
+	  if(!isset($_SESSION['username'])) {
+			header('Location: '.BASE_URL); exit();
+		}
+	  include_once SYSTEM_PATH.'/view/header.tpl';
+      include_once SYSTEM_PATH.'/view/profile.tpl';
       include_once SYSTEM_PATH.'/view/footer.tpl';
   }
 
