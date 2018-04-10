@@ -27,7 +27,8 @@ class LoginController
                     $_POST['lastName'],
                     $_POST['age'],
                     $_POST['username'],
-                    $_POST['password']
+                    $_POST['password'],
+                    $_POST['role']
                 );
                 break;
             default:
@@ -62,7 +63,7 @@ class LoginController
         header($relocation);
     }
     //Creates a new user in the database
-    public function createNewUser($firstName, $lastName, $age, $username, $password)
+    public function createNewUser($firstName, $lastName, $age, $username, $password, $role)
     {
         if (empty($firstName) || empty($lastName) || empty($age) ||
             empty($username) || empty($password)) {
@@ -77,6 +78,8 @@ class LoginController
         $user->age          = $age;
         $user->username     = $username;
         $user->password     = $password;
+        if ($role) $user->role = 1;
+        else $user->role = 0;
 
         $relocation = '';
         if ($user->save() == null) {

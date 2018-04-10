@@ -14,6 +14,7 @@ class User {
     public $age = 0;
     public $username = '';
     public $password = '';
+    public $role = 0;
 
     //Loads a user by username, not by id, since people type in their username and password
     public static function loadByUsername($username) {
@@ -36,6 +37,7 @@ class User {
             $user->age =        $row['age'];
             $user->username =   $row['username'];
             $user->password =   $row['password'];
+            $user->role =       $row['role'];
 
             return $user;   //found filled user info
         }
@@ -60,6 +62,7 @@ class User {
             $user->age =        $row['age'];
             $user->username =   $row['username'];
             $user->password =   $row['password'];
+            $user->role =       $row['role'];
 
             return $user;   //found filled user info
         }
@@ -102,13 +105,14 @@ class User {
 
         $db = Db::instance(); //connect to db
 
-        $q = sprintf("INSERT INTO `%s` (`firstName`, `lastName`, `age`, `username`, `password`) VALUES (%s, %s, %s, %s, %s);",
+        $q = sprintf("INSERT INTO `%s` (`firstName`, `lastName`, `age`, `username`, `password`, `role`) VALUES (%s, %s, %s, %s, %s, %s);",
             self::DB_TABLE,
             $db->escape($this->firstName),
             $db->escape($this->lastName),
             $db->escape($this->age),
             $db->escape($this->username),
-            $db->escape($this->password)
+            $db->escape($this->password),
+            $db->escape($this->role)
         );
 
         $db->query($q);
