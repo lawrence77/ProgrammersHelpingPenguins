@@ -6,11 +6,11 @@
         <img src="../public/images/question.png" id ="profilepic">
         <button id="small-button" class ="button-padding">Edit profile Pic</button>
         <table>
-            <tr><th>First Name</th><td><?php echo ?></td></tr>
-              <tr><th>Last Name</th><td><?php echo ?></td></tr>
-              <tr><th>Age</th><td><?php echo ?></td></tr>
-              <tr><th>Field 3</th><td><?php echo ?></td></tr>
-              <tr><th>Field 4</th><td><?php echo ?></td></tr>
+            <tr><th>First Name</th><td><?php echo $user->firstName; ?></td></tr>
+              <tr><th>Last Name</th><td><?php echo $user->lastName; ?></td></tr>
+              <tr><th>Age</th><td><?php echo $user->age; ?></td></tr>
+              <tr><th>Username</th><td><?php echo $user->username; ?></td></tr>
+              <tr><th>Password</th><td><?php echo $user->password; ?></td></tr>
         </table>
         </div>
         <div class="col-sm-6 col-lg-12 profile-inner-contents">
