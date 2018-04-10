@@ -5,13 +5,13 @@ include_once '../global.php';
 //get the identifier for the page we want to load
 $action = $_GET['action'];
 
-$logCtrl = new LoginController();
-$logCtrl->route($action);
+$userCtrl = new UserController();
+$userCtrl->route($action);
 
 /**
  * Controls extra functionality the login page includes
  */
-class LoginController
+class UserController
 {
     public function route($action)
     {
@@ -24,7 +24,7 @@ class LoginController
 	
 	public function view($id)
 	{
-      $pageTitle = 'View campaign';
+      $pageTitle = 'My Profile';
 	  $user = User::loadById($id);
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/profile.tpl';

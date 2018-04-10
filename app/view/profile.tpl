@@ -12,7 +12,7 @@
               <tr><th>Username</th><td><?php echo $user->username; ?></td></tr>
               <tr><th>Password</th><td><?php echo $user->password; ?></td></tr>
         </table>
-        <?php if($_SESSION['user_id'] != $user[id]):?>
+        <?php if($_SESSION['user_id'] != $user['id']):?>
         <form method="post" action="">
             <button type="submit">Follow</button>
         </form>
@@ -25,7 +25,7 @@
             -->
             <h3>Recent Activity</h3>
 
-            ?php if(empty($fes)): ?>
+            <?php if(empty($fes)): ?>
             <p>No events yet.</p>
             <?php else: ?>
             <ul>
