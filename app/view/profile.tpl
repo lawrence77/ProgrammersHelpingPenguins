@@ -23,6 +23,17 @@
             add the activity feed here
             
             -->
+            <h3>Recent Activity</h3>
+
+            ?php if(empty($fes)): ?>
+            <p>No events yet.</p>
+            <?php else: ?>
+            <ul>
+            <?php foreach($fes as $fe): ?>
+            <li><?= formatEvent($fe) ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
         </div>
     
     

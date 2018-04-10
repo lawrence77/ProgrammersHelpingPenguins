@@ -65,6 +65,26 @@ class FeedEvent {
     return $objects;
   }
 
+    public static function getFeedEventsByUser($limit = null) {
+    $db = Db::instance(); // create db connection
+    // build query
+    $q = sprintf("SELECT id FROM `%s` WHERE creator_id = '%s' ORDER BY date_created DESC ",
+      self::DB_TABLE,$_SESSION['user_id']
+      );
+    if($limit !== null)
+      $q .= " LIMIT ".$limit;
+    $result = $db->query($q); // retrieve results
+
+    $objects = array();
+    if($result->num_rows != 0) {
+      while($row = $result->fetch_assoc()) {
+        $objects[] = self::loadById($row['id']);
+      }
+    }
+    return $objects;
+  }
+    
+
   public function save(){
     if($this->id == 0) {
       return $this->insert(); // soldier is new and needs to be created
