@@ -24,6 +24,9 @@ class UserController
 	
 	public function view($id)
 	{
+		if(!isset($_SESSION['username'])) {
+          header('Location: '.BASE_URL.'/login/'); exit();
+		}
       $pageTitle = 'My Profile';
 	  $user = User::loadById($id);
       $fes = FeedEvent::getFeedEventsByUser(5);   

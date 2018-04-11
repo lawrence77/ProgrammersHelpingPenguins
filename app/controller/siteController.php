@@ -41,6 +41,9 @@ class SiteController {
 
 	}
 	public function users() {
+		if(!isset($_SESSION['username'])) {
+          header('Location: '.BASE_URL.'/login/'); exit();
+		}
       $pageTitle = 'Users';
       include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/userList.tpl';
