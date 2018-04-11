@@ -1,8 +1,9 @@
+<?php include_once 'view/helpers.php' ?>
 
 <div class="container">
     <div class="row">
     <div class="col-sm-6 col-lg-6 my-profile ">
-        <h3>Hanson Cress</h3>
+		<h3><?php echo $user->firstName; ?> <?php echo $user->lastName; ?></h3>
         <img src="../public/images/question.png" id ="profilepic">
         <button id="small-button" class ="button-padding">Edit profile Pic</button>
         <table>
@@ -30,7 +31,9 @@
             <?php else: ?>
             <ul>
             <?php foreach($fes as $fe): ?>
+			<?php if($fe->creator_id===$user->id): ?>
             <li><?= formatEvent($fe) ?></li>
+			<?php endif; ?>
                 <?php endforeach; ?>
             </ul>
             <?php endif; ?>

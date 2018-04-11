@@ -1,5 +1,4 @@
 In terms of priority
-- Create personal profile page
 - Add log event for each activity
 - Change database to include delete column
 - Change delete functionality on website to set field
