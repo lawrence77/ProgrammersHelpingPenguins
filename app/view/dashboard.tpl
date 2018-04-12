@@ -14,8 +14,11 @@
   <p>No events yet.</p>
 <?php else: ?>
 <ul>
+<?php $following = $user->following;?>
 <?php foreach($fes as $fe): ?>
+<?php if($fe->creator_id == $user->id or in_array($fe->creator_id,$following)): ?>
   <li><?= formatEvent($fe) ?></li>
+  <?php endif; ?>
 <?php endforeach; ?>
 </ul>
 <?php endif; ?>

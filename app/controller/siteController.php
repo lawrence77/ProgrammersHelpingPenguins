@@ -62,7 +62,7 @@ class SiteController {
 	  if(!isset($_SESSION['username'])) {
 			header('Location: '.BASE_URL); exit();
 		}
-		
+		$user = User::loadByUserName($_SESSION['username']);
 	  $fes = FeedEvent::getFeedEvents(5);
 	  include_once SYSTEM_PATH.'/view/header.tpl';
       include_once SYSTEM_PATH.'/view/dashboard.tpl';
