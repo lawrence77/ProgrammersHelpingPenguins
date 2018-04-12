@@ -17,7 +17,7 @@
 		<td> <?php echo $campaign->description; ?> </td>
     </tr>
   </table>
-  <?php if ($_SESSION['role'] == 0): ?>
+  <?php if ($_SESSION['role'] <= 1): ?>
 	<button id="edit-campaign-button">Edit Campaign </button>
   <?php endif; ?>
 	<!-- <button id="delete-campaign-button" name="delete-campaign-button" value="<?php echo $campaign->id; ?>">Delete Campaign </button> -->

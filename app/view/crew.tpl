@@ -42,7 +42,7 @@
         <hr>
     </div>
     <div class="container">
-        <?php if ($_SESSION['role'] == 0): ?>
+        <?php if ($_SESSION['role'] <= 1): ?>
             <button id="showEditCrewButton" type="button" name="showEditCrewButton">Edit Bomber Group</button>
         <?php endif; ?>
         <form id="editCrewForm">

@@ -81,8 +81,8 @@ class LoginController
         $user->age          = $age;
         $user->username     = $username;
         $user->password     = $password;
-        if ($role) $user->role = 0;     //admin/historian access
-        else $user->role = 1;           //viewer access
+        if ($role) $user->role = 1;     //historian access
+        else $user->role = 2;           //viewer access
 
         echo $role."\n";
         echo $user->role;

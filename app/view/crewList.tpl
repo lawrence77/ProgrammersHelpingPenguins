@@ -1,5 +1,5 @@
 <div class="container">
-    <?php if ($_SESSION['role'] == 0): ?>
+    <?php if ($_SESSION['role'] <= 1): ?>
         <button id="newCrewButton" type="button" name="newCrewButton">New Bomber Group</button>
     <?php endif; ?>
     <form id="newCrewForm">
@@ -29,7 +29,7 @@
             echo "<div class='bomber-squad-table-title'>Provisional Wing <div class='bomber-squad-table-content'>" . $c->provisionalWing ."</div></div>";
             echo "<div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" . $c->stationedAirfield . "</div></div>";
             echo "</td> </tr> </table>";
-            if ($_SESSION['role'] == 0) {
+            if ($_SESSION['role'] <= 1) {
                 echo "<button onclick='deleteCrew(". $c->id .")'>X</button>";
             }
             echo "</div></div><br/><br/>";

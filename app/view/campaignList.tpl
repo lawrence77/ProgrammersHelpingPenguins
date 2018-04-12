@@ -7,7 +7,7 @@
 			echo "<span id='campaign_" . $c->id . "'>";
 			echo "<h1><a href=\"".BASE_URL."/campaigns/view/".$c->id."\">".$c->name." </a></h1>";
 			echo "<img class='campaign-thumbnail' src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg/1200px-B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg\" alt=\"pic of campaign\" />";
-            if ($_SESSION['role'] == 0) {
+            if ($_SESSION['role'] <= 1) {
 	    		echo "<button onclick='deleteCampaign(". $c->id .")'>X</button>";
             }
 			echo "</span>";
@@ -16,7 +16,7 @@
 	?>
 </div>
 <p>
-<?php if ($_SESSION['role'] == 0): ?>
+<?php if ($_SESSION['role'] <= 1): ?>
 <div class="left-align">
 	<button id="add-campaign-button" class="large"> Add new Campaign</button>
 </div>
