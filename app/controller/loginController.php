@@ -87,14 +87,15 @@ class LoginController
         echo $role."\n";
         echo $user->role;
         $relocation = '';
-        if ($user->save() == null) {
+        $result = $user->save();
+        if ($result == null) {
             //failed to save to db
             $relocation = 'Location: '.BASE_URL.'/campaigns/';
         } else {
             $relocation = 'Location: '.BASE_URL.'/home/';
             session_start();
             $_SESSION['username'] = $user->username;
-            $_SESSION['user_id'] = $user->id;
+            $_SESSION['user_id'] = $result;
             $_SESSION['role'] = $user->role;
         }
         header($relocation);
