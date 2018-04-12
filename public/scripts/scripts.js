@@ -321,3 +321,51 @@ function editCrew(id) {
         }
     });
 }
+
+
+function follow(id, f_id) {
+    data = {};
+    data.id = parseInt(id);
+    data.f_id = parseInt(f_id);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/users/follow/',
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+	        $('#user_b_' + f_id).after("<button id='randomSTUZCZ' onclick='unfollow(" + id + ", " + f_id + ")'>Unfollow</button>");
+	        $('#user_b_' + f_id).remove();
+		$('#randomSTUZCZ').attr("id", "user_b_" + f_id);
+        },
+	error: function(resp) {
+           console.log("error!");
+	   console.log(resp);
+        }
+    });
+}
+function unfollow(id, f_id) {
+    data = {};
+    data.id = parseInt(id);
+    data.f_id = parseInt(f_id);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/users/unfollow/',
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+	    if(resp.result == true) {
+	        $('#user_b_' + f_id).after("<button id='randomSTUZCZ' onclick='follow(" + id + ", " + f_id + ")'>Follow</button>");
+	        $('#user_b_' + f_id).remove();
+		$('#randomSTUZCZ').attr("id", "user_b_" + f_id);
+	    }
+        },
+	error: function(resp) {
+           console.log("error!");
+	   console.log(resp);
+        }
+    });
+}

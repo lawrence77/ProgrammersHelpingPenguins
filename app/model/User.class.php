@@ -15,6 +15,7 @@ class User {
     public $username = '';
     public $password = '';
     public $role = 0;
+    public $following = array();
 
     //Loads a user by username, not by id, since people type in their username and password
     public static function loadByUsername($username) {
@@ -38,6 +39,7 @@ class User {
             $user->username =   $row['username'];
             $user->password =   $row['password'];
             $user->role =       $row['role'];
+	    $user->getFollowing();
 
             return $user;   //found filled user info
         }
@@ -63,6 +65,7 @@ class User {
             $user->username =   $row['username'];
             $user->password =   $row['password'];
             $user->role =       $row['role'];
+	    $user->getFollowing();
 
             return $user;   //found filled user info
         }
@@ -118,6 +121,50 @@ class User {
         $db->query($q);
         echo "\n".$db->getInsertID();
         return $db->getInsertID();
+    }
+    public function getFollowing()
+    {
+        $fArray = array();
+        $db = Db::instance();   //create db connection
+        $q = sprintf("SELECT followee_id FROM `relationships` WHERE follower_id = %d;",
+	    $db->escape($this->id)
+	);
+	$result = $db->query($q);
+        if ($result->num_rows != 0) {       //traverse all pkCampaigns found from the query
+            while ($row = $result->fetch_assoc()) {
+	        $fArray[] = $row['followee_id'];
+            }
+	}
+	$this->following = $fArray;
+    }
+    public function follow($id)
+    {
+        $db = Db::instance();   //create db connection
+        $q = sprintf("DELETE FROM `relationships` WHERE follower_id = %d AND followee_id = %d;",
+	    $db->escape($this->id),
+	    $db->escape($id)
+	);
+	$db->query($q);
+
+        //build query
+        $q2 = sprintf("INSERT INTO `relationships` (`follower_id`, `followee_id`, `follows`) VALUES (%d, %d, %d);",
+	    $db->escape($this->id),
+	    $db->escape($id, 1),
+	    1
+	);
+	$result = $db->query($q2);
+	return $result;
+    }
+    public function unfollow($id)
+    {
+        $db = Db::instance();   //create db connection
+        $q = sprintf("DELETE FROM `relationships` WHERE follower_id = %d AND followee_id = %d;",
+	    $db->escape($this->id),
+	    $db->escape($id)
+	);
+
+	$result = $db->query($q);
+	return $result;
     }
 }
 
