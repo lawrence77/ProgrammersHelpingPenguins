@@ -42,6 +42,8 @@ class LoginController
         #session_start();
         if (isset($_SESSION['username'])) {
             unset($_SESSION['username']);
+            unset($_SESSION['user_id']);
+            unset($_SESSION['role']);
             session_destroy();
         }
         header('Location: '.BASE_URL);
@@ -57,13 +59,14 @@ class LoginController
             session_start();
             $_SESSION['username'] = $un;
 			$_SESSION['user_id'] = $user->id;
+            $_SESSION['role'] = $user->role;
         } else {                //failed to find user in db
             $relocation = 'Location: '.BASE_URL.'/login/';
         }
         header($relocation);
     }
     //Creates a new user in the database
-    public function createNewUser($firstName, $lastName, $age, $username, $password, $role)
+    public function createNewUser($firstName, $lastName, $age, $username, $password, $role=null)
     {
         if (empty($firstName) || empty($lastName) || empty($age) ||
             empty($username) || empty($password)) {
@@ -78,9 +81,11 @@ class LoginController
         $user->age          = $age;
         $user->username     = $username;
         $user->password     = $password;
-        if ($role) $user->role = 1;
-        else $user->role = 0;
+        if ($role) $user->role = 0;     //admin/historian access
+        else $user->role = 1;           //viewer access
 
+        echo $role."\n";
+        echo $user->role;
         $relocation = '';
         if ($user->save() == null) {
             //failed to save to db
@@ -89,6 +94,8 @@ class LoginController
             $relocation = 'Location: '.BASE_URL.'/home/';
             session_start();
             $_SESSION['username'] = $user->username;
+            $_SESSION['user_id'] = $user->id;
+            $_SESSION['role'] = $user->role;
         }
         header($relocation);
     }

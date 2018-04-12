@@ -105,17 +105,18 @@ class User {
 
         $db = Db::instance(); //connect to db
 
-        $q = sprintf("INSERT INTO `%s` (`firstName`, `lastName`, `age`, `username`, `password`, `role`) VALUES (%s, %s, %s, %s, %s, %s);",
+        $q = sprintf("INSERT INTO `%s` (`firstName`, `lastName`, `age`, `username`, `password`, `role`) VALUES (%s, %s, %s, %s, %s, %d);",
             self::DB_TABLE,
             $db->escape($this->firstName),
             $db->escape($this->lastName),
             $db->escape($this->age),
             $db->escape($this->username),
             $db->escape($this->password),
-            $db->escape($this->role)
+            $this->role
         );
-
+        echo "\n".$q;
         $db->query($q);
+        echo "\n".$db->getInsertID();
         return $db->getInsertID();
     }
 }

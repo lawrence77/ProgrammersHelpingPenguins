@@ -5,13 +5,17 @@
     <div class="col-sm-6 col-lg-6 my-profile ">
 		<h3><?php echo $user->firstName; ?> <?php echo $user->lastName; ?></h3>
         <img src="../public/images/question.png" id ="profilepic">
-        <button id="small-button" class ="button-padding">Edit profile Pic</button>
+        <?php if($_SESSION['role'] ==0 or $_SESSION['user_id'] == $user->id): ?>
+            <button id="small-button" class ="button-padding">Edit profile Pic</button>
+        <?php endif; ?>
         <table>
             <tr><th>First Name</th><td><?php echo $user->firstName; ?></td></tr>
               <tr><th>Last Name</th><td><?php echo $user->lastName; ?></td></tr>
               <tr><th>Age</th><td><?php echo $user->age; ?></td></tr>
-              <tr><th>Username</th><td><?php echo $user->username; ?></td></tr>
-              <tr><th>Password</th><td><?php echo $user->password; ?></td></tr>
+              <?php if ($_SESSION['role'] == 0) : ?>
+                  <tr><th>Username</th><td><?php echo $user->username; ?></td></tr>
+                  <tr><th>Password</th><td><?php echo $user->password; ?></td></tr>
+              <?php endif; ?>
         </table>
         <?php if($_SESSION['user_id'] != $user->id):?>
         <form method="post" action="">
@@ -22,7 +26,7 @@
         <div class="col-sm-6 col-lg-12 profile-inner-contents">
            <!--
             add the activity feed here
-            
+
             -->
             <h3>Recent Activity</h3>
 
@@ -38,8 +42,8 @@
             </ul>
             <?php endif; ?>
         </div>
-    
-    
-    
+
+
+
     </div>
     </div>

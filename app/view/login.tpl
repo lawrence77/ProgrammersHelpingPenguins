@@ -27,7 +27,7 @@
         <input id="newUserPassword" name="password" type="password" placeholder="Password" required><br><br>
         <p>Mark the Checkbox if Valid</p>
         <label style="font-weight:normal;" for="newUserRole">Historian: </label>
-        <input id="newUserRole" type="checkbox" name="role" required> <br><br>
+        <input id="newUserRole" type="checkbox" name="role"> <br><br>
 
         <button id="createNewUserButton" name="createNewUserButton"  type="submit">Add</button>
         <button id="cancelNewUserButton" name="cancelNewUserButton" type="button">Cancel</button> <br>

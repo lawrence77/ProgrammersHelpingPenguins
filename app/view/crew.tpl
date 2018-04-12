@@ -42,7 +42,9 @@
         <hr>
     </div>
     <div class="container">
-        <button id="showEditCrewButton" type="button" name="showEditCrewButton">Edit Bomber Group</button>
+        <?php if ($_SESSION['role'] == 0): ?>
+            <button id="showEditCrewButton" type="button" name="showEditCrewButton">Edit Bomber Group</button>
+        <?php endif; ?>
         <form id="editCrewForm">
             <input id="sameWing" style="display:none" type="text" name="provisionalWing" value="<?= $crew->provisionalWing ?>">
             <input id="sameGroup" style="display:none" type="text" name="bomberGroup" value="<?= $crew->bomberGroup ?>">

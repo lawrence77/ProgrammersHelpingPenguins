@@ -17,7 +17,9 @@
 		<td> <?php echo $campaign->description; ?> </td>
     </tr>
   </table>
+  <?php if ($_SESSION['role'] == 0): ?>
 	<button id="edit-campaign-button">Edit Campaign </button>
+  <?php endif; ?>
 	<!-- <button id="delete-campaign-button" name="delete-campaign-button" value="<?php echo $campaign->id; ?>">Delete Campaign </button> -->
 </div>
 
@@ -34,9 +36,9 @@
     Description:<br />
     <input id="editCampaignDescription" type="text" name="description" value="<?php echo $campaign->description; ?>" /><br />
     <br />
-	<button  id="updateCampaignEdit" name="updateCampaignEdit" value="<?php echo $campaign->id; ?>" type="button">Update</button> 
-	<button  id="cancelCampaignEdit" name="cancelCampaignEdit" type="button">Cancel</button> 
+	<button  id="updateCampaignEdit" name="updateCampaignEdit" value="<?php echo $campaign->id; ?>" type="button">Update</button>
+	<button  id="cancelCampaignEdit" name="cancelCampaignEdit" type="button">Cancel</button>
   </form>
-  
+
 
 </div>

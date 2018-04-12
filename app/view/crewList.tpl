@@ -1,5 +1,7 @@
 <div class="container">
-    <button id="newCrewButton" type="button" name="newCrewButton">New Bomber Group</button>
+    <?php if ($_SESSION['role'] == 0): ?>
+        <button id="newCrewButton" type="button" name="newCrewButton">New Bomber Group</button>
+    <?php endif; ?>
     <form id="newCrewForm">
         <p> Provisional Wing </p>
         <input id="newCrewWing" name="wing" type="text" placeholder="Provisional Wing" required><br>
@@ -26,7 +28,11 @@
             echo "<div class ='col-lg-4'> <table><tr><td> <div class='bomber-table-title'><a href='".BASE_URL."/crews/$c->id'> <strong>$c->bomberGroup</strong> </a> </div>";
             echo "<div class='bomber-squad-table-title'>Provisional Wing <div class='bomber-squad-table-content'>" . $c->provisionalWing ."</div></div>";
             echo "<div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" . $c->stationedAirfield . "</div></div>";
-	    echo "</td> </tr> </table><button onclick='deleteCrew(". $c->id .")'>X</button> </div></div><br/><br/>";
+            echo "</td> </tr> </table>";
+            if ($_SESSION['role'] == 0) {
+                echo "<button onclick='deleteCrew(". $c->id .")'>X</button>";
+            }
+            echo "</div></div><br/><br/>";
         }
       ?>
 </div>
