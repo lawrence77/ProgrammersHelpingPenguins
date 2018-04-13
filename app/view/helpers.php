@@ -29,21 +29,21 @@ function formatEvent($event) {
 	
 		$creator = User::loadById($event->creator_id);
 		$crew = Crew::loadById($event->item_1_id);
-		$name = $crew->provisionalWing;
+		$name = $crew->provisionalWing . ' ' . $crew->bomberGroup;
 		$str = '<strong>'.$creator->username.'</strong> added the crew <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
 		break;
 
 	case 'delete_crew':
 		$creator = User::loadById($event->creator_id);
 		$crew = Crew::loadById($event->item_1_id);
-		$name = $crew->provisionalWing;
+		$name = $crew->provisionalWing . ' ' . $crew->bomberGroup;
 
 		$str = '<strong>'.$creator->username.'</strong> deleted the crew <strong>'.$name.'</strong>. <small>('.time2str($event->date_created).')</small>';
 		break;
 	case 'edit_crew':
 		$creator = User::loadById($event->creator_id);
 		$crew = Crew::loadById($event->item_1_id);
-		$name = $crew->name;
+		$name = $crew->provisionalWing . ' ' . $crew->bomberGroup;
 
 		$str = '<strong>'.$creator->username.'</strong> changed the following data in the crew <strong>'.$name.'</strong>.
 				<strong>'.$event->data_1.'</strong> to <strong>'.$event->data_2.'</strong><small>('.time2str($event->date_created).')</small>';
