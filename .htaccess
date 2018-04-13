@@ -32,3 +32,4 @@ RewriteRule ^crews/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewC
 
 #User Controller
 RewriteRule ^users/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=view&id=$1 [QSA,L]
+RewriteRule ^users/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=edit&id=$1 [QSA,L]

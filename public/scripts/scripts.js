@@ -60,6 +60,13 @@ $(document).ready(function(e) {
     $('.divPicture').on('mouseenter', function (e) {
         getPicture($(this).find('img').attr('alt'), $(this).find('img'))
     })
+    $('#editProfileButton').on('click', function(e) {
+        $(this).hide()
+
+        $('#editProfileForm')
+            .fadeIn()
+            .children('#updateFirstName').focus()
+    })
 
     $('body').find('form').find('button').on('click', function(e) {
         var buttonName = $(this).attr('name')
@@ -109,6 +116,28 @@ $(document).ready(function(e) {
         else if (buttonName == 'cancelEditCrewButton') {
             $('#showEditCrewButton').fadeIn()
             $('#editCrewForm').hide()
+        }
+        else if (buttonName == 'cancelProfileButton') {
+            $('#editProfileButton').fadeIn()
+            $('#editProfileForm').hide()
+        }
+        else if (buttonName == 'updateProfileButton') {
+            data = {}
+            data.id = parseInt($(this).val())
+            data.firstName = $('#updateFirstName').val()
+            data.lastName = $('#updateLastName').val()
+            data.age = parseInt($('#updateAge').val())
+            data.username = $('#sameUsername').val()
+            data.password = $('#updatePassword').val()
+            data.role = $('.radioRole:checked').val()
+
+            if (data.id == 0 || data.firstName == "" || data.lastName == "" ||
+                data.age == NaN || data.password == "")
+                return;
+
+            editProfile(data)
+            $('#editProfileButton').fadeIn()
+            $('#editProfileForm').hide()
         }
     })
 })
@@ -313,6 +342,33 @@ function editCrew(id) {
                 $("#divSent").replaceWith(n_data.sent)
                 $('#divLost').replaceWith(n_data.losses)
                 $('#divField').replaceWith(n_data.stationedAirfield)
+            }
+        },
+		error: function(resp) {
+           console.log("error!");
+	       console.log(resp);
+        }
+    });
+}
+
+function editProfile(data) {
+    //console.log(data);
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/users/edit/'+data.id,
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+            if(resp.success == true) {
+                var n_data = JSON.parse(resp.data)
+                $(".tdFirstName").replaceWith(n_data.firstName)
+                $(".tdLastName").replaceWith(n_data.lastName)
+                $(".tdAge").replaceWith(n_data.age)
+                $(".tdUsername").replaceWith(n_data.username)
+                $(".tdPassword").replaceWith(n_data.password)
+                var string = n_data.role == 0 ? "Admin" : n_data.role == 1 ? "Historian" : "Registered";
+                $(".tdRole").replaceWith(string)
             }
         },
 		error: function(resp) {

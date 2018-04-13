@@ -97,6 +97,9 @@ class User {
         if ($this->id == 0) {
             return $this->insert();
         }
+        else {
+            return $this->update();
+        }
     }
 
     //inserts a new user into the database
@@ -117,10 +120,40 @@ class User {
             $db->escape($this->password),
             $this->role
         );
-        echo "\n".$q;
+
         $db->query($q);
-        echo "\n".$db->getInsertID();
-        return $db->getInsertID();
+        $res = array('id' => $db->getInsertID(), 'query' => $q);
+        return $res;
+    }
+
+    public function update()
+    {
+        if ($this->id == 0)
+            return null;
+
+        $db = Db::instance();
+
+        $q = sprintf("UPDATE `%s` SET
+            `firstName` = %s,
+            `lastName` = %s,
+            `age` = %s,
+            `username` = %s,
+            `password` = %s,
+            `role` = %d
+            WHERE `pkUser` = %d;",
+            self::DB_TABLE,
+            $db->escape($this->firstName),
+            $db->escape($this->lastName),
+            $db->escape($this->age),
+            $db->escape($this->username),
+            $db->escape($this->password),
+            $this->role,
+            $this->id
+        );
+
+        $db->query($q); //execute query
+        $res = array('id' => $this->id, 'query' => $q);
+        return $res; //return this object's id
     }
     public function getFollowing()
     {

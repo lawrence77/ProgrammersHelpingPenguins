@@ -25,10 +25,12 @@ class UserController
 	    case 'unfollow':
 	        $this->unfollow($_POST['id'], $_POST['f_id']);
 		break;
-
+        case 'edit':
+            $this->editProfile($_POST['id']);
+            break;
         }
     }
-	
+
 	public function view($id)
 	{
         if(!isset($_SESSION['username'])) {
@@ -36,7 +38,7 @@ class UserController
 	}
         $pageTitle = 'My Profile';
         $user = User::loadById($id);
-        $fes = FeedEvent::getFeedEvents();   
+        $fes = FeedEvent::getFeedEvents();
         include_once SYSTEM_PATH.'/view/header.tpl';
         include_once SYSTEM_PATH.'/view/profile.tpl';
         include_once SYSTEM_PATH.'/view/footer.tpl';
@@ -71,4 +73,27 @@ class UserController
 		"msg" => $msg
 	    ));
 	}
+
+    public function editProfile($id)
+    {
+        $user = User::loadById($id);
+        $user->firstName    = $_POST['firstName'];
+        $user->lastName     = $_POST['lastName'];
+        $user->age          = $_POST['age'];
+        $user->username     = $_POST['username'];
+        $user->password     = $_POST['password'];
+        $user->role         = $_POST['role'];
+        $id = $user->save();
+
+        if ($_SESSION['username'] == $user->username)
+            $_SESSION['role'] = $user->role;
+
+        if($id['id'] == 0) {
+            $json = array('success' => false, 'query' => $id['query']);
+        } else {
+            $json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
+        }
+        header('Content-Type: application/json'); // let client know it's Ajax
+        echo json_encode($json);
+    }
 }
