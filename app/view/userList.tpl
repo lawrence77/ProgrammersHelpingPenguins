@@ -1,6 +1,6 @@
 <div class="container users">
 <?php
-	var_dump($_SESSION);
+	//var_dump($_SESSION);
 	$id = $_SESSION['user_id'];
 	if(is_array($id))
 	    $id = $id['id'];
