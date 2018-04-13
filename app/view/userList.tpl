@@ -1,7 +1,11 @@
 <div class="container users">
 <?php
-	$user = User::loadById($_SESSION['user_id']);
-	//var_dump($user);
+	var_dump($_SESSION);
+	$id = $_SESSION['user_id'];
+	if(is_array($id))
+	    $id = $id['id'];
+	$user = User::loadById($id);
+
 	$users = User::getUsers();
 	foreach($users as $u)
 	{
@@ -12,11 +16,12 @@
 	echo $u->firstName . " " . $u->lastName . "&nbsp;&nbsp;";
 
 	echo "</a>"; 
-
-	if($_SESSION['user_id'] && $u->id != $_SESSION['user_id'] && !in_array($u->id, $user->following)) {
-	    echo "<button id='user_b_" . $u->id . "' onclick='follow(" . $_SESSION['user_id'] . ", ". $u->id .")'>Follow</button>";
-	} else if($_SESSION['user_id'] && $u->id != $_SESSION['user_id'] && in_array($u->id, $user->following)) {
-	    echo "<button id='user_b_" . $u->id . "' onclick='unfollow(" . $_SESSION['user_id'] . ", ". $u->id .")'>Un-follow</button>";
+	
+	
+	if($id && $u->id != $id && !in_array($u->id, $user->following)) {
+	    echo "<button id='user_b_" . $u->id . "' onclick='follow(" . $id . ", ". $u->id .")'>Follow</button>";
+	} else if($id && $u->id != $id && in_array($u->id, $user->following)) {
+	    echo "<button id='user_b_" . $u->id . "' onclick='unfollow(" . $id . ", ". $u->id .")'>Un-follow</button>";
 	}
 	echo "</div>";
 
