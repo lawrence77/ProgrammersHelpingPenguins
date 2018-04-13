@@ -81,6 +81,12 @@ class CrewController
     public function deleteCrew($id)
     {
         $crew = Crew::loadById($id);
+		// log deletion event
+		$fe = new FeedEvent();
+		$fe->creator_id = $_SESSION['user_id'];
+		$fe->item_1_id = $id;
+		$fe->type = 'delete_crew';
+		$fe->save();
 
 	$result = $crew->delete();
 	if(!$result)
@@ -96,6 +102,51 @@ class CrewController
     public function editCrew($id)
     {
         $crew = Crew::loadById($id);
+		$fe = new FeedEvent();
+		$fe->creator_id = $_SESSION['user_id'];
+		$fe->item_1_id = $id;
+		$fe->type = 'edit_crew';
+		$fe->data_1 = '';
+		$fe->data_2 = '';
+		
+		//Check which parts got edited
+		if($crew->provisionalWing  != $_POST['provisionalWing'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old provisionalWing: ' . $crew->provisionalWing . ' / ';
+			$fe->data_2 = $fe->data_2. 'New provisionalWing: ' . $_POST['provisionalWing'] . ' / ';
+		}
+		if($crew->bomberGroup != $_POST['bomberGroup'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old bomberGroup: ' . $crew->bomberGroup . ' / ';
+			$fe->data_2 = $fe->data_2. 'New bomberGroup: ' . $_POST['bomberGroup'] . ' / ';
+		}
+		if($crew->sent != $_POST['sent'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old sent: ' . $crew->sent . ' / ';
+			$fe->data_2 = $fe->data_2. 'New sent: ' . $_POST['sent'] . ' / ';
+		}
+		if($crew->losses != $_POST['losses'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old losses: ' . $crew->losses . ' / ';
+			$fe->data_2 = $fe->data_2. 'New losses: ' . $_POST['losses'] . ' / ';
+		}
+		if($crew->stationedAirfield != $_POST['stationedAirfield'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old stationedAirfield: ' . $crew->stationedAirfield . ' / ';
+			$fe->data_2 = $fe->data_2. 'New stationedAirfield: ' . $_POST['stationedAirfield'] . ' / ';
+		}
+		if($crew->trainingSchool != $_POST['trainingSchool'])
+		{
+			$fe->data_1 = $fe->data_1. 'Old trainingSchool: ' . $crew->trainingSchool . ' / ';
+			$fe->data_2 = $fe->data_2. 'New trainingSchool: ' . $_POST['trainingSchool'] . ' / ';
+		}
+		
+		//Only log event if anything actually changed
+		if($fe->data_1 != '')
+		{
+			$fe->save();
+		}
+		
         $crew->provisionalWing   = $_POST['provisionalWing'];
         $crew->bomberGroup       = $_POST['bomberGroup'];
         $crew->sent     		 = $_POST['sent'];
@@ -103,6 +154,8 @@ class CrewController
         $crew->stationedAirfield = $_POST['stationedAirfield'];
         $crew->trainingSchool    = 0;
         $id = $crew->save();
+		
+		
 
         if($id['id'] == 0) {
             $json = array('success' => false, 'query' => $id['query']);

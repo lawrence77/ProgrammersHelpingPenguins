@@ -15,6 +15,7 @@ class Crew {
     public $losses = '';
     public $stationedAirfield = '';
     public $apiName = null;
+	public $deleted = 0;
 
     //gets a crew by a primary key
     public static function loadById($id)
@@ -43,6 +44,7 @@ class Crew {
             $crew->losses             = $row['losses'];
             $crew->stationedAirfield  = $row['stationedAirfield'];
             $crew->apiName            = $row['apiName'];
+			$crew->deleted			  = $row['deleted'];
 
             return $crew;   //return filled crew info
         }
@@ -57,7 +59,11 @@ class Crew {
         $crewArray = array();
         if ($result->num_rows != 0) {       //traverse all pkCrew found from the query
             while ($row = $result->fetch_assoc()) {
-                $crewArray[] = self::loadById($row['pkCrew']); //fetch all data based on pk
+				$crew = self::loadById($row['pkCrew']); //fetch all data based on pk
+				if(!$crew->deleted)
+				{
+					$crewArray[] = $crew; //only fetch crews that are not deleted
+				}
             }
         }
         return $crewArray;
@@ -111,11 +117,15 @@ class Crew {
 
         $db = Db::instance();
 
-        $q = sprintf("DELETE FROM `%s`
-            WHERE `pkCrew` = %d;",
+		$q = sprintf("UPDATE %s SET `deleted` = 1 WHERE `pkCrew` = %d;",
             self::DB_TABLE,
             $this->id
         );
+        /*$q = sprintf("DELETE FROM `%s`
+            WHERE `pkCrew` = %d;",
+            self::DB_TABLE,
+            $this->id
+        );*/
         $result = $db->query($q);
         return $result;
     }
