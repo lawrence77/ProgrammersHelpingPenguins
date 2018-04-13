@@ -31,4 +31,6 @@ RewriteRule ^crews/delete/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/cre
 RewriteRule ^crews/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=editCrew [QSA,L]
 
 #User Controller
-RewriteRule ^users/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=view&id=$1 [QSA,L]
+RewriteRule ^users/view/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=view [QSA,L]
+RewriteRule ^users/follow/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=follow [QSA,L]
+RewriteRule ^users/unfollow/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=unfollow [QSA,L]
