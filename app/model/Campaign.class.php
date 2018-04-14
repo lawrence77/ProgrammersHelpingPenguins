@@ -4,7 +4,7 @@
  * Campaign class for handling CRUD methods for the Campaigns table
  */
 class Campaign {
-    const DB_TABLE = 'Campaigns';     //database table name
+    const DB_TABLE = 'campaigns';     //database table name
 
     //database table fields
     public $id = 0;

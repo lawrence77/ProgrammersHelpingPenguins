@@ -4,7 +4,7 @@
  * Person class for handling CRUD methods for the People table
  */
 class Person {
-    const DB_TABLE = 'People';     //database table name
+    const DB_TABLE = 'people';     //database table name
 
     //database table fields
     public $id = 0;

@@ -4,7 +4,7 @@
  * Training School class for handling CRUD methods for the School table
  */
 class TrainingSchool {
-    const DB_TABLE = 'TrainingSchool';     //database table name
+    const DB_TABLE = 'trainingschool';     //database table name
 
     //database table fields
     public $id = 0;
