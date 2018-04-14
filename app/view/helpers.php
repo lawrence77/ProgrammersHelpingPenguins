@@ -51,12 +51,12 @@ function formatEvent($event) {
     case 'follow':
 		$creator = User::loadById($event->creator_id);
 		$followee = User::loadById($event->item_1_id);
-		$str = '<strong>'.$creator->username.'</strong> followed <strong>'.$follow->username.'</strong>';
+		$str = '<strong>'.$creator->username.'</strong> followed <strong>'.$followee->username.'</strong>';
 		break;
 	case 'unfollow':
 		$creator = User::loadById($event->creator_id);
 		$followee = User::loadById($event->item_1_id);
-		$str = '<strong>'.$creator->username.'</strong> unfollowed <strong>'.$follow->username.'</strong>';
+		$str = '<strong>'.$creator->username.'</strong> unfollowed <strong>'.$followee->username.'</strong>';
 		break;
 	case 'edit_profile':
 		$str = 'Confidential information';
