@@ -3,36 +3,36 @@ Options -Indexes
 RewriteEngine on
 
 #Site Controller
-RewriteRule ^$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
-RewriteRule ^home/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=home [QSA,L]
-RewriteRule ^login/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=login [QSA,L]
-RewriteRule ^campaigns/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=campaigns [QSA,L]
-RewriteRule ^crews/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=crews [QSA,L]
-RewriteRule ^people/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=people [QSA,L]
-RewriteRule ^dashboard/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=dashboard [QSA,L]
-RewriteRule ^users/?$ ProgrammersHelpingPenguins/app/controller/siteController.php?page=users [QSA,L]
+RewriteRule ^$ app/controller/siteController.php?page=home [QSA,L]
+RewriteRule ^home/?$ app/controller/siteController.php?page=home [QSA,L]
+RewriteRule ^login/?$ app/controller/siteController.php?page=login [QSA,L]
+RewriteRule ^campaigns/?$ app/controller/siteController.php?page=campaigns [QSA,L]
+RewriteRule ^crews/?$ app/controller/siteController.php?page=crews [QSA,L]
+RewriteRule ^people/?$ app/controller/siteController.php?page=people [QSA,L]
+RewriteRule ^dashboard/?$ app/controller/siteController.php?page=dashboard [QSA,L]
+RewriteRule ^users/?$ app/controller/siteController.php?page=users [QSA,L]
 
 
 #Campaign Controller
-RewriteRule ^campaigns/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=view&id=$1 [QSA,L]
-RewriteRule ^campaigns/add/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=newCampaign [QSA,L]
-RewriteRule ^campaigns/delete/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=deleteCampaign [QSA,L]
-RewriteRule ^campaigns/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/campaignController.php?action=editCampaign [QSA,L]
+RewriteRule ^campaigns/view/(\d+)/?$ app/controller/campaignController.php?action=view&id=$1 [QSA,L]
+RewriteRule ^campaigns/add/?$ app/controller/campaignController.php?action=newCampaign [QSA,L]
+RewriteRule ^campaigns/delete/(\d+)/?$ app/controller/campaignController.php?action=deleteCampaign [QSA,L]
+RewriteRule ^campaigns/edit/(\d+)/?$ app/controller/campaignController.php?action=editCampaign [QSA,L]
 
 #Login Controller
-RewriteRule ^login/out/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=out [QSA,L]
-RewriteRule ^login/newUser/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=newUser [QSA,L]
-RewriteRule ^login/process/?$ ProgrammersHelpingPenguins/app/controller/loginController.php?action=process [QSA,L]
+RewriteRule ^login/out/?$ app/controller/loginController.php?action=out [QSA,L]
+RewriteRule ^login/newUser/?$ app/controller/loginController.php?action=newUser [QSA,L]
+RewriteRule ^login/process/?$ app/controller/loginController.php?action=process [QSA,L]
 
 #Crew Controller
-RewriteRule ^crews/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=load&id=$1 [QSA,L]
-RewriteRule ^crews/add/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=newCrew [QSA,L]
-RewriteRule ^crews/delete/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=deleteCrew [QSA,L]
-RewriteRule ^crews/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/crewController.php?action=editCrew [QSA,L]
+RewriteRule ^crews/(\d+)/?$ app/controller/crewController.php?action=load&id=$1 [QSA,L]
+RewriteRule ^crews/add/?$ app/controller/crewController.php?action=newCrew [QSA,L]
+RewriteRule ^crews/delete/(\d+)/?$ app/controller/crewController.php?action=deleteCrew [QSA,L]
+RewriteRule ^crews/edit/(\d+)/?$ app/controller/crewController.php?action=editCrew [QSA,L]
 
 #User Controller
-RewriteRule ^users/view/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=view [QSA,L]
-RewriteRule ^users/follow/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=follow [QSA,L]
-RewriteRule ^users/unfollow/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=unfollow [QSA,L]
-RewriteRule ^users/view/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=view&id=$1 [QSA,L]
-RewriteRule ^users/edit/(\d+)/?$ ProgrammersHelpingPenguins/app/controller/userController.php?action=edit&id=$1 [QSA,L]
+RewriteRule ^users/view/?$ app/controller/userController.php?action=view [QSA,L]
+RewriteRule ^users/follow/?$ app/controller/userController.php?action=follow [QSA,L]
+RewriteRule ^users/unfollow/?$ app/controller/userController.php?action=unfollow [QSA,L]
+RewriteRule ^users/view/(\d+)/?$ app/controller/userController.php?action=view&id=$1 [QSA,L]
+RewriteRule ^users/edit/(\d+)/?$ app/controller/userController.php?action=edit&id=$1 [QSA,L]
