@@ -37,9 +37,20 @@ class SiteController {
             case 'myprofile':
                 $this->myprofile();
                 break;
+			case 'map':
+				$this->map();
+				break;
 		}
 
 	}
+	
+	public function map(){
+		$pageTitle = 'Map';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/map.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+	
 	public function users() {
 		if(!isset($_SESSION['username'])) {
           header('Location: '.BASE_URL.'/login/'); exit();

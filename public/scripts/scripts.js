@@ -2,6 +2,9 @@
 var BASE_URL;
 $(document).ready(function(e) {
 
+	if($('#beforeRaid').length){
+		drawBeforeMap();
+	}
   var x = setInterval(function () {
   	if ($('#BASE_URL_FIELD').val().length) {
         	BASE_URL = $('#BASE_URL_FIELD').val();
@@ -424,4 +427,42 @@ function unfollow(id, f_id) {
 	   console.log(resp);
         }
     });
+}
+
+function drawBeforeMap(){
+	var stage = new createjs.Stage("canvasStage");
+	var redZone = new createjs.Shape();
+	redZone.graphics.beginFill("Red").drawCircle(0, 0, 50);
+	redZone.x = 200;
+	redZone.y = 200;
+	redZone.alpha = .65;
+	var redZoneLabel = new createjs.Text("This is the red-zone, the area where bombers are travelling alone and face heaviest resistance", "bold 14px Arial", "#000000");
+	var redZoneRect = new createjs.Shape();
+	redZoneRect.graphics.beginStroke(createjs.Graphics.getRGB(0,0,0)).rect(0, 0, 200, 100);
+	
+	redZoneLabel.lineWidth = 200;
+	
+	var redZoneContainer = new createjs.Container();
+	redZoneContainer.addChild(redZoneRect ,redZoneLabel);
+	redZoneContainer.x = 150;
+	redZoneContainer.y = 50;
+	
+	stage.addChild(redZone);
+	stage.enableMouseOver();
+	redZone.on("pressmove", function(evt) {
+    evt.target.x = evt.stageX;
+    evt.target.y = evt.stageY;
+	stage.update();
+	});
+	redZone.on("pressup", function(evt) { console.log("up"); })
+	/*redZone.on("mouseover", function(e) {
+		stage.addChild(redZoneContainer);
+		stage.update();
+	});
+	redZone.on("mouseout", function(e) {
+		stage.removeChild(redZoneContainer);
+		stage.update();
+	});*/
+	
+	stage.update();
 }
