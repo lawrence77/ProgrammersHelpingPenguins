@@ -8,10 +8,7 @@ body {
     display: none;
 }
 
-#canvasStage{
-	width:100%;
-	height:50%;
-}
+
 .bomber-squad-content{
     border-bottom: 3px solid black;
     height: 60%;

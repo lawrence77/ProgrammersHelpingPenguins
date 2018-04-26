@@ -430,31 +430,35 @@ function unfollow(id, f_id) {
 }
 
 function drawBeforeMap(){
-	var stage = new createjs.Stage("canvasStage");
-	var redZone = new createjs.Shape();
-	redZone.graphics.beginFill("Red").drawCircle(0, 0, 50);
-	redZone.x = 200;
-	redZone.y = 200;
-	redZone.alpha = .65;
-	var redZoneLabel = new createjs.Text("This is the red-zone, the area where bombers are travelling alone and face heaviest resistance", "bold 14px Arial", "#000000");
-	var redZoneRect = new createjs.Shape();
-	redZoneRect.graphics.beginStroke(createjs.Graphics.getRGB(0,0,0)).rect(0, 0, 200, 100);
-	
-	redZoneLabel.lineWidth = 200;
-	
-	var redZoneContainer = new createjs.Container();
-	redZoneContainer.addChild(redZoneRect ,redZoneLabel);
-	redZoneContainer.x = 150;
-	redZoneContainer.y = 50;
-	
-	stage.addChild(redZone);
+	var stage = new createjs.Stage("beforeRaid");
+	var crewCirlce = new createjs.Shape();
+	crewCirlce.graphics.beginFill("Red").drawCircle(0, 0, 50);
+	//crewCirlce.x = 200;
+	//crewCirlce.y = 200;
+	crewCirlce.alpha = .65;
+	var crewLabel = new createjs.Text("Bomber squad 405th", "bold 14px Arial", "#000000");
+	//crewLabel.lineWidth = 200;
+	crewLabel.textAlign = "center";
+	crewLabel.y = -7;
+	var crewContainer = new createjs.Container();
+	crewContainer.addChild(crewCirlce ,crewLabel);
+	crewContainer.x = 150;
+	crewContainer.y = 50;
+	crewContainer.name = "id";
+	stage.addChild(crewContainer);
 	stage.enableMouseOver();
-	redZone.on("pressmove", function(evt) {
-    evt.target.x = evt.stageX;
-    evt.target.y = evt.stageY;
-	stage.update();
+	crewContainer.on("pressmove", function(evt) {
+		evt.currentTarget.x = evt.stageX;
+		evt.currentTarget.y = evt.stageY;
+		stage.update();
 	});
-	redZone.on("pressup", function(evt) { console.log("up"); })
+	
+	var campaignRect = createRect("name", "cid");
+	stage.addChild(campaignRect);
+	crewContainer.on("pressup", function(evt) {
+		var temp = campaignRect;
+		console.log(temp);
+		if(temp.contains(evt.target.x ,evt.target.y)) {console.log("inside camp"); }})
 	/*redZone.on("mouseover", function(e) {
 		stage.addChild(redZoneContainer);
 		stage.update();
@@ -465,4 +469,24 @@ function drawBeforeMap(){
 	});*/
 	
 	stage.update();
+}
+
+function createRect(name, cid)
+{
+	var rect = new createjs.Shape();
+	rect.graphics.beginFill("Yellow").drawRect(200, 200, 200,200);
+	var rectLabel = new createjs.Text(name, "bold 14px Arial", "#000000");
+	//crewLabel.lineWidth = 200;
+	rectLabel.textAlign = "center";
+	rectLabel.y = -7;
+	
+	var rectC = new createjs.Container();
+	rectC.addChild(rect ,rectLabel);
+	rectC.x = 200;
+	rectC.y = 200;
+	rectC.name = cid;
+	
+	rectC.addChild(rect, rectLabel);
+	
+	return rect;
 }

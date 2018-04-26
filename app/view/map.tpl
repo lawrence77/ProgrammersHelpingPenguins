@@ -1,1 +1,1 @@
-<canvas id="canvasStage" ></canvas>
+<canvas id="beforeRaid" height="524" width="1440" ></canvas>
