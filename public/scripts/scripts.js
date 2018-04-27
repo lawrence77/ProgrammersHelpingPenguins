@@ -437,8 +437,8 @@ var stage = new createjs.Stage("demoCanvas");
 //Drag Object Size
 dragRadius = 100;
 //Destination Size
-destHeight = 800;
-destWidth = 250;
+destHeight = 250;
+destWidth = 800;
 
 //Circle Creation
 var label = new createjs.Text("Bomber Group 405th", "14px Lato", "#fff");
@@ -454,7 +454,7 @@ console.log(circle);
 var dragger = new createjs.Container();
 dragger.x = dragger.y = 100;
 dragger.addChild(circle, label);
-dragger.setBounds(100, 100, dragRadius*2, dragRadius*2);
+dragger.setBounds(0, 0, dragRadius*2, dragRadius*2);
 //DragRadius * 2 because 2*r = width of the bounding box
 var label2 = new createjs.Text("Shweinfurt", "bold 20px Lato", "#000");
 label2.textAlign = "center";
@@ -463,11 +463,11 @@ label2.y += 40;
 
 
 var box = new createjs.Shape();
-box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
 var destination = new createjs.Container();
 destination.x = 350;
 destination.y = 50;
-destination.setBounds(dragRadius * 2.5 , 0, destHeight, destWidth);
+destination.setBounds(350, 50, destWidth, destHeight);
 
 destination.addChild(label2, box);
 
@@ -481,11 +481,12 @@ dragger.on("pressmove", function(evt){
        box.graphics.clear();
        box.graphics.setStrokeStyle(3)
        .beginStroke("#0066A4")
-       .rect(0, 0, destHeight, destWidth);
+       .rect(0, 0, destWidth, destHeight);
+         console.log("INTERSECTING");
        
      }else{
        evt.currentTarget.alpha=1;
-       box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+       box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
      }
       console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
 });
@@ -497,7 +498,7 @@ dragger.on("pressup", function(evt) {
     dragger.y = destination.y + destHeight/2;
     dragger.alpha = 1;
     box.graphics.clear();     
-    box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+    box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
     stage.update(evt);
   }
 });
@@ -556,13 +557,21 @@ stage.update();
 function intersect(obj1, obj2){
   var objBounds1 = obj1.getBounds().clone();
   var objBounds2 = obj2.getBounds().clone();
-
+  console.log(objBounds1);
+  console.log(objBounds2);
   var pt = obj1.globalToLocal(objBounds2.x, objBounds2.y);
-  
+  console.log(pt);
   var h1 = -(objBounds1.height / 2 + objBounds2.height);
+  console.log(h1 + "h1");
   var h2 = objBounds2.width / 2;
+      console.log(h2 + "h2");
+
   var w1 = -(objBounds1.width / 2 + objBounds2.width);
-  var w2 = objBounds2.width / 2;
+      console.log(w1 + "w1");
+
+  var w2 = objBounds2.width / 2;  
+      console.log(w2 + "w2");
+
  
   
   if(pt.x > w2 || pt.x < w1) return false;
