@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2018 at 04:12 AM
+-- Generation Time: Apr 27, 2018 at 10:19 PM
 -- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,23 +58,46 @@ CREATE TABLE `crews` (
   `sent` int(11) NOT NULL,
   `losses` int(11) NOT NULL,
   `stationedAirfield` varchar(50) NOT NULL,
-  `apiName` varchar(50) DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `apiName` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `crews`
 --
 
-INSERT INTO `crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool`, `sent`, `losses`, `stationedAirfield`, `apiName`, `deleted`) VALUES
-(1, '403d PCBW', '96th Bomb Group', NULL, 21, 0, 'Snetterton Heath', '96th_Test_Wing', 0),
-(2, '403d PCBW', '388th Bomb Group', NULL, 21, 1, 'Knettishall', '388th_Operations_Group', 0),
-(3, '403d PCBW', '390th Bomb Group ', NULL, 20, 6, 'Framlingham', '390th_Strategic_Missile_Wing', 0),
-(4, '401st PCBW', '94th Bomb Group', NULL, 21, 1, 'Bury St. Edmunds', '94th_Operations_Group', 0),
-(5, '401st PCBW', '385th Bomb Group', NULL, 21, 3, 'Great Ashfield', '385th_Air_Expeditionary_Group', 0),
-(6, '402nd PCBW', '95th Bomb Group ', NULL, 21, 4, 'Horham', '95th_Air_Base_Wing', 0),
-(7, '402nd PCBW', '100th Bomb Group', NULL, 21, 9, 'Thorpe Abbotts', '100th_Air_Refueling_Wing', 0),
-(9, 'Test', 'qweqw', NULL, 14312, 1231, '1231', NULL, 1);
+INSERT INTO `crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool`, `sent`, `losses`, `stationedAirfield`, `apiName`) VALUES
+(1, '403d PCBW', '96th Bomb Group', NULL, 21, 0, 'Snetterton Heath', '96th_Test_Wing'),
+(2, '403d PCBW', '388th Bomb Group', NULL, 21, 1, 'Knettishall', '388th_Operations_Group'),
+(3, '403d PCBW', '390th Bomb Group ', NULL, 20, 6, 'Framlingham', '390th_Strategic_Missile_Wing'),
+(4, '401st PCBW', '94th Bomb Group', NULL, 21, 1, 'Bury St. Edmunds', '94th_Operations_Group'),
+(5, '401st PCBW', '385th Bomb Group', NULL, 21, 3, 'Great Ashfield', '385th_Air_Expeditionary_Group'),
+(6, '402nd PCBW', '95th Bomb Group ', NULL, 21, 4, 'Horham', '95th_Air_Base_Wing'),
+(7, '402nd PCBW', '100th Bomb Group', NULL, 21, 9, 'Thorpe Abbotts', '100th_Air_Refueling_Wing');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crewspercampaign`
+--
+
+CREATE TABLE `crewspercampaign` (
+  `pkCrewsPerCampaign` int(11) NOT NULL,
+  `crewID` int(11) NOT NULL,
+  `campaignID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `crewspercampaign`
+--
+
+INSERT INTO `crewspercampaign` (`pkCrewsPerCampaign`, `crewID`, `campaignID`) VALUES
+(1, 4, 1),
+(2, 5, 1),
+(3, 6, 1),
+(4, 7, 1),
+(5, 1, 1),
+(6, 2, 1),
+(7, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -101,9 +124,7 @@ CREATE TABLE `feed_event` (
 INSERT INTO `feed_event` (`id`, `type`, `creator_id`, `item_1_id`, `item_2_id`, `item_3_id`, `data_1`, `data_2`, `date_created`) VALUES
 (1, 'add_campaign', 1, 2, 0, 0, NULL, NULL, '2018-04-08 18:43:57'),
 (2, 'edit_campaign', 1, 2, 0, 0, 'Old date: 2222-02-22 / Old description: nothing / ', 'New date: 1960-10-22 / New description: stuff did happen / ', '2018-04-08 18:44:34'),
-(3, 'delete_campaign', 1, 2, 0, 0, NULL, NULL, '2018-04-08 19:01:09'),
-(6, 'add_crew', 2, 9, 0, 0, NULL, NULL, '2018-04-13 02:09:15'),
-(7, 'delete_crew', 2, 9, 0, 0, NULL, NULL, '2018-04-13 02:09:50');
+(3, 'delete_campaign', 1, 2, 0, 0, NULL, NULL, '2018-04-08 19:01:09');
 
 -- --------------------------------------------------------
 
@@ -189,7 +210,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`pkUser`, `firstName`, `lastName`, `age`, `username`, `password`, `role`) VALUES
 (1, 'admin', 'admin', 0, 'admin', 'admin', 0),
-(2, 'Lawrence', 'Peczkowski-Soto', 20, 'law', '123', 0);
+(2, 'Lawrence', 'Peczkowski-Soto', 20, 'law', '123', 1),
+(3, 'Martin', 'Lawrence', 45, 'martin', 'martin1', 2),
+(18, 'baby', 'fin', 3, 'fin', 'fin123', 2),
+(19, 'kate', 'upton', 25, 'babe', 'babe123', 1);
 
 --
 -- Indexes for dumped tables
@@ -207,6 +231,12 @@ ALTER TABLE `campaigns`
 ALTER TABLE `crews`
   ADD PRIMARY KEY (`pkCrew`),
   ADD KEY `fkSchool` (`trainingSchool`);
+
+--
+-- Indexes for table `crewspercampaign`
+--
+ALTER TABLE `crewspercampaign`
+  ADD PRIMARY KEY (`pkCrewsPerCampaign`);
 
 --
 -- Indexes for table `feed_event`
@@ -253,13 +283,19 @@ ALTER TABLE `campaigns`
 -- AUTO_INCREMENT for table `crews`
 --
 ALTER TABLE `crews`
-  MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `crewspercampaign`
+--
+ALTER TABLE `crewspercampaign`
+  MODIFY `pkCrewsPerCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `feed_event`
 --
 ALTER TABLE `feed_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `people`
@@ -283,7 +319,7 @@ ALTER TABLE `trainingschool`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `pkUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pkUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
