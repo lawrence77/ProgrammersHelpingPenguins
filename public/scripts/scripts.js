@@ -430,77 +430,87 @@ function unfollow(id, f_id) {
 }
 
 function drawBeforeMap(){
-    //Stage
-var stage = new createjs.Stage("demoCanvas");
+ 	var stage = new createjs.Stage("demoCanvas");
+	//VARIABLES
+	//Drag Object Size
+	dragRadius = 100;
+	//Destination Size
+	destHeight = 800;
+	destWidth = 250;
+	var startX = 50;
+	var startY = 50;
+	var radius = 50;
+	$('.crewItem').each(function(){
+		var label = new createjs.Text($(this).data("name"), "14px Lato", "#fff");
+		label.textAlign="center";
+		label.lineWidth=radius*2;
+		label.y -= 7;
+		var circle = new createjs.Shape();
+		circle.graphics.setStrokeStyle(2).beginStroke("black")
+		.beginFill("red").drawCircle(0,0, radius);
+		
+		var dragger = new createjs.Container();
+		dragger.x = startX += radius*2 + 25;
+		dragger.y = startY;
+		dragger.addChild(circle, label);
+		dragger.setBounds(100, 100, radius*2, radius*2);
+		
+		var label2 = new createjs.Text("Shweinfurt", "bold 20px Lato", "#000");
+		label2.textAlign = "center";
+		label2.x += 50;
+		label2.y += 40;
 
-//VARIABLES
-//Drag Object Size
-dragRadius = 100;
-//Destination Size
-destHeight = 800;
-destWidth = 250;
 
-//Circle Creation
-var label = new createjs.Text("Bomber Group 405th", "14px Lato", "#fff");
-label.textAlign="center";
-label.y -= 7;
-var circle = new createjs.Shape();
-circle.graphics.setStrokeStyle(2).beginStroke("black")
-.beginFill("red").drawCircle(0,0, dragRadius);
-console.log(circle);
+		var box = new createjs.Shape();
+		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		var destination = new createjs.Container();
+		destination.x = 350;
+		destination.y = 50;
+		destination.setBounds(350, 50, destHeight, destWidth);
 
-//Drag Object Creation
-//Placed inside a container to hold both label and shape
-var dragger = new createjs.Container();
-dragger.x = dragger.y = 100;
-dragger.addChild(circle, label);
-dragger.setBounds(100, 100, dragRadius*2, dragRadius*2);
-//DragRadius * 2 because 2*r = width of the bounding box
-var label2 = new createjs.Text("Shweinfurt", "bold 20px Lato", "#000");
-label2.textAlign = "center";
-label2.x += 50;
-label2.y += 40;
+		destination.addChild(label2, box);
+
+		//DRAG FUNCTIONALITY =====================
+		dragger.on("pressmove", function(evt){
+			 evt.currentTarget.x = evt.stageX;
+			evt.currentTarget.y = evt.stageY;
+			//console.log(evt.currentTarget);
+			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, dragRadius*2, dragRadius*2);
+			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+			 if(intersect(evt.currentTarget, destination)){
+			   evt.currentTarget.alpha=0.2;
+			   box.graphics.clear();
+			   box.graphics.setStrokeStyle(3)
+			   .beginStroke("#0066A4")
+			   .rect(0, 0, destHeight, destWidth);
+			   
+			 }else{
+			   evt.currentTarget.alpha=1;
+			   box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+			 }
+			  console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
+		});
+
+		//Mouse UP and SNAP====================
+		dragger.on("pressup", function(evt) {
+		  if(intersect(evt.currentTarget, destination)){
+			dragger.x = destination.x + destWidth/2;
+			dragger.y = destination.y + destHeight/2;
+			dragger.alpha = 1;
+			box.graphics.clear();     
+			box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+			stage.update(evt);
+		  }
+		});
+		
+		stage.addChild(destination, dragger);
+		stage.mouseMoveOutside = true;
+		stage.update();
+	});
+	
+	stage.update();
 
 
-var box = new createjs.Shape();
-box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
-var destination = new createjs.Container();
-destination.x = 350;
-destination.y = 50;
-destination.setBounds(dragRadius * 2.5 , 0, destHeight, destWidth);
-
-destination.addChild(label2, box);
-
-//DRAG FUNCTIONALITY =====================
-dragger.on("pressmove", function(evt){
-     evt.currentTarget.x = evt.stageX;
-    evt.currentTarget.y = evt.stageY;
-     stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
-     if(intersect(evt.currentTarget, destination)){
-       evt.currentTarget.alpha=0.2;
-       box.graphics.clear();
-       box.graphics.setStrokeStyle(3)
-       .beginStroke("#0066A4")
-       .rect(0, 0, destHeight, destWidth);
-       
-     }else{
-       evt.currentTarget.alpha=1;
-       box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
-     }
-      console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
-});
-
-//Mouse UP and SNAP====================
-dragger.on("pressup", function(evt) {
-  if(intersect(evt.currentTarget, destination)){
-    dragger.x = destination.x + destWidth/2;
-    dragger.y = destination.y + destHeight/2;
-    dragger.alpha = 1;
-    box.graphics.clear();     
-    box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
-    stage.update(evt);
-  }
-});
 //Tests if two objects are intersecting
 //Sees if obj1 passes through the first and last line of its
 //bounding box in the x and y sectors
@@ -510,65 +520,29 @@ dragger.on("pressup", function(evt) {
 //Post: Returns true or false
 
 
-
-//Adds the object into stage
-stage.addChild(destination, dragger);
-stage.mouseMoveOutside = true;
-stage.update();
-    /*
-	var stage = new createjs.Stage("beforeRaid");
-	var crewCirlce = new createjs.Shape();
-	crewCirlce.graphics.beginFill("Red").drawCircle(0, 0, 50);
-	//crewCirlce.x = 200;
-	//crewCirlce.y = 200;
-	crewCirlce.alpha = .65;
-	var crewLabel = new createjs.Text("Bomber squad 405th", "bold 14px Arial", "#000000");
-	//crewLabel.lineWidth = 200;
-	crewLabel.textAlign = "center";
-	crewLabel.y = -7;
-	var crewContainer = new createjs.Container();
-	crewContainer.addChild(crewCirlce ,crewLabel);
-	crewContainer.x = 150;
-	crewContainer.y = 50;
-	crewContainer.name = "id";
-	stage.addChild(crewContainer);
-	stage.enableMouseOver();
-	crewContainer.on("pressmove", function(evt) {
-		evt.currentTarget.x = evt.stageX;
-		evt.currentTarget.y = evt.stageY;
-		stage.update();
-	});
-	crewContainer.on("pressup", function(evt){
-        //evt.currentTarget.x = evt.currentTarget.x;
-        //evt.currentTarget.y = evt.currentTarget.y;
-        //alert("pressup");
-        stage.update();
-    });
-	var campaignRect = createRect("name", "cid");
-	stage.addChild(campaignRect);
-	crewContainer.on("pressup", function(evt) {
-		var temp = campaignRect;
-		console.log(temp);
-		if(temp.contains(evt.target.x ,evt.target.y)) {console.log("inside camp"); }})
-	stage.update();
-    */
 }
+
 function intersect(obj1, obj2){
   var objBounds1 = obj1.getBounds().clone();
   var objBounds2 = obj2.getBounds().clone();
 
-  var pt = obj1.globalToLocal(objBounds2.x, objBounds2.y);
+ /* var pt = obj1.globalToLocal(objBounds2.x, objBounds2.y);
   
   var h1 = -(objBounds1.height / 2 + objBounds2.height);
-  var h2 = objBounds2.width / 2;
+  var h2 = (objBounds1.height / 2 + objBounds2.height);
   var w1 = -(objBounds1.width / 2 + objBounds2.width);
-  var w2 = objBounds2.width / 2;
- 
+  var w2 = (objBounds1.width / 2 + objBounds2.width);
+  console.log(objBounds2.x);
   
   if(pt.x > w2 || pt.x < w1) return false;
   if(pt.y > h2 || pt.y < h1) return false;
+  */
+
+	console.log(objBounds1);
+	console.log(objBounds2);
+	return objBounds1.intersects(objBounds2);
+
   
-  return true;
 }
 
 /*
