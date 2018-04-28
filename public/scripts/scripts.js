@@ -434,13 +434,36 @@ function drawBeforeMap(){
  	var stage = new createjs.Stage("demoCanvas");
 	//VARIABLES
 	//Drag Object Size
-	dragRadius = 100;
+	
 	//Destination Size
+	var destinations = [];
 	destHeight = 250;
 	destWidth = 800;
+	destX = 350;
+	destY = 50;
 	var startX = 50;
 	var startY = 50;
 	var radius = 50;
+	
+	$('.campaignItem').each(function(){
+		var label2 = new createjs.Text("Shweinfurt", "bold 20px Lato", "#000");
+		label2.textAlign = "center";
+		label2.x += 50;
+		label2.y += 40;
+
+
+		var box = new createjs.Shape();
+		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+		var destination = new createjs.Container();
+		destination.x = destX;
+		destination.y = destY;
+		destY += 50 + destHeight;
+		destination.setBounds(destination.x, destination.y, destWidth, destHeight);
+
+		destination.addChild(label2, box);
+		destinations.push(destination);
+		stage.addChild(destination);
+	});
 	$('.crewItem').each(function(){
 		var label = new createjs.Text($(this).data("name"), "14px Lato", "#fff");
 		label.textAlign="center";
@@ -456,55 +479,45 @@ function drawBeforeMap(){
 		dragger.addChild(circle, label);
 		dragger.setBounds(100, 100, radius*2, radius*2);
 		
-		var label2 = new createjs.Text("Shweinfurt", "bold 20px Lato", "#000");
-		label2.textAlign = "center";
-		label2.x += 50;
-		label2.y += 40;
-
-
-		var box = new createjs.Shape();
-		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
-		var destination = new createjs.Container();
-		destination.x = 350;
-		destination.y = 50;
-		destination.setBounds(350, 50, destWidth, destHeight);
-
-		destination.addChild(label2, box);
-
+		
 		//DRAG FUNCTIONALITY =====================
 		dragger.on("pressmove", function(evt){
 			 evt.currentTarget.x = evt.stageX;
 			evt.currentTarget.y = evt.stageY;
 			//console.log(evt.currentTarget);
-			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, dragRadius*2, dragRadius*2);
+			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, radius, radius);
 			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
-			 if(intersect(evt.currentTarget, destination)){
-			   evt.currentTarget.alpha=0.2;
-			   box.graphics.clear();
-			   box.graphics.setStrokeStyle(3)
-			   .beginStroke("#0066A4")
-			   .rect(0, 0, destWidth, destHeight);
-			   
-			 }else{
-			   evt.currentTarget.alpha=1;
-			   box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
-			 }
-			  console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
+			 destinations.forEach(function (dest){ 
+				 if(intersect(evt.currentTarget, dest)){
+				   evt.currentTarget.alpha=0.2;
+				   //box.graphics.clear();
+				   //box.graphics.setStrokeStyle(3)
+				   //.beginStroke("#0066A4")
+				   //.rect(0, 0, destWidth, destHeight);
+				   
+				 }else{
+				   evt.currentTarget.alpha=1;
+				   //box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+				 }
+			 });
+			  //console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
 		});
 
 		//Mouse UP and SNAP====================
 		dragger.on("pressup", function(evt) {
-		  if(intersect(evt.currentTarget, destination)){
-			dragger.x = destination.x + destWidth/2;
-			dragger.y = destination.y + destHeight/2;
-			dragger.alpha = 1;
-			box.graphics.clear();     
-			box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
-			stage.update(evt);
-		  }
+			destinations.forEach(function (dest){
+				  if(intersect(evt.currentTarget, dest)){
+					dragger.x = dest.x + destWidth/2;
+					dragger.y = dest.y + destHeight/2;
+					dragger.alpha = 1;
+					//box.graphics.clear();     
+					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+					stage.update(evt);
+				  }
+			});
 		});
 		
-		stage.addChild(destination, dragger);
+		stage.addChild(dragger);
 		stage.mouseMoveOutside = true;
 		stage.update();
 	});
