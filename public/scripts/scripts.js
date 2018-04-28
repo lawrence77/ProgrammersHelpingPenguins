@@ -428,49 +428,214 @@ function unfollow(id, f_id) {
         }
     });
 }
+//Destination Size
 
-function drawBeforeMap(){
-	var stage = new createjs.Stage("beforeRaid");
-	var crewCirlce = new createjs.Shape();
-	crewCirlce.graphics.beginFill("Red").drawCircle(0, 0, 50);
-	//crewCirlce.x = 200;
-	//crewCirlce.y = 200;
-	crewCirlce.alpha = .65;
-	var crewLabel = new createjs.Text("Bomber squad 405th", "bold 14px Arial", "#000000");
-	//crewLabel.lineWidth = 200;
-	crewLabel.textAlign = "center";
-	crewLabel.y = -7;
-	var crewContainer = new createjs.Container();
-	crewContainer.addChild(crewCirlce ,crewLabel);
-	crewContainer.x = 150;
-	crewContainer.y = 50;
-	crewContainer.name = "id";
-	stage.addChild(crewContainer);
-	stage.enableMouseOver();
-	crewContainer.on("pressmove", function(evt) {
-		evt.currentTarget.x = evt.stageX;
-		evt.currentTarget.y = evt.stageY;
-		stage.update();
-	});
+	var destinations = [];
+	var destYvals = {};
+	var destNum = {};
+	var destHeight = 250;
+	var destWidth = 800;
+	var destX = 350;
+	var destY = 50;
+	var startX = 50;
+	var startY = 50;
+	var radius = 50;
 	
-	var campaignRect = createRect("name", "cid");
-	stage.addChild(campaignRect);
-	crewContainer.on("pressup", function(evt) {
-		var temp = campaignRect;
-		console.log(temp);
-		if(temp.contains(evt.target.x ,evt.target.y)) {console.log("inside camp"); }})
-	/*redZone.on("mouseover", function(e) {
-		stage.addChild(redZoneContainer);
+function drawBeforeMap(){
+
+ 	var stage = new createjs.Stage("demoCanvas");
+	//VARIABLES
+	//Drag Object Size
+	
+	
+	
+	$('.campaignItem').each(function(){
+		var label2 = new createjs.Text($(this).data("name"), "bold 20px Lato", "#000");
+		label2.textAlign = "center";
+		label2.x += 400;
+		label2.y += 40;
+
+
+		var box = new createjs.Shape();
+		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+		var destination = new createjs.Container();
+		destination.x = destX;
+		destination.y = destY;
+		destY += 50 + destHeight;
+		destination.name = $(this).data("campid");
+		destination.setBounds(destination.x, destination.y, destWidth, destHeight);
+		
+		destYvals[$(this).data("campid")] = destination.y;
+		destNum[$(this).data("campid")] = 0;
+		destination.addChild(label2, box);
+		destinations.push(destination);
+		stage.addChild(destination);
+	});
+	$('.crewItem').each(function(){
+		var label = new createjs.Text($(this).data("name"), "14px Lato", "#fff");
+		label.textAlign="center";
+		label.lineWidth=radius*2;
+		label.y -= 7;
+		var circle = new createjs.Shape();
+		circle.graphics.setStrokeStyle(2).beginStroke("black")
+		.beginFill("red").drawCircle(0,0, radius);
+		
+		var dragger = new createjs.Container();
+		dragger.x = startX += radius*2 + 25;
+		dragger.y = startY;
+		dragger.addChild(circle, label);
+		//console.log($(this).data("crewid"));
+		dragger.name = "" + $(this).data("crewid");
+		dragger.setBounds(100, 100, radius*2, radius*2);
+		
+		dragger = addDragFunc(dragger, stage);
+		//DRAG FUNCTIONALITY =====================
+		/*dragger.on("pressmove", function(evt){
+			if(evt.currentTarget.y == startY)
+			{
+				stage.addChild(addFunc(evt.currentTarget.clone(true)));
+			}
+			 evt.currentTarget.x = evt.stageX;
+			evt.currentTarget.y = evt.stageY;
+			//console.log(evt.currentTarget);
+			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, radius, radius);
+			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+			 destinations.forEach(function (dest){ 
+				 if(intersect(evt.currentTarget, dest)){
+				   evt.currentTarget.alpha=0.2;
+				   //box.graphics.clear();
+				   //box.graphics.setStrokeStyle(3)
+				   //.beginStroke("#0066A4")
+				   //.rect(0, 0, destWidth, destHeight);
+				   
+				 }else{
+				   evt.currentTarget.alpha=1;
+				   //box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+				 }
+			 });
+			  //console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
+		});
+
+		//Mouse UP and SNAP====================
+		dragger.on("pressup", function(evt) {
+			destinations.forEach(function (dest){
+				  if(intersect(evt.currentTarget, dest)){
+					dragger.x = dest.x + destWidth/2;
+					dragger.y = dest.y + destHeight/2;
+					dragger.alpha = 1;
+					//box.graphics.clear();     
+					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+					stage.update(evt);
+				  }
+				  else{
+					  stage.removeChild(evt.currentTarget);
+					  stage.update();
+				  }
+			});
+		});*/
+		
+		stage.addChild(dragger);
+		stage.mouseMoveOutside = true;
 		stage.update();
 	});
-	redZone.on("mouseout", function(e) {
-		stage.removeChild(redZoneContainer);
-		stage.update();
-	});*/
 	
 	stage.update();
+
+
+
+//Tests if two objects are intersecting
+//Sees if obj1 passes through the first and last line of its
+//bounding box in the x and y sectors
+//Utilizes globalToLocal to get the x and y of obj1 in relation
+//to obj2
+//PRE: Must have bounds set for each object
+//Post: Returns true or false
+
+
 }
 
+function intersect(obj1, obj2){
+  var objBounds1 = obj1.getBounds().clone();
+  var objBounds2 = obj2.getBounds().clone();
+
+
+	//console.log(objBounds1);
+	//console.log(objBounds2);
+	return objBounds1.intersects(objBounds2);
+
+  
+}
+
+function addDragFunc(dragger, stage){
+	dragger.on("pressmove", function(evt){
+			if(evt.currentTarget.y == startY)
+			{
+				stage.addChild(addDragFunc(evt.currentTarget.clone(true), stage));
+			}
+			 evt.currentTarget.x = evt.stageX;
+			evt.currentTarget.y = evt.stageY;
+			//console.log(evt.currentTarget);
+			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, radius, radius);
+			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+			 try{
+			 destinations.forEach(function (dest){ 
+				 if(intersect(evt.currentTarget, dest)){
+				   evt.currentTarget.alpha=0.2;
+				  throw foundIntersectExcetpion;
+				   //box.graphics.clear();
+				   //box.graphics.setStrokeStyle(3)
+				   //.beginStroke("#0066A4")
+				   //.rect(0, 0, destWidth, destHeight);
+				   
+				 }else{
+				   evt.currentTarget.alpha=1;
+				   //box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+				 }
+			 });
+			 }
+			 catch (e){//Do nothing with this exception
+			 }
+			  //console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
+		});
+
+		//Mouse UP and SNAP====================
+		dragger.on("pressup", function(evt) {
+			found = false;
+			destinations.forEach(function (dest){
+				  if(intersect(evt.currentTarget, dest)){
+					dragger.x = dest.x + destWidth/2;
+					dragger.y = dest.y + destHeight/2;
+					dragger.alpha = 1;
+					console.log(dragger);
+					relationIDS = dragger.name.split("-");
+					if(relationIDS.length == 2)
+					{
+						removeRelation(relationIDS[0] ,relationIDS[1]);
+					}
+					addRelation(parseInt(relationIDS[0]), dest.name);
+					dragger.name = relationIDS[0] + "-" + dest.name;
+					console.log(dragger.name);
+					//box.graphics.clear();     
+					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+					stage.update(evt);
+					found = true;
+				  }
+			});
+			if(!found){
+					  stage.removeChild(evt.currentTarget);
+					  stage.update();
+				  }
+		});
+		return dragger;
+}
+
+function addRelation(crewid, campid){
+}
+
+function removeRelation(crewid, campid){
+}
+
+/*
 function createRect(name, cid)
 {
 	var rect = new createjs.Shape();
@@ -490,3 +655,4 @@ function createRect(name, cid)
 	
 	return rect;
 }
+*/
