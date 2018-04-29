@@ -175,6 +175,28 @@ class Crew {
 		}
 		return $fArray;
 	}
+	
+	public function deploy($camp_id) {
+		$db = Db::instance();   //create db connection
+		//build query
+        $q2 = sprintf("INSERT INTO `crewspercampaign` (`crewID`, `campaignID`) VALUES (%d, %d);",
+	    $db->escape($this->id),
+	    $db->escape($camp_id)
+		);
+	$result = $db->query($q2);
+	return $result;
+	}
+	
+	public function undeploy($camp_id) {
+		$db = Db::instance();   //create db connection
+		//build query
+        $q2 = sprintf("DELETE FROM `crewspercampaign` WHERE crewID = %d AND campaignID = %d;",
+	    $db->escape($this->id),
+	    $db->escape($camp_id)
+		);
+	$result = $db->query($q2);
+	return $result;
+	}
 
     //Deletes a crew from the database
     /*public function delete()

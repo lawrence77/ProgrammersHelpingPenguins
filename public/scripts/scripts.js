@@ -484,23 +484,24 @@ function drawBeforeMap(){
 		dragger.x = startX += radius*2 + 25;
 		dragger.y = startY;
 		dragger.addChild(circle, label);
-		//console.log($(this).data("crewid"));
 		dragger.name = "" + $(this).data("crewid");
 		dragger.setBounds(100, 100, radius*2, radius*2);
 		
 		dragger = addDragFunc(dragger, stage);
 		var campaignsPartOf = $(this).data("partof") + "";
-		console.log(campaignsPartOf);
 		var arr = campaignsPartOf.split(" ") 
-		arr.forEach(function (camp){
-			cloneCrew = dragger.clone(true);
-			cloneCrew.x = destX + 60  +(2*radius + 10)*destNum[parseInt(camp)];
-			cloneCrew.y = destYvals[parseInt(camp)] + destHeight/2;
-			cloneCrew.alpha = 1;
-			cloneCrew.name = cloneCrew.name + "-" + camp;
-			destNum[parseInt(camp)]++;
-			stage.addChild(addDragFunc(cloneCrew, stage));
-		});
+		//If the first element is an empty string then dont try to create clones
+		if(arr[0] != ""){
+			arr.forEach(function (camp){
+				cloneCrew = dragger.clone(true);
+				cloneCrew.x = destX + 60  +(2*radius + 10)*destNum[parseInt(camp)];
+				cloneCrew.y = destYvals[parseInt(camp)] + destHeight/2;
+				cloneCrew.alpha = 1;
+				cloneCrew.name = cloneCrew.name + "-" + camp;
+				destNum[parseInt(camp)]++;
+				stage.addChild(addDragFunc(cloneCrew, stage));
+			});
+		}
 		stage.addChild(dragger);
 		stage.mouseMoveOutside = true;
 		stage.update();
@@ -526,8 +527,6 @@ function intersect(obj1, obj2){
   var objBounds2 = obj2.getBounds().clone();
 
 
-	//console.log(objBounds1);
-	//console.log(objBounds2);
 	return objBounds1.intersects(objBounds2);
 
   
@@ -579,13 +578,11 @@ function addDragFunc(dragger, stage){
 					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
 					dragger.y = dest.y + destHeight/2;
 					dragger.alpha = 1;
-					console.log(dragger);
 					
 					
 					addRelation(parseInt(relationIDS[0]), dest.name);
 					destNum[dest.name]++;
 					dragger.name = relationIDS[0] + "-" + dest.name;
-					console.log(dragger.name);
 					//box.graphics.clear();     
 					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
 					stage.update(evt);
@@ -607,9 +604,43 @@ function addDragFunc(dragger, stage){
 }
 
 function addRelation(crewid, campid){
+	data = {};
+    data.crew_id = parseInt(crewid);
+    data.camp_id = parseInt(campid);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/crews/deploy/',
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+        },
+	error: function(resp) {
+           console.log("error!");
+	   console.log(resp);
+        }
+    });
 }
 
 function removeRelation(crewid, campid){
+	data = {};
+    data.crew_id = parseInt(crewid);
+    data.camp_id = parseInt(campid);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/crews/undeploy/',
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+        },
+	error: function(resp) {
+           console.log("error!");
+	   console.log(resp);
+        }
+    });
 }
 
 /*

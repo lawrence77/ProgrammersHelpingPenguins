@@ -11,7 +11,7 @@ RewriteRule ^crews/?$ app/controller/siteController.php?page=crews [QSA,L]
 RewriteRule ^people/?$ app/controller/siteController.php?page=people [QSA,L]
 RewriteRule ^dashboard/?$ app/controller/siteController.php?page=dashboard [QSA,L]
 RewriteRule ^users/?$ app/controller/siteController.php?page=users [QSA,L]
-RewriteRule ^map/?$ app/controller/siteController.php?page=map [QSA,L]
+RewriteRule ^deployment/?$ app/controller/siteController.php?page=deployment [QSA,L]
 
 #Campaign Controller
 RewriteRule ^campaigns/view/(\d+)/?$ app/controller/campaignController.php?action=view&id=$1 [QSA,L]
@@ -29,6 +29,8 @@ RewriteRule ^crews/(\d+)/?$ app/controller/crewController.php?action=load&id=$1 
 RewriteRule ^crews/add/?$ app/controller/crewController.php?action=newCrew [QSA,L]
 RewriteRule ^crews/delete/(\d+)/?$ app/controller/crewController.php?action=deleteCrew [QSA,L]
 RewriteRule ^crews/edit/(\d+)/?$ app/controller/crewController.php?action=editCrew [QSA,L]
+RewriteRule ^crews/deploy/?$ app/controller/crewController.php?action=deploy [QSA,L]
+RewriteRule ^crews/undeploy/?$ app/controller/crewController.php?action=undeploy [QSA,L]
 
 #User Controller
 RewriteRule ^users/view/?$ app/controller/userController.php?action=view [QSA,L]

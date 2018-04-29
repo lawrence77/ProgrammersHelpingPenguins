@@ -37,17 +37,17 @@ class SiteController {
             case 'myprofile':
                 $this->myprofile();
                 break;
-			case 'map':
-				$this->map();
+			case 'deployment':
+				$this->deployment();
 				break;
 		}
 
 	}
 	
-	public function map(){
-		$pageTitle = 'Map';
+	public function deployment(){
+		$pageTitle = 'Deployment';
 		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/map.tpl';
+		include_once SYSTEM_PATH.'/view/deployment.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 	

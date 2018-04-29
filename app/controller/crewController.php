@@ -31,6 +31,12 @@ class CrewController
         case 'editCrew':
             $this->editCrew($_POST['id']);
             break;
+		case 'deploy':
+	        $this->deploy($_POST['crew_id'], $_POST['camp_id']);
+		break;
+	    case 'undeploy':
+	        $this->undeploy($_POST['crew_id'], $_POST['camp_id']);
+		break;
         default:
                 break;
         }
@@ -165,5 +171,37 @@ class CrewController
         header('Content-Type: application/json'); // let client know it's Ajax
         echo json_encode($json);
     }
+	
+	public function deploy($crew_id, $camp_id) {
+
+		
+	    $crew = Crew::loadById($crew_id);
+	    $res = $crew->deploy($camp_id);
+	    if($res) {
+	        $msg = "deployment successful.";
+	    } else {
+	        $msg = "deployment failed.";
+	    }
+	    header('Content-Type: application/json'); // let client know it's Ajax
+	    echo json_encode(array(
+	        "result" => $res,
+		"msg" => $msg
+	    ));
+	}
+	
+	public function undeploy($crew_id, $camp_id) {
+		$crew = Crew::loadById($crew_id);
+	    $res = $crew->undeploy($camp_id);
+	    if($res) {
+	        $msg = "deployment successful.";
+	    } else {
+	        $msg = "deployment failed.";
+	    }
+	    header('Content-Type: application/json'); // let client know it's Ajax
+	    echo json_encode(array(
+	        "result" => $res,
+		"msg" => $msg
+	    ));
+	}
 
 }
