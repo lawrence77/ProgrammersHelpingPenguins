@@ -159,6 +159,22 @@ class Crew {
 		$res = array('id' => $this->id, 'query' => $q);
         return $res; //return this object's id
     }
+	
+	public function getCampignsPartOf()
+    {
+        $fArray = array();
+        $db = Db::instance();   //create db connection
+        $q = sprintf("SELECT campaignID FROM `crewspercampaign` WHERE crewID = %d;",
+	    $db->escape($this->id)
+		);
+		$result = $db->query($q);
+        if ($result->num_rows != 0) {       //traverse all pkCampaigns found from the query
+            while ($row = $result->fetch_assoc()) {
+	        $fArray[] = $row['campaignID'];
+            }
+		}
+		return $fArray;
+	}
 
     //Deletes a crew from the database
     /*public function delete()

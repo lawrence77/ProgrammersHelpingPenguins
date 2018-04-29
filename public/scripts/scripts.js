@@ -436,7 +436,7 @@ function unfollow(id, f_id) {
 	var destHeight = 250;
 	var destWidth = 800;
 	var destX = 350;
-	var destY = 50;
+	var destY = 200;
 	var startX = 50;
 	var startY = 50;
 	var radius = 50;
@@ -603,16 +603,18 @@ function addDragFunc(dragger, stage){
 			found = false;
 			destinations.forEach(function (dest){
 				  if(intersect(evt.currentTarget, dest)){
-					dragger.x = dest.x + destWidth/2;
+					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
 					dragger.y = dest.y + destHeight/2;
 					dragger.alpha = 1;
 					console.log(dragger);
 					relationIDS = dragger.name.split("-");
 					if(relationIDS.length == 2)
 					{
+						destNum[parseInt(relationIDS[1])]--;
 						removeRelation(relationIDS[0] ,relationIDS[1]);
 					}
 					addRelation(parseInt(relationIDS[0]), dest.name);
+					destNum[dest.name]++;
 					dragger.name = relationIDS[0] + "-" + dest.name;
 					console.log(dragger.name);
 					//box.graphics.clear();     
@@ -622,6 +624,12 @@ function addDragFunc(dragger, stage){
 				  }
 			});
 			if(!found){
+					relationIDS = dragger.name.split("-");
+					if(relationIDS.length == 2)
+					{
+						destNum[parseInt(relationIDS[1])]--;
+						removeRelation(relationIDS[0] ,relationIDS[1]);
+					}
 					  stage.removeChild(evt.currentTarget);
 					  stage.update();
 				  }
