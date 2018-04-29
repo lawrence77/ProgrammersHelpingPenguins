@@ -489,51 +489,18 @@ function drawBeforeMap(){
 		dragger.setBounds(100, 100, radius*2, radius*2);
 		
 		dragger = addDragFunc(dragger, stage);
-		//DRAG FUNCTIONALITY =====================
-		/*dragger.on("pressmove", function(evt){
-			if(evt.currentTarget.y == startY)
-			{
-				stage.addChild(addFunc(evt.currentTarget.clone(true)));
-			}
-			 evt.currentTarget.x = evt.stageX;
-			evt.currentTarget.y = evt.stageY;
-			//console.log(evt.currentTarget);
-			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, radius, radius);
-			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
-			 destinations.forEach(function (dest){ 
-				 if(intersect(evt.currentTarget, dest)){
-				   evt.currentTarget.alpha=0.2;
-				   //box.graphics.clear();
-				   //box.graphics.setStrokeStyle(3)
-				   //.beginStroke("#0066A4")
-				   //.rect(0, 0, destWidth, destHeight);
-				   
-				 }else{
-				   evt.currentTarget.alpha=1;
-				   //box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
-				 }
-			 });
-			  //console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
+		var campaignsPartOf = $(this).data("partof") + "";
+		console.log(campaignsPartOf);
+		var arr = campaignsPartOf.split(" ") 
+		arr.forEach(function (camp){
+			cloneCrew = dragger.clone(true);
+			cloneCrew.x = destX + 60  +(2*radius + 10)*destNum[parseInt(camp)];
+			cloneCrew.y = destYvals[parseInt(camp)] + destHeight/2;
+			cloneCrew.alpha = 1;
+			cloneCrew.name = cloneCrew.name + "-" + camp;
+			destNum[parseInt(camp)]++;
+			stage.addChild(addDragFunc(cloneCrew, stage));
 		});
-
-		//Mouse UP and SNAP====================
-		dragger.on("pressup", function(evt) {
-			destinations.forEach(function (dest){
-				  if(intersect(evt.currentTarget, dest)){
-					dragger.x = dest.x + destWidth/2;
-					dragger.y = dest.y + destHeight/2;
-					dragger.alpha = 1;
-					//box.graphics.clear();     
-					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
-					stage.update(evt);
-				  }
-				  else{
-					  stage.removeChild(evt.currentTarget);
-					  stage.update();
-				  }
-			});
-		});*/
-		
 		stage.addChild(dragger);
 		stage.mouseMoveOutside = true;
 		stage.update();
@@ -603,16 +570,18 @@ function addDragFunc(dragger, stage){
 			found = false;
 			destinations.forEach(function (dest){
 				  if(intersect(evt.currentTarget, dest)){
-					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
-					dragger.y = dest.y + destHeight/2;
-					dragger.alpha = 1;
-					console.log(dragger);
 					relationIDS = dragger.name.split("-");
 					if(relationIDS.length == 2)
 					{
 						destNum[parseInt(relationIDS[1])]--;
 						removeRelation(relationIDS[0] ,relationIDS[1]);
 					}
+					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
+					dragger.y = dest.y + destHeight/2;
+					dragger.alpha = 1;
+					console.log(dragger);
+					
+					
 					addRelation(parseInt(relationIDS[0]), dest.name);
 					destNum[dest.name]++;
 					dragger.name = relationIDS[0] + "-" + dest.name;
