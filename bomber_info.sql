@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2018 at 04:12 AM
+-- Generation Time: Apr 29, 2018 at 01:50 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -75,6 +75,31 @@ INSERT INTO `crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool
 (6, '402nd PCBW', '95th Bomb Group ', NULL, 21, 4, 'Horham', '95th_Air_Base_Wing', 0),
 (7, '402nd PCBW', '100th Bomb Group', NULL, 21, 9, 'Thorpe Abbotts', '100th_Air_Refueling_Wing', 0),
 (9, 'Test', 'qweqw', NULL, 14312, 1231, '1231', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crewspercampaign`
+--
+
+CREATE TABLE `crewspercampaign` (
+  `pkCrewsPerCampaign` int(11) NOT NULL,
+  `crewID` int(11) NOT NULL,
+  `campaignID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `crewspercampaign`
+--
+
+INSERT INTO `crewspercampaign` (`pkCrewsPerCampaign`, `crewID`, `campaignID`) VALUES
+(1, 4, 1),
+(2, 5, 1),
+(3, 6, 1),
+(4, 7, 1),
+(5, 1, 1),
+(6, 2, 1),
+(7, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -209,6 +234,12 @@ ALTER TABLE `crews`
   ADD KEY `fkSchool` (`trainingSchool`);
 
 --
+-- Indexes for table `crewspercampaign`
+--
+ALTER TABLE `crewspercampaign`
+  ADD PRIMARY KEY (`pkCrewsPerCampaign`);
+
+--
 -- Indexes for table `feed_event`
 --
 ALTER TABLE `feed_event`
@@ -254,6 +285,12 @@ ALTER TABLE `campaigns`
 --
 ALTER TABLE `crews`
   MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `crewspercampaign`
+--
+ALTER TABLE `crewspercampaign`
+  MODIFY `pkCrewsPerCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `feed_event`

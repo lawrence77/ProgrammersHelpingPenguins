@@ -7,6 +7,8 @@ body {
 #newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menu, #editCrewForm {
     display: none;
 }
+
+
 .bomber-squad-content{
     border-bottom: 3px solid black;
     height: 60%;
