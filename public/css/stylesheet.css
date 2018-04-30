@@ -1,6 +1,6 @@
 /* Main Stylesheet */
 body {
-    padding-top: 70px;
+    background-color: darkgrey;
 }
 
 /*AJAX Forms */
@@ -59,12 +59,12 @@ body {
 .home-info{
     width:100%;
      border-bottom: solid black 1px;
-    
+
 }
 .image-info{
     border-bottom: solid black 1px;
     margin: 2% 15% 5% 15%;
-    
+
 }
 
 .bomber-img {
@@ -96,3 +96,23 @@ body {
     float: right;
 }
 
+.control-group {
+    padding-top: 70px;
+    width: 90%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+}
+#left {
+    margin-left: 1.5%;
+}
+#right {
+    margin-left: 1.5%;
+}
+.footer {
+    margin-left: 1.5%;
+}
+.navbar {
+    width: 100%;
+}
