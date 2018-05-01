@@ -2,7 +2,7 @@
 <div class="left-box">
     
     <div class ="container">
-        <div class ="home-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/US-carriers-1941-42.jpg/550px-US-carriers-1941-42.jpg"></div>
+        <div class ="home-image"><img src="<?= LINK_URL ?>/public/images/homeMap.jpg"></div>
         <div class = "image-info">Welcome to Our WWII air Campaign site. We follow the airforce on Many different missions throughout the war.</div>
         
         <div class = "home-info">
