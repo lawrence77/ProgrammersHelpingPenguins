@@ -5,7 +5,7 @@
         </div>
     </div>
     <hr />
-    <table class="table table-striped text-center">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -33,7 +33,7 @@
                             echo $u->firstName . " " . $u->lastName . "&nbsp;&nbsp;";
                             echo "</a>";
                         echo "</td>";
-                        echo "<td>";
+                        echo "<td class='text-center'>";
                             if($id && $u->id != $id && !in_array($u->id, $user->following)) {
                                 echo "<button id='user_b_" . $u->id . "' class='btn btn-primary' onclick='follow(" . $id . ", ". $u->id .")'>Follow</button>";
                             }

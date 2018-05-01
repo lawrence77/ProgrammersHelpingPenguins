@@ -60,9 +60,12 @@ $(document).ready(function(e) {
             .fadeIn()
             .children('#newFirstName').focus()
     })
-    $('.divPicture').on('mouseenter', function (e) {
-        getPicture($(this).find('img').attr('alt'), $(this).find('img'))
-    })
+    $(document).ready(function() {
+	    $('.loadPicture').each(function (e) {
+		//console.log($(this));
+		getPicture($(this).attr('alt'), $(this));
+	    });
+    });
     $('#editProfileButton').on('click', function(e) {
         $(this).hide()
 
@@ -147,11 +150,10 @@ $(document).ready(function(e) {
 
 function getPicture(callName, obj) {
     if (callName != null) {
-        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&callback=getContent&formatversion=2')
+        var stringUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.concat(callName, '&prop=pageimages&format=json&pithumbsize=300&formatversion=2')
         console.log(stringUrl);
         $.ajax({
             url: stringUrl,
-            jsonpCallback: 'getContent',
             dataType: 'jsonp',
             success: function(res) {
                 if (res.query)
@@ -253,7 +255,7 @@ function newCampaign(){
 			var n_data = JSON.parse(resp.data)
                         console.log($(".campaign-list"));
                         $(".campaign-list").append("<span id='campaign_" + resp.id + "'><h1><a href='" + BASE_URL + "/campaigns/view/"+ resp.id +"'>"+ n_data.name  + " </a></h1>\
-						<img class ='campaign-thumbnail' src ='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg/1200px-B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg'> <button onclick='deleteCampaign(" + resp.id + ")'>X</button></span> <br /><br />");
+						<img class ='campaign-thumbnail' src ='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg/1200px-B-17F_formation_over_Schweinfurt%2C_Germany%2C_August_17%2C_1943.jpg'> <br><br><button onclick='deleteCampaign(" + resp.id + ")' class='btn btn-danger'>Remove</button></span> <br /><br />");
 
 
                 }
@@ -310,7 +312,7 @@ function newCrew() {
             <div class ='col-lg-4'> <table><tr><td> <div class='bomber-table-title'><a href='" + BASE_URL + "/crews/" + resp.id + "'>Bomber Group  " + n_data.bomberGroup  + "</a> </div> \
             <div class='bomber-squad-table-title'>Provisional Wing <div class='bomber-squad-table-content'>" + n_data.provisionalWing + "</div></div> \
             <div class='bomber-squad-table-title'>Stationed Airfield<div class='bomber-squad-table-content'>" + n_data.stationedAirfield + "</div></div> \
-	    </td> </tr> </table><button onclick='deleteCrew(" + resp.id + ")'>X</button> </div></div><br/><br/>");
+	    </td> </tr> </table><button onclick='deleteCrew(" + resp.id + ")' class='btn btn-danger'>Remove</button> </div></div><br/><br/>");
 
                 }
 

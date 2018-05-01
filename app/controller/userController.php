@@ -33,15 +33,19 @@ class UserController
 
 	public function view($id)
 	{
-        if(!isset($_SESSION['username'])) {
-            header('Location: '.BASE_URL.'/login/'); exit();
-	}
-        $pageTitle = 'My Profile';
-        $user = User::loadById($id);
-        $fes = FeedEvent::getFeedEvents();
-        include_once SYSTEM_PATH.'/view/header.tpl';
-        include_once SYSTEM_PATH.'/view/profile.tpl';
-        include_once SYSTEM_PATH.'/view/footer.tpl';
+		if(!isset($_SESSION['username'])) {
+		    header('Location: '.BASE_URL.'/login/'); exit();
+		}
+		$user = User::loadById($id);
+		if($_SESSION['user_id'] == $user->id) {
+			$pageTitle = 'My Profile';
+		} else {
+			$pageTitle = 'View Profile';
+		}
+		$fes = FeedEvent::getFeedEvents();
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/profile.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
     	}
 
 	public function follow($id, $f_id) {
@@ -150,6 +154,7 @@ class UserController
         if($id['id'] == 0) {
             $json = array('success' => false, 'query' => $id['query']);
         } else {
+	    $user->id = $id['id'];
             $json = array('success' => true, 'id' => $id['id'], 'data' => json_encode($_POST));
         }
         header('Content-Type: application/json'); // let client know it's Ajax
