@@ -4,6 +4,10 @@
 		{
 			//Replace with ajax call to get image
 			echo "<div class='campaignItem'  data-campid=" . $c->id . " data-name='".$c->name."'></div>";
+			echo "<div class='campaignDesc'  id='campaign" . $c->id . "' >
+					<h3>".$c->name."</h3>
+					<p>".$c->description."</p>
+					</div>";
 		}
 
 		$crews = Crew::getCrews();

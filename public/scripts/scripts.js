@@ -448,7 +448,9 @@ function drawBeforeMap(){
 	//Drag Object Size
 	
 	
-	
+	$('.campaignDesc').each(function(){
+		$(this).hide();
+	});
 	$('.campaignItem').each(function(){
 		var label2 = new createjs.Text($(this).data("name"), "bold 20px Lato", "#000");
 		label2.textAlign = "center";
@@ -457,7 +459,10 @@ function drawBeforeMap(){
 
 
 		var box = new createjs.Shape();
-		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+		box.graphics.setStrokeStyle(2).beginStroke("black")
+		.rect(0, 0, destWidth, destHeight);
+
+		
 		var destination = new createjs.Container();
 		destination.x = destX;
 		destination.y = destY;
@@ -465,10 +470,24 @@ function drawBeforeMap(){
 		destination.name = $(this).data("campid");
 		destination.setBounds(destination.x, destination.y, destWidth, destHeight);
 		
+		//Set up hitarea to be the entire campaign box
+		var hit = new createjs.Shape();
+		hit.graphics.beginFill("#000").drawRect(0, 0, destWidth, destHeight);
+		destination.hitArea = hit;
+		
 		destYvals[$(this).data("campid")] = destination.y;
 		destNum[$(this).data("campid")] = 0;
 		destination.addChild(label2, box);
+		destination.on("click", function(evt){
+			$('.campaignDesc').each(function(){
+				$(this).hide();
+			});
+			console.log('#campaign'+destination.name);
+			$('#campaign'+destination.name).show();
+		});
+		
 		destinations.push(destination);
+		
 		stage.addChild(destination);
 	});
 	$('.crewItem').each(function(){
