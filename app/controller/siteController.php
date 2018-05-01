@@ -37,9 +37,20 @@ class SiteController {
             case 'myprofile':
                 $this->myprofile();
                 break;
+			case 'deployment':
+				$this->deployment();
+				break;
 		}
 
 	}
+	
+	public function deployment(){
+		$pageTitle = 'Deployment';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/deployment.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+	
 	public function users() {
 		if(!isset($_SESSION['username'])) {
           header('Location: '.BASE_URL.'/login/'); exit();

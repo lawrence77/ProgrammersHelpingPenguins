@@ -2,6 +2,9 @@
 var BASE_URL;
 $(document).ready(function(e) {
 
+	if($('#beforeRaid').length){
+		drawBeforeMap();
+	}
   var x = setInterval(function () {
   	if ($('#BASE_URL_FIELD').val().length) {
         	BASE_URL = $('#BASE_URL_FIELD').val();
@@ -425,3 +428,239 @@ function unfollow(id, f_id) {
         }
     });
 }
+//Destination Size
+
+	var destinations = [];
+	var destYvals = {};
+	var destNum = {};
+	var destHeight = 250;
+	var destWidth = 800;
+	var destX = 350;
+	var destY = 200;
+	var startX = 50;
+	var startY = 50;
+	var radius = 50;
+	
+function drawBeforeMap(){
+
+ 	var stage = new createjs.Stage("demoCanvas");
+	//VARIABLES
+	//Drag Object Size
+	
+	
+	
+	$('.campaignItem').each(function(){
+		var label2 = new createjs.Text($(this).data("name"), "bold 20px Lato", "#000");
+		label2.textAlign = "center";
+		label2.x += 400;
+		label2.y += 40;
+
+
+		var box = new createjs.Shape();
+		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+		var destination = new createjs.Container();
+		destination.x = destX;
+		destination.y = destY;
+		destY += 50 + destHeight;
+		destination.name = $(this).data("campid");
+		destination.setBounds(destination.x, destination.y, destWidth, destHeight);
+		
+		destYvals[$(this).data("campid")] = destination.y;
+		destNum[$(this).data("campid")] = 0;
+		destination.addChild(label2, box);
+		destinations.push(destination);
+		stage.addChild(destination);
+	});
+	$('.crewItem').each(function(){
+		var label = new createjs.Text($(this).data("name"), "14px Lato", "#fff");
+		label.textAlign="center";
+		label.lineWidth=radius*2;
+		label.y -= 7;
+		var circle = new createjs.Shape();
+		circle.graphics.setStrokeStyle(2).beginStroke("black")
+		.beginFill("red").drawCircle(0,0, radius);
+		
+		var dragger = new createjs.Container();
+		dragger.x = startX += radius*2 + 25;
+		dragger.y = startY;
+		dragger.addChild(circle, label);
+		dragger.name = "" + $(this).data("crewid");
+		dragger.setBounds(100, 100, radius*2, radius*2);
+		
+		dragger = addDragFunc(dragger, stage);
+		var campaignsPartOf = $(this).data("partof") + "";
+		var arr = campaignsPartOf.split(" ") 
+		//If the first element is an empty string then dont try to create clones
+		if(arr[0] != ""){
+			arr.forEach(function (camp){
+				cloneCrew = dragger.clone(true);
+				cloneCrew.x = destX + 60  +(2*radius + 10)*destNum[parseInt(camp)];
+				cloneCrew.y = destYvals[parseInt(camp)] + destHeight/2;
+				cloneCrew.alpha = 1;
+				cloneCrew.name = cloneCrew.name + "-" + camp;
+				destNum[parseInt(camp)]++;
+				stage.addChild(addDragFunc(cloneCrew, stage));
+			});
+		}
+		stage.addChild(dragger);
+		stage.mouseMoveOutside = true;
+		stage.update();
+	});
+	
+	stage.update();
+
+
+
+//Tests if two objects are intersecting
+//Sees if obj1 passes through the first and last line of its
+//bounding box in the x and y sectors
+//Utilizes globalToLocal to get the x and y of obj1 in relation
+//to obj2
+//PRE: Must have bounds set for each object
+//Post: Returns true or false
+
+
+}
+
+function intersect(obj1, obj2){
+  var objBounds1 = obj1.getBounds().clone();
+  var objBounds2 = obj2.getBounds().clone();
+
+
+	return objBounds1.intersects(objBounds2);
+
+  
+}
+
+function addDragFunc(dragger, stage){
+	dragger.on("pressmove", function(evt){
+			if(evt.currentTarget.y == startY)
+			{
+				stage.addChild(addDragFunc(evt.currentTarget.clone(true), stage));
+			}
+			 evt.currentTarget.x = evt.stageX;
+			evt.currentTarget.y = evt.stageY;
+			//console.log(evt.currentTarget);
+			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, radius, radius);
+			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+			 try{
+			 destinations.forEach(function (dest){ 
+				 if(intersect(evt.currentTarget, dest)){
+				   evt.currentTarget.alpha=0.2;
+				  throw foundIntersectExcetpion;
+				   //box.graphics.clear();
+				   //box.graphics.setStrokeStyle(3)
+				   //.beginStroke("#0066A4")
+				   //.rect(0, 0, destWidth, destHeight);
+				   
+				 }else{
+				   evt.currentTarget.alpha=1;
+				   //box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+				 }
+			 });
+			 }
+			 catch (e){//Do nothing with this exception
+			 }
+			  //console.log("cTarget x   " + evt.currentTarget.x + "y    " + evt.currentTarget.y + "Stage x   " +  evt.stageX + "y    " +  evt.stageY );
+		});
+
+		//Mouse UP and SNAP====================
+		dragger.on("pressup", function(evt) {
+			found = false;
+			destinations.forEach(function (dest){
+				  if(intersect(evt.currentTarget, dest)){
+					relationIDS = dragger.name.split("-");
+					if(relationIDS.length == 2)
+					{
+						destNum[parseInt(relationIDS[1])]--;
+						removeRelation(relationIDS[0] ,relationIDS[1]);
+					}
+					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
+					dragger.y = dest.y + destHeight/2;
+					dragger.alpha = 1;
+					
+					
+					addRelation(parseInt(relationIDS[0]), dest.name);
+					destNum[dest.name]++;
+					dragger.name = relationIDS[0] + "-" + dest.name;
+					//box.graphics.clear();     
+					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
+					stage.update(evt);
+					found = true;
+				  }
+			});
+			if(!found){
+					relationIDS = dragger.name.split("-");
+					if(relationIDS.length == 2)
+					{
+						destNum[parseInt(relationIDS[1])]--;
+						removeRelation(relationIDS[0] ,relationIDS[1]);
+					}
+					  stage.removeChild(evt.currentTarget);
+					  stage.update();
+				  }
+		});
+		return dragger;
+}
+
+function addRelation(crewid, campid){
+	data = {};
+    data.crew_id = parseInt(crewid);
+    data.camp_id = parseInt(campid);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/crews/deploy/',
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+        },
+	error: function(resp) {
+           console.log("error!");
+	   console.log(resp);
+        }
+    });
+}
+
+function removeRelation(crewid, campid){
+	data = {};
+    data.crew_id = parseInt(crewid);
+    data.camp_id = parseInt(campid);
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL +'/crews/undeploy/',
+        data: data,
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp);
+        },
+	error: function(resp) {
+           console.log("error!");
+	   console.log(resp);
+        }
+    });
+}
+
+/*
+function createRect(name, cid)
+{
+	var rect = new createjs.Shape();
+	rect.graphics.beginFill("Yellow").drawRect(200, 200, 200,200);
+	var rectLabel = new createjs.Text(name, "bold 14px Arial", "#000000");
+	//crewLabel.lineWidth = 200;
+	rectLabel.textAlign = "center";
+	rectLabel.y = -7;
+	
+	var rectC = new createjs.Container();
+	rectC.addChild(rect ,rectLabel);
+	rectC.x = 200;
+	rectC.y = 200;
+	rectC.name = cid;
+	
+	rectC.addChild(rect, rectLabel);
+	
+	return rect;
+}
+*/

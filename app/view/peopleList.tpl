@@ -1,6 +1,6 @@
 <div class="container">
     <?php if ($_SESSION['role'] <= 1): ?>
-        <button id="newPersonButton" disabled type="button" name="newPersonButton">New Person (Currently Disabled)</button>
+        <button id="newPersonButton" disabled type="button" name="newPersonButton">New Person</button>
     <?php endif; ?>
     <form id="newPersonForm">
         <p> First Name </p>
