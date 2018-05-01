@@ -20,6 +20,7 @@ a:hover {
 }
 
 
+
 .bomber-squad-content{
     border-bottom: 3px solid black;
     height: 60%;
@@ -129,4 +130,10 @@ a:hover {
 }
 .navbar {
     width: 100%;
+}
+
+.home-image img{
+	width:60%;
+	height:60%;
+	margin-left:20%;
 }

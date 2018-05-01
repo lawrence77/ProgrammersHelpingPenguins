@@ -439,8 +439,8 @@ function unfollow(id, f_id) {
 	var destWidth = 800;
 	var destX = 350;
 	var destY = 200;
-	var startX = 50;
-	var startY = 50;
+	var startX = 55;
+	var startY = 55;
 	var radius = 50;
 
 function drawBeforeMap(){
@@ -502,7 +502,8 @@ function drawBeforeMap(){
 		.beginFill("red").drawCircle(0,0, radius);
 
 		var dragger = new createjs.Container();
-		dragger.x = startX += radius*2 + 25;
+		dragger.x = startX;
+		startX += radius*2 + 10;
 		dragger.y = startY;
 		dragger.addChild(circle, label);
 		dragger.name = "" + $(this).data("crewid");
