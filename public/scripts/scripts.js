@@ -437,7 +437,7 @@ function unfollow(id, f_id) {
 	var destNum = {};
 	var destHeight = 250;
 	var destWidth = 800;
-	var destX = 350;
+	var destX = 250;
 	var destY = 200;
 	var startX = 55;
 	var startY = 55;
