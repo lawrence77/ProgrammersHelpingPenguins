@@ -394,7 +394,7 @@ function follow(id, f_id) {
         dataType: 'json',
         success: function(resp) {
             console.log(resp);
-	        $('#user_b_' + f_id).after("<button id='randomSTUZCZ' onclick='unfollow(" + id + ", " + f_id + ")'>Unfollow</button>");
+	        $('#user_b_' + f_id).after("<button id='randomSTUZCZ' class='btn btn-danger' onclick='unfollow(" + id + ", " + f_id + ")'>Unfollow</button>");
 	        $('#user_b_' + f_id).remove();
 		$('#randomSTUZCZ').attr("id", "user_b_" + f_id);
         },
@@ -417,7 +417,7 @@ function unfollow(id, f_id) {
         success: function(resp) {
             console.log(resp);
 	    if(resp.result == true) {
-	        $('#user_b_' + f_id).after("<button id='randomSTUZCZ' onclick='follow(" + id + ", " + f_id + ")'>Follow</button>");
+	        $('#user_b_' + f_id).after("<button id='randomSTUZCZ' class='btn btn-primary' onclick='follow(" + id + ", " + f_id + ")'>Follow</button>");
 	        $('#user_b_' + f_id).remove();
 		$('#randomSTUZCZ').attr("id", "user_b_" + f_id);
 	    }
@@ -440,15 +440,15 @@ function unfollow(id, f_id) {
 	var startX = 50;
 	var startY = 50;
 	var radius = 50;
-	
+
 function drawBeforeMap(){
 
  	var stage = new createjs.Stage("demoCanvas");
 	//VARIABLES
 	//Drag Object Size
-	
-	
-	
+
+
+
 	$('.campaignItem').each(function(){
 		var label2 = new createjs.Text($(this).data("name"), "bold 20px Lato", "#000");
 		label2.textAlign = "center";
@@ -464,7 +464,7 @@ function drawBeforeMap(){
 		destY += 50 + destHeight;
 		destination.name = $(this).data("campid");
 		destination.setBounds(destination.x, destination.y, destWidth, destHeight);
-		
+
 		destYvals[$(this).data("campid")] = destination.y;
 		destNum[$(this).data("campid")] = 0;
 		destination.addChild(label2, box);
@@ -479,17 +479,17 @@ function drawBeforeMap(){
 		var circle = new createjs.Shape();
 		circle.graphics.setStrokeStyle(2).beginStroke("black")
 		.beginFill("red").drawCircle(0,0, radius);
-		
+
 		var dragger = new createjs.Container();
 		dragger.x = startX += radius*2 + 25;
 		dragger.y = startY;
 		dragger.addChild(circle, label);
 		dragger.name = "" + $(this).data("crewid");
 		dragger.setBounds(100, 100, radius*2, radius*2);
-		
+
 		dragger = addDragFunc(dragger, stage);
 		var campaignsPartOf = $(this).data("partof") + "";
-		var arr = campaignsPartOf.split(" ") 
+		var arr = campaignsPartOf.split(" ")
 		//If the first element is an empty string then dont try to create clones
 		if(arr[0] != ""){
 			arr.forEach(function (camp){
@@ -506,7 +506,7 @@ function drawBeforeMap(){
 		stage.mouseMoveOutside = true;
 		stage.update();
 	});
-	
+
 	stage.update();
 
 
@@ -529,7 +529,7 @@ function intersect(obj1, obj2){
 
 	return objBounds1.intersects(objBounds2);
 
-  
+
 }
 
 function addDragFunc(dragger, stage){
@@ -544,7 +544,7 @@ function addDragFunc(dragger, stage){
 			evt.currentTarget.setBounds(evt.currentTarget.x, evt.currentTarget.y, radius, radius);
 			 stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
 			 try{
-			 destinations.forEach(function (dest){ 
+			 destinations.forEach(function (dest){
 				 if(intersect(evt.currentTarget, dest)){
 				   evt.currentTarget.alpha=0.2;
 				  throw foundIntersectExcetpion;
@@ -552,7 +552,7 @@ function addDragFunc(dragger, stage){
 				   //box.graphics.setStrokeStyle(3)
 				   //.beginStroke("#0066A4")
 				   //.rect(0, 0, destWidth, destHeight);
-				   
+
 				 }else{
 				   evt.currentTarget.alpha=1;
 				   //box.graphics.clear();     box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
@@ -578,12 +578,12 @@ function addDragFunc(dragger, stage){
 					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
 					dragger.y = dest.y + destHeight/2;
 					dragger.alpha = 1;
-					
-					
+
+
 					addRelation(parseInt(relationIDS[0]), dest.name);
 					destNum[dest.name]++;
 					dragger.name = relationIDS[0] + "-" + dest.name;
-					//box.graphics.clear();     
+					//box.graphics.clear();
 					//box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destWidth, destHeight);
 					stage.update(evt);
 					found = true;
@@ -652,15 +652,15 @@ function createRect(name, cid)
 	//crewLabel.lineWidth = 200;
 	rectLabel.textAlign = "center";
 	rectLabel.y = -7;
-	
+
 	var rectC = new createjs.Container();
 	rectC.addChild(rect ,rectLabel);
 	rectC.x = 200;
 	rectC.y = 200;
 	rectC.name = cid;
-	
+
 	rectC.addChild(rect, rectLabel);
-	
+
 	return rect;
 }
 */

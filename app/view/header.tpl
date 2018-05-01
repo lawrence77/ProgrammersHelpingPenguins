@@ -60,4 +60,4 @@ else $loggedin = 'Login';
             </div>
         </div>
     </nav>
-    <div class="control-group">
+    <div class="container control-group">
