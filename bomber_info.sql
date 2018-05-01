@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2018 at 01:50 AM
+-- Generation Time: May 01, 2018 at 03:46 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -42,7 +42,8 @@ CREATE TABLE `campaigns` (
 
 INSERT INTO `campaigns` (`pkCampaign`, `name`, `date`, `description`, `deleted`) VALUES
 (1, 'Schweinfurt-Regensburg mission', '1944-10-14', 'The Schweinfurt-Regensburg mission was a strategic bombing mission during World War II. Carried out by Boeing B-17 Flying Fortress heavy bombers of the U.S. Army Air Forces on August 17, 1943, it was an ambitious plan to cripple the German aircraft industry. --Copied from Wikipedia', 0),
-(2, 'test', '1960-10-22', 'stuff did happen', 1);
+(2, 'test', '1960-10-22', 'stuff did happen', 1),
+(3, 'Big Week Day 1', '1944-02-20', 'The Eighth Air Force begins \"Big Week\" attacks on German aircraft plants and airfields. For the first time, over 1,000 bombers are dispatched; 21 bombers and 4 fighters are lost hitting three areas in Germany:      417 B-17s are dispatched to Leipzig-Mockau Airfield, and aviation industry targets at Heiterblick and Abtnaundorf; 239 hit the primary targets, 37 hit Bernburg (Junkers), 44 hit Oschersleben (AGO, prime Fw 190A subcontractor) and 20 hit other targets of opportunity; they claim 14-5-6 Luftwaffe aircraft; seven B-17s are lost, one damaged beyond repair and 161 damaged; casualties are 7 KIA, 17 WIA and 72 MIA.     314 B-17s are dispatched to the Tutow Airfield; 105 hit the primary and immediate area, 76 hit Rostock (Heinkel) and 115 hit other targets of opportunity; they claim 15-15-10 Luftwaffe aircraft; 6 B-17s are lost, 1 damaged beyond repair and 37 damaged; casualties are 3 KIA and 60 MIA.     272 B-24s are dispatched to aviation industry targets at Brunswick, Wilhelmtor and Neupetritor; 76 hit the primary, 87 hit Gotha, 13 hit Oschersleben, 58 hit Helmstedt and 10 hit other targets of opportunity; they claim 36-13-13 Luftwaffe aircraft; 8 B-24s are lost, 3 damaged beyond repair and 37 damaged; casualties are 10 KIA, 10 WIA and 77 MIA.  Missions one and three above are escorted by 94 P-38 Lightnings, 668 Eighth and Ninth Air Force P-47 Thunderbolts and 73 Eighth and Ninth Air Force P-51 Mustangs; they claim 61-7-37 Luftwaffe aircraft; one P-38 Lightning, two P-47 Thunderbolts and one P-51 Mustangs are lost, two P-47 Thunderbolts are damaged beyond repair and 4 other aircraft are damaged; casualties are 4 MIA. German losses amount to 10 Messerschmitt Bf 110s destroyed and three damaged with 10 killed and seven wounded. Total losses included 74 Bf 110s, Fw 190s and Bf 109s and a further 29 damaged', 0);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,11 @@ INSERT INTO `crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool
 (5, '401st PCBW', '385th Bomb Group', NULL, 21, 3, 'Great Ashfield', '385th_Air_Expeditionary_Group', 0),
 (6, '402nd PCBW', '95th Bomb Group ', NULL, 21, 4, 'Horham', '95th_Air_Base_Wing', 0),
 (7, '402nd PCBW', '100th Bomb Group', NULL, 21, 9, 'Thorpe Abbotts', '100th_Air_Refueling_Wing', 0),
-(9, 'Test', 'qweqw', NULL, 14312, 1231, '1231', NULL, 1);
+(9, 'Test', 'qweqw', NULL, 14312, 1231, '1231', NULL, 1),
+(10, '2nd PCBW', '389th Bomb Group', NULL, 19, 1, 'Hethel', NULL, 0),
+(11, '14nd PCBW', '392th Bomb Group', NULL, 23, 2, ' Wendling', NULL, 0),
+(12, '2nd PCBW', '445th Bomb Group', NULL, 21, 0, 'Tibenham', NULL, 0),
+(13, '20th PCBW', '446th Bomb Group', NULL, 15, 3, 'Bungay', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -93,13 +98,17 @@ CREATE TABLE `crewspercampaign` (
 --
 
 INSERT INTO `crewspercampaign` (`pkCrewsPerCampaign`, `crewID`, `campaignID`) VALUES
-(1, 4, 1),
-(2, 5, 1),
-(3, 6, 1),
-(4, 7, 1),
-(5, 1, 1),
-(6, 2, 1),
-(7, 3, 1);
+(31, 4, 1),
+(32, 5, 1),
+(33, 6, 1),
+(34, 7, 1),
+(35, 1, 1),
+(36, 2, 1),
+(37, 3, 1),
+(38, 11, 3),
+(39, 13, 3),
+(40, 12, 3),
+(41, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -128,7 +137,27 @@ INSERT INTO `feed_event` (`id`, `type`, `creator_id`, `item_1_id`, `item_2_id`, 
 (2, 'edit_campaign', 1, 2, 0, 0, 'Old date: 2222-02-22 / Old description: nothing / ', 'New date: 1960-10-22 / New description: stuff did happen / ', '2018-04-08 18:44:34'),
 (3, 'delete_campaign', 1, 2, 0, 0, NULL, NULL, '2018-04-08 19:01:09'),
 (6, 'add_crew', 2, 9, 0, 0, NULL, NULL, '2018-04-13 02:09:15'),
-(7, 'delete_crew', 2, 9, 0, 0, NULL, NULL, '2018-04-13 02:09:50');
+(7, 'delete_crew', 2, 9, 0, 0, NULL, NULL, '2018-04-13 02:09:50'),
+(8, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-04-29 00:46:57'),
+(9, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-04-30 23:57:36'),
+(10, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 00:37:47'),
+(11, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 00:50:58'),
+(12, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 00:53:24'),
+(13, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 00:53:53'),
+(14, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:06:34'),
+(15, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 01:06:36'),
+(16, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:08:39'),
+(17, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:08:50'),
+(18, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:10:04'),
+(19, 'add_campaign', 1, 3, 0, 0, NULL, NULL, '2018-05-01 01:15:23'),
+(20, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:15:46'),
+(21, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:15:48'),
+(22, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 01:17:38'),
+(23, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 01:17:39'),
+(24, 'add_crew', 1, 10, 0, 0, NULL, NULL, '2018-05-01 01:34:09'),
+(25, 'add_crew', 1, 11, 0, 0, NULL, NULL, '2018-05-01 01:35:07'),
+(26, 'add_crew', 1, 12, 0, 0, NULL, NULL, '2018-05-01 01:36:14'),
+(27, 'add_crew', 1, 13, 0, 0, NULL, NULL, '2018-05-01 01:37:24');
 
 -- --------------------------------------------------------
 
@@ -278,25 +307,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pkCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `crews`
 --
 ALTER TABLE `crews`
-  MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `pkCrew` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `crewspercampaign`
 --
 ALTER TABLE `crewspercampaign`
-  MODIFY `pkCrewsPerCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pkCrewsPerCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `feed_event`
 --
 ALTER TABLE `feed_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `people`
