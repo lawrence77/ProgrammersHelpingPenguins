@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col-sm-6 col-lg-6 my-profile ">
     		<h3> <span class="tdFirstName"><?php echo $user->firstName; ?> </span> <span class="tdLastName"><?php echo $user->lastName; ?></span> </h3>
-            <img src="../public/images/question.png" id ="profilepic">
-            <table>
+            <!--<img src="../public/images/question.png" id ="profilepic">-->
+            <table class="table-striped profile-info">
                 <tr><th>First Name</th><td class="tdFirstName"> <?= $user->firstName ?> </td></tr>
                 <tr><th>Last Name</th><td class="tdLastName"><?php echo $user->lastName; ?></td></tr>
                 <tr><th>Age</th><td class="tdAge"><?php echo $user->age; ?></td></tr>
@@ -28,16 +28,11 @@
                     <tr><th>Role</th><td class="tdRole"><?php echo determineRole($user); ?>
                 <?php endif; ?>
             </table>
-            <?php if($_SESSION['user_id'] != $user->id):?>
-                <form method="post" action="">
-                    <button type="submit">Follow</button>
-                </form>
-            <?php endif; ?>
-            <div class="col-sm-6 col-lg-6 my-profile">
+            <div class="col-sm-6 col-lg-6 my-profile"><br><br>
                 <?php if($_SESSION['user_id'] == $user->id): ?>
-                    <button id="editProfileButton" class ="button-padding">Edit My Profile</button>
+                    <button id="editProfileButton" class ="btn btn-info button-padding">Edit My Profile</button>
                 <?php elseif ($_SESSION['role'] == 0): ?>
-                    <button id="editProfileButton" class ="button-padding">Edit This Profile</button>
+                    <button id="editProfileButton" class ="btn btn-info button-padding">Edit This Profile</button>
                 <?php endif; ?>
                 <form id="editProfileForm" style="display:none;">
                     <input id="sameUsername" style="display:none" type="text" name="username" value="<?= $user->username ?>">
@@ -79,13 +74,17 @@
             <?php if(empty($fes)): ?>
                 <p>No events yet.</p>
             <?php else: ?>
-                <ul>
+		<table class="table table-striped">
                 <?php foreach($fes as $fe): ?>
             	    <?php if($fe->creator_id===$user->id): ?>
-                        <li><?= formatEvent($fe) ?></li>
+			<tr>
+				<td>
+				<?= formatEvent($fe) ?>
+				</td>
+			</tr>
             	       <?php endif; ?>
                 <?php endforeach; ?>
-                </ul>
+		</table>
             <?php endif; ?>
         </div>
     </div>

@@ -42,7 +42,7 @@ else $loggedin = 'Login';
 					<li class="<?php echo ($pageTitle == "Deployment" ? "active" : "")?>"><a href="<?= BASE_URL ?>/deployment">Deployment</a></li>
                     <li class="<?php echo ($pageTitle == "Campaigns" ? "active" : "")?>"><a href="<?= BASE_URL ?>/campaigns">Campaigns</a></li>
 					<li class="<?php echo ($pageTitle == "Crews" ? "active" : "")?>"><a href="<?= BASE_URL ?>/crews">Crews</a></li>
-					<li class="<?php echo ($pageTitle == "People" ? "active" : "")?>"><a href="<?= BASE_URL ?>/people">People</a></li>
+					<!--<li class="<?php echo ($pageTitle == "People" ? "active" : "")?>"><a href="<?= BASE_URL ?>/people">People</a></li> -->
                     <?php if(isset($_SESSION['username'])): ?>
 					<li class="<?php echo ($pageTitle == "Dashboard" ? "active" : "")?>"><a href="<?= BASE_URL ?>/dashboard">Dashboard</a></li>
 					<?php endif ?>
@@ -60,4 +60,4 @@ else $loggedin = 'Login';
             </div>
         </div>
     </nav>
-    <div class="control-group">
+    <div class="container control-group">

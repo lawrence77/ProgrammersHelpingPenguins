@@ -1,12 +1,28 @@
 /* Main Stylesheet */
 body {
-    background-color: darkgrey;
+    background: #cce1ff;
+}
+
+.container {
+}
+
+a:link {
+    color:#5897fc;
+}
+a:hover {
+    color:#3c7fea;
+    text-decoration:none;
 }
 
 /*AJAX Forms */
 #newUserForm, #newCrewForm, #newPersonForm, #add-campaign-menu, #edit-campaign-menu, #editCrewForm {
     display: none;
 }
+
+.crewItem {
+    float:left;
+}
+
 
 
 .bomber-squad-content{
@@ -22,10 +38,12 @@ body {
 
 }
 .bomber-squad-table-title{
+    color:#5c92e8;
     font-size: 25px;
     margin: 1.5% 0 1.5% 0;
 }
 .bomber-squad-table-content{
+    color:#24477c;
     font-size: 15px;
     margin: 1% 0 1% 0;
 }
@@ -75,7 +93,10 @@ body {
 	width: 50%;
     height: 50%;
 }
-
+          
+.profile-info td {
+    padding:4px;
+}
 .campaign-list {
     margin:auto;
     width: 50%;
@@ -97,12 +118,13 @@ body {
 }
 
 .control-group {
+    background: #fcfcfc;
     padding-top: 70px;
     width: 90%;
-    background-color: white;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 30px;
+    min-height: 910px;
 }
 #left {
     margin-left: 1.5%;
@@ -110,9 +132,12 @@ body {
 #right {
     margin-left: 1.5%;
 }
-.footer {
-    margin-left: 1.5%;
-}
 .navbar {
     width: 100%;
+}
+
+.home-image img{
+	width:60%;
+	height:60%;
+	margin-left:20%;
 }
