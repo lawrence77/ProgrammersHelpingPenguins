@@ -437,7 +437,7 @@ function unfollow(id, f_id) {
 	var destNum = {};
 	var destHeight = 250;
 	var destWidth = 800;
-	var destX = 350;
+	var destX = 200;
 	var destY = 200;
 	var startX = 55;
 	var startY = 55;
@@ -457,7 +457,7 @@ function drawBeforeMap(){
 		var label2 = new createjs.Text($(this).data("name"), "bold 20px Lato", "#000");
 		label2.textAlign = "center";
 		label2.x += 400;
-		label2.y += 40;
+		label2.y += 20;
 
 
 		var box = new createjs.Shape();
@@ -591,13 +591,14 @@ function addDragFunc(dragger, stage){
 			found = false;
 			destinations.forEach(function (dest){
 				  if(intersect(evt.currentTarget, dest)){
+				  	console.log("TEST");
 					relationIDS = dragger.name.split("-");
 					if(relationIDS.length == 2)
 					{
 						destNum[parseInt(relationIDS[1])]--;
 						removeRelation(relationIDS[0] ,relationIDS[1]);
 					}
-					dragger.x = dest.x + 60  +(2*radius + 10)*destNum[dest.name];
+					dragger.x = dest.x + 60 + (2*radius + 10)*destNum[dest.name];
 					dragger.y = dest.y + destHeight/2;
 					dragger.alpha = 1;
 

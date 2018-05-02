@@ -19,6 +19,10 @@ a:hover {
     display: none;
 }
 
+.crewItem {
+    float:left;
+}
+
 
 
 .bomber-squad-content{

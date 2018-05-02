@@ -1,3 +1,8 @@
+Click on the name of a campaign to get detailed information about it!<br><br>
+
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<canvas id="demoCanvas" width="1300" height="850" onload="drawBeforeMap()" >
+</canvas>
 <?php
 		$campaigns = Campaign::getPeople();
 		foreach($campaigns as $c)
@@ -17,7 +22,4 @@
 			echo "<div class='crewItem' data-partof='".implode(" ", $cw->getCampignsPartOf())."' data-crewid=" . $cw->id . " data-name='".$cw->bomberGroup . " " . $cw->provisionalWing."'></div>";
 		}
 	?>
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<canvas id="demoCanvas" width="1300" height="1200" onload="drawBeforeMap()" >
-</canvas>
 <script type="text/javascript">drawBeforeMap();</script>
