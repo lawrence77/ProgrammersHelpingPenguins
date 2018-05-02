@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2018 at 03:46 AM
+-- Generation Time: May 02, 2018 at 12:44 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -76,10 +76,10 @@ INSERT INTO `crews` (`pkCrew`, `provisionalWing`, `bomberGroup`, `trainingSchool
 (6, '402nd PCBW', '95th Bomb Group ', NULL, 21, 4, 'Horham', '95th_Air_Base_Wing', 0),
 (7, '402nd PCBW', '100th Bomb Group', NULL, 21, 9, 'Thorpe Abbotts', '100th_Air_Refueling_Wing', 0),
 (9, 'Test', 'qweqw', NULL, 14312, 1231, '1231', NULL, 1),
-(10, '2nd PCBW', '389th Bomb Group', NULL, 19, 1, 'Hethel', NULL, 0),
-(11, '14nd PCBW', '392th Bomb Group', NULL, 23, 2, ' Wendling', NULL, 0),
-(12, '2nd PCBW', '445th Bomb Group', NULL, 21, 0, 'Tibenham', NULL, 0),
-(13, '20th PCBW', '446th Bomb Group', NULL, 15, 3, 'Bungay', NULL, 0);
+(10, '2nd PCBW', '389th Bomb Group', NULL, 19, 1, 'Hethel', '389th_Bombardment_Squadron', 0),
+(11, '14th PCBW', '392th Bomb Group', NULL, 23, 2, ' Wendling', '392d_Air_Expeditionary_Group', 0),
+(12, '2nd PCBW', '445th Bomb Group', NULL, 21, 0, 'Tibenham', '445th_Operations_Group', 0),
+(13, '20th PCBW', '446th Bomb Group', NULL, 15, 3, 'Bungay', '446th_Operations_Group', 0);
 
 -- --------------------------------------------------------
 
@@ -102,13 +102,13 @@ INSERT INTO `crewspercampaign` (`pkCrewsPerCampaign`, `crewID`, `campaignID`) VA
 (32, 5, 1),
 (33, 6, 1),
 (34, 7, 1),
-(35, 1, 1),
 (36, 2, 1),
 (37, 3, 1),
-(38, 11, 3),
 (39, 13, 3),
 (40, 12, 3),
-(41, 10, 3);
+(42, 10, 3),
+(44, 1, 1),
+(45, 11, 3);
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,65 @@ INSERT INTO `feed_event` (`id`, `type`, `creator_id`, `item_1_id`, `item_2_id`, 
 (24, 'add_crew', 1, 10, 0, 0, NULL, NULL, '2018-05-01 01:34:09'),
 (25, 'add_crew', 1, 11, 0, 0, NULL, NULL, '2018-05-01 01:35:07'),
 (26, 'add_crew', 1, 12, 0, 0, NULL, NULL, '2018-05-01 01:36:14'),
-(27, 'add_crew', 1, 13, 0, 0, NULL, NULL, '2018-05-01 01:37:24');
+(27, 'add_crew', 1, 13, 0, 0, NULL, NULL, '2018-05-01 01:37:24'),
+(28, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 02:11:27'),
+(29, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:11:27'),
+(30, 'visit_page', -1, 1, 0, 0, 'People', NULL, '2018-05-01 02:11:28'),
+(31, 'visit_page', -1, 1, 0, 0, 'Dashboard', NULL, '2018-05-01 02:11:29'),
+(32, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 02:11:32'),
+(33, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:49:31'),
+(34, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:49:48'),
+(35, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:51:43'),
+(36, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:52:27'),
+(37, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:52:56'),
+(38, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 02:58:42'),
+(39, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 02:58:44'),
+(40, 'visit_page', -1, 1, 0, 0, 'Dashboard', NULL, '2018-05-01 02:58:46'),
+(41, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 02:58:48'),
+(42, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 02:58:50'),
+(43, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 02:58:52'),
+(44, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 03:00:20'),
+(45, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 03:00:21'),
+(46, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 13:54:33'),
+(47, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 13:54:44'),
+(48, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 13:54:55'),
+(49, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 13:54:58'),
+(50, 'visit_page', -1, 1, 0, 0, 'Dashboard', NULL, '2018-05-01 13:55:04'),
+(51, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 14:03:59'),
+(52, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 14:59:12'),
+(53, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 14:59:43'),
+(54, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:00:05'),
+(55, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:02:05'),
+(56, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:02:09'),
+(57, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:02:20'),
+(58, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:02:36'),
+(59, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:02:47'),
+(60, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:02:59'),
+(61, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:03:22'),
+(62, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:03:38'),
+(63, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:03:52'),
+(64, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:04:13'),
+(65, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 15:04:20'),
+(66, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 17:49:50'),
+(67, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 17:54:30'),
+(68, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 17:54:35'),
+(69, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 17:59:17'),
+(70, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 19:56:00'),
+(71, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 19:56:08'),
+(72, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 19:56:13'),
+(73, 'visit_page', -1, 1, 0, 0, 'Dashboard', NULL, '2018-05-01 19:56:20'),
+(74, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 19:56:29'),
+(75, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 19:56:34'),
+(76, 'visit_page', -1, 1, 0, 0, 'Home', NULL, '2018-05-01 19:56:49'),
+(77, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 19:57:11'),
+(78, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 19:57:13'),
+(79, 'visit_page', -1, 1, 0, 0, 'Dashboard', NULL, '2018-05-01 19:57:18'),
+(80, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 19:57:51'),
+(81, 'visit_page', -1, -2, 0, 0, 'Home', NULL, '2018-05-01 22:38:54'),
+(82, 'visit_page', -1, 1, 0, 0, 'Campaigns', NULL, '2018-05-01 22:39:50'),
+(83, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 22:39:53'),
+(84, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 22:40:05'),
+(85, 'visit_page', -1, 1, 0, 0, 'Crews', NULL, '2018-05-01 22:42:07');
 
 -- --------------------------------------------------------
 
@@ -319,13 +377,13 @@ ALTER TABLE `crews`
 -- AUTO_INCREMENT for table `crewspercampaign`
 --
 ALTER TABLE `crewspercampaign`
-  MODIFY `pkCrewsPerCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `pkCrewsPerCampaign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `feed_event`
 --
 ALTER TABLE `feed_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `people`
